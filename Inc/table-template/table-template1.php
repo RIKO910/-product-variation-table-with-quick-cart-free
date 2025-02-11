@@ -264,9 +264,9 @@ if (isset($product) && $product->is_type("variable")) {
                             }else{
                                 $sale_price = $variation->get_sale_price();
                                 if($sale_price) {
-                                    echo wc_price($sale_price);
+                                    echo esc_html(wc_price($sale_price));
                                 } else {
-                                    echo wc_price($variation->get_regular_price());
+                                    echo esc_html(wc_price($variation->get_regular_price()));
                                 }
                             } ?></td>
                         <?php
