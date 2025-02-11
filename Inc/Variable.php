@@ -350,10 +350,17 @@ class Quickvariables
                                                 border-radius: ' . esc_attr($imageColorBorderRadius) . 'px;">';
 
                                     if ($image_url) {
-                                        $images .= '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($term->name) . '" 
-                                                    style=" height: ' . esc_attr($imageColorHeight) . 'px; 
-                                                    width: ' . esc_attr($imageColorWidth) . 'px; 
-                                                    border-radius: ' . esc_attr($imageColorBorderRadius) . 'px;"/>';
+                                        $image_id = attachment_url_to_postid($image_url);
+                                        if ($image_id) {
+                                            $images .= wp_get_attachment_image($image_id, 'full', false, [
+                                                'alt'   => esc_attr($term->name),
+                                                'style' => 'height: ' . esc_attr($imageColorHeight) . 'px; 
+                                                            width: ' . esc_attr($imageColorWidth) . 'px; 
+                                                            border-radius: ' . esc_attr($imageColorBorderRadius) . 'px;'
+                                            ]);
+                                        }else{
+                                            $images .= '<span class="term-name">' . esc_html($term->name) . '</span>';
+                                        }
                                     } else {
                                         $images .= '<span class="term-name">' . esc_html($term->name) . '</span>';
                                     }
@@ -587,13 +594,18 @@ class Quickvariables
                                         border-radius: ' . esc_attr($imageColorBorderRadius) . 'px;">';
 
                             if ($image_url) {
-
-                                $images .= '<img src="' . esc_url($image_url) . '" alt="' . esc_attr($option) . '" 
-                                            style=" height: ' . esc_attr($imageColorHeight) . 'px; 
-                                            width: ' . esc_attr($imageColorWidth) . 'px; 
-                                            border-radius: ' . esc_attr($imageColorBorderRadius) . 'px;"/>';
+                                $image_id = attachment_url_to_postid($image_url);
+                                    if ($image_id){
+                                        $images .= wp_get_attachment_image($image_id, 'full', false, [
+                                            'alt'   => esc_attr($option),
+                                            'style' => 'height: ' . esc_attr($imageColorHeight) . 'px; 
+                                                            width: ' . esc_attr($imageColorWidth) . 'px; 
+                                                            border-radius: ' . esc_attr($imageColorBorderRadius) . 'px;'
+                                        ]);
+                                    }else{
+                                        $images .= '<span class="term-name">' . esc_html($option) . '</span>';
+                                    }
                             } else {
-
                                 $images .= '<span class="term-name">' . esc_html($option) . '</span>';
                             }
 
