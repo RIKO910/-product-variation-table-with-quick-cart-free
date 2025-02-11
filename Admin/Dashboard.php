@@ -60,7 +60,7 @@ $cartButtonBgHover       = isset($variableSetting['cartButtonBgHover']) ? $varia
 $plusMinusBgColorHover   = isset($variableSetting['quantityBgColorHover']) ? $variableSetting['quantityBgColorHover'] : '#0056b3';
 $quickCarouselOnOff      = isset($variableSetting['quickCarouselOnOff']) ? $variableSetting['quickCarouselOnOff'] : '';
 $quickTableOnOff         = isset($variableSetting['quickTableOnOff']) ? $variableSetting['quickTableOnOff'] : '';
-$bulkSelectionHideShow   = isset($variableSetting['bulkSelectionHideShow']) ? $variableSetting['bulkSelectionHideShow'] : 'true';
+$bulkSelectionHideShow   = isset($variableSetting['bulkSelectionHideShow']) ? $variableSetting['bulkSelectionHideShow'] : '';
 $imageHideShow           = isset($variableSetting['imageHideShow']) ? $variableSetting['imageHideShow'] : 'true';
 $skuHideShow             = isset($variableSetting['skuHideShow']) ? $variableSetting['skuHideShow'] : 'true';
 $titleHideShow           = isset($variableSetting['titleHideShow']) ? $variableSetting['titleHideShow'] : 'true';
@@ -444,13 +444,7 @@ $license_active          = get_option('quick_license_key');
                             <input type="checkbox" value="quick-tooltip-position-left" <?php if($variableTooltipPosition == "quick-tooltip-position-left"): echo esc_attr("checked"); endif; ?>>
                             <span class="slider round"></span>
                         </label>
-                        <span><?php echo esc_html('Left ','product-variation-table-with-quick-cart');
-
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-
-                            ?></span>
+                        <span><?php echo esc_html('Left ','product-variation-table-with-quick-cart');?></span>
                     </div>
 
                     <div class="quick-box-position-click">
@@ -458,12 +452,7 @@ $license_active          = get_option('quick_license_key');
                             <input type="checkbox" value="quick-tooltip-position-right"  <?php if($variableTooltipPosition == "quick-tooltip-position-right"): echo esc_attr("checked"); endif; ?>>
                             <span class="slider round"></span>
                         </label>
-                        <span><?php echo esc_html('Right ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-
-                            ?></span>
+                        <span><?php echo esc_html('Right ','product-variation-table-with-quick-cart');?></span>
                     </div>
                 </div>
             </div>
@@ -813,11 +802,7 @@ $license_active          = get_option('quick_license_key');
 
                     <!-- Variation Table Position Select -->
                     <div class="quick-selections quick-selections-style">
-                        <h4><?php echo wp_kses('Variation Table Position: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></h4>
+                        <h4><?php echo wp_kses('Variation Table Position: ','product-variation-table-with-quick-cart');?></h4>
 
                         <div style="display: flex; gap: 30px;">
                             <select id="table-position" class="quick-table-position">
@@ -968,19 +953,15 @@ $license_active          = get_option('quick_license_key');
                         <div class="quick-selectors-wrapper">
                             <div class="bulk-selection-hide-show">
                                 <label class="switch">
-                                    <input type="checkbox" name="bulk-selection-hide-show" <?php if( $bulkSelectionHideShow == "true" || empty($bulkSelectionHideShow) ): echo esc_attr("checked"); endif; ?>>
+                                    <input type="checkbox" name="bulk-selection-hide-show" <?php if( $bulkSelectionHideShow == "true" ): echo esc_attr("checked"); endif; ?>>
                                     <span class="slider round"></span>
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 44.3%; align-items: center">
-                        <h4><?php echo wp_kses('Show Image: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></h4>
+                    <div class="quick-selections" style="display: flex; gap: 54.3%; align-items: center">
+                        <h4><?php echo wp_kses('Show Image: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="image-hide-show">
                                 <label class="switch">
@@ -991,12 +972,8 @@ $license_active          = get_option('quick_license_key');
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 48.5%; align-items: center">
-                        <h4><?php echo wp_kses('Show SKU: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></h4>
+                    <div class="quick-selections" style="display: flex; gap: 58.5%; align-items: center">
+                        <h4><?php echo wp_kses('Show SKU: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="sku-hide-show">
                                 <label class="switch">
@@ -1057,12 +1034,8 @@ $license_active          = get_option('quick_license_key');
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 37.5%; align-items: center">
-                        <h4><?php echo wp_kses('Show Attribute: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></h4>
+                    <div class="quick-selections" style="display: flex; gap: 47.5%; align-items: center">
+                        <h4><?php echo wp_kses('Show Attribute: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="all-attribute-hide-show">
                                 <label class="switch">
@@ -1073,12 +1046,8 @@ $license_active          = get_option('quick_license_key');
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 45.5%; align-items: center">
-                        <h4><?php echo wp_kses('Show Price: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></h4>
+                    <div class="quick-selections" style="display: flex; gap: 55.5%; align-items: center">
+                        <h4><?php echo wp_kses('Show Price: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="price-hide-show">
                                 <label class="switch">
@@ -1090,12 +1059,8 @@ $license_active          = get_option('quick_license_key');
                     </div>
 
 
-                    <div class="quick-selections" style="display: flex; gap: 37.6%; align-items: center">
-                        <h4><?php echo wp_kses('Show Quantity: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></h4>
+                    <div class="quick-selections" style="display: flex; gap: 47.6%; align-items: center">
+                        <h4><?php echo wp_kses('Show Quantity: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="quantity-hide-show">
                                 <label class="switch">
@@ -1122,12 +1087,8 @@ $license_active          = get_option('quick_license_key');
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 41.8%; align-items: center">
-                        <h4><?php echo wp_kses('Show Action: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></h4>
+                    <div class="quick-selections" style="display: flex; gap: 51.8%; align-items: center">
+                        <h4><?php echo wp_kses('Show Action: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="action-hide-show">
                                 <label class="switch">

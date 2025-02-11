@@ -229,80 +229,25 @@ jQuery(document).ready(function () {
     jQuery("[name=list-for-flat]").prop("disabled", true);
     jQuery("#list-for-flat").removeAttr("id");
 
-    jQuery(document).ready(function() {
-      // Set the checkbox as checked
-      jQuery("[name=bulk-selection-hide-show]").prop("checked", true);
-      jQuery("[name=image-hide-show]").prop("checked", true);
-      jQuery("[name=sku-hide-show]").prop("checked", true);
-      jQuery("[name=title-hide-show]").prop("checked", true);
-      jQuery("[name=description-hide-show]").prop("checked", true);
-      jQuery("[name=weight-dimension-hide-show]").prop("checked", true);
-      jQuery("[name=all-attribute-hide-show]").prop("checked", true);
-      jQuery("[name=price-hide-show]").prop("checked", true);
-      jQuery("[name=quantity-hide-show]").prop("checked", true);
-      jQuery("[name=stock-status-hide-show]").prop("checked", true);
-      jQuery("[name=action-hide-show]").prop("checked", true);
+    jQuery("[name=bulk-selection-hide-show]").prop("disabled", true);
+    jQuery("[name=bulk-selection-hide-show]").prop("checked", false);
+    jQuery(".bulk-selection-hide-show").removeClass("quick-table-border");
 
-      // Make the checkbox unclickable by preventing default action on click
-      jQuery("[name=bulk-selection-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=image-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=sku-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=title-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=description-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=weight-dimension-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=all-attribute-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=price-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=quantity-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=stock-status-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-      jQuery("[name=action-hide-show]").on("click", function(event) {
-        event.preventDefault();  // Prevents changes to the checked state
-      });
-    });
+    jQuery("[name=title-hide-show]").prop("disabled", true);
+    jQuery("[name=title-hide-show]").prop("checked", false);
+    jQuery(".title-hide-show").removeClass("quick-table-border");
 
+    jQuery("[name=description-hide-show]").prop("disabled", true);
+    jQuery("[name=description-hide-show]").prop("checked", false);
+    jQuery(".description-hide-show").removeClass("quick-table-border");
 
-    // jQuery("[name=image-hide-show]").prop("disabled", true);
-    // jQuery("[name=image-hide-show]").prop("checked", false);
-    // jQuery(".image-hide-show").removeClass("image-hide-show");
+    jQuery("[name=weight-dimension-hide-show]").prop("disabled", true);
+    jQuery("[name=weight-dimension-hide-show]").prop("checked", false);
+    jQuery(".weight-dimension-hide-show").removeClass("quick-table-border");
 
-    // jQuery("[name=sku-hide-show]").prop("disabled", true);
-    // jQuery("[name=sku-hide-show]").prop("checked", false);
-    // jQuery(".sku-hide-show").removeClass("sku-hide-show");
-
-    // jQuery("[name=all-attribute-hide-show]").prop("disabled", true);
-    // jQuery("[name=all-attribute-hide-show]").prop("checked", false);
-    // jQuery(".all-attribute-hide-show").removeClass("all-attribute-hide-show");
-
-    // jQuery("[name=price-hide-show]").prop("disabled", true);
-    // jQuery("[name=price-hide-show]").prop("checked", false);
-    // jQuery(".price-hide-show").removeClass("price-hide-show");
-
-    // jQuery("[name=quantity-hide-show]").prop("disabled", true);
-    // jQuery("[name=quantity-hide-show]").prop("checked", false);
-    // jQuery(".quantity-hide-show").removeClass("quantity-hide-show");
-
-    // jQuery("[name=action-hide-show]").prop("disabled", true);
-    // jQuery("[name=action-hide-show]").prop("checked", false);
-    // jQuery(".action-hide-show").removeClass("action-hide-show");
+    jQuery("[name=stock-status-hide-show]").prop("disabled", true);
+    jQuery("[name=stock-status-hide-show]").prop("checked", false);
+    jQuery(".stock-status-hide-show").removeClass("quick-table-border");
 
     jQuery("[name=on-sale-hide-show]").prop("disabled", true);
     jQuery("[name=on-sale-hide-show]").prop("checked", false);
@@ -322,41 +267,11 @@ jQuery(document).ready(function () {
     quickCartExcerpt.removeAttr("value");
 
     // Correct way using variable without template strings
-    quickBoxPositionFieldWrapper
-      .eq(1)
-      .find('input[type="checkbox"]')
-      .prop("disabled", true);
 
-    quickBoxPositionFieldWrapper
-      .eq(1)
-      .find('input[type="checkbox"]')
-      .prop("checked", false);
-    quickBoxPositionFieldWrapper
-      .eq(1)
-      .find('input[type="checkbox"]')
-      .removeAttr("value");
-
-    quickBoxPositionFieldWrapper
-      .eq(2)
-      .find('input[type="checkbox"]')
-      .prop("disabled", true);
-
-    quickBoxPositionFieldWrapper
-      .eq(2)
-      .find('input[type="checkbox"]')
-      .prop("checked", false);
-    quickBoxPositionFieldWrapper
-      .eq(2)
-      .find('input[type="checkbox"]')
-      .removeAttr("value");
 
     jQuery("input[value|='variable-click']").prop("disabled", true);
     jQuery("input[value|='variable-click']").removeAttr("value");
 
-    quickSelections.find("select.quick-table-position").prop("disabled", true);
-    quickSelections
-      .find("select.quick-table-position")
-      .removeClass("quick-table-position");
 
     quickSelections.find("select.pop-up-image-show").prop("disabled", true);
     quickSelections

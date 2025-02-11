@@ -41,25 +41,6 @@ if (isset($product) && $product->is_type("variable")) {
 
     ?>
     <div class="table-template-max-width">
-        <div class="table-before" >
-
-            <?php if ($onSaleHideShow === "true"){
-                ?>
-                <div style="display: inline-flex; align-items: baseline; gap: 10px ; margin-right: 10px; margin-left: 10px">
-                    <input id="stock_status" type="checkbox"  name=""  style="outline: none">
-                    <p for="stock_status" ><?php echo esc_html($onSaleNameChange); ?></p>
-                </div>
-                <?php
-            }?>
-
-            <?php if ($searchOptionHideShow === "true"){
-                ?>
-                <div class="search_option" style="display: inline-flex; align-items: baseline; gap: 10px">
-                    <input class="variation-table-search" type="text" placeholder="<?php echo esc_html($searchOptionTextChange); ?>" name="search" id="variation-search">
-                </div>
-                <?php
-            }?>
-        </div>
         <table id="quick-variable-table">
             <tr>
 
