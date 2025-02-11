@@ -1,452 +1,48 @@
 jQuery(document).ready(function () {
 
-  /*
-    Variation Swatches Start.
-    Add to cart shop page for variation swatches.
-  */
   jQuery(document).ready(function ($) {
-    let selectedAttributes = {};
+    $('.quick-add-to-cart-shop-page').on('click', function (e) {
+      e.preventDefault();
 
-    $('.variations-display input[type="radio"], .variations-display button').on('click', function () {
-      const $currentProduct = $(this).closest('.variations-display');
-      const product_id = $(this).attr('data-product_id');
-      const available_variation = $(this).data('available_variations');
+      var button = $(this);
 
-      // Reset `selectedAttributes` when switching to a new product
-      if (!$currentProduct.data('product-initialized')) {
+      // Avoid adding another spinner if one is already present
+      if (!button.hasClass('loading')) {
+        // Add loading state
+        button.addClass('loading');
 
-        selectedAttributes = {};
-        $currentProduct.data('product-initialized', true);
-      }
+        // Add spinner dynamically
+        button.append('<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>');
 
-      let attribute = $(this).data('variation-name');
-      let value = $(this).data('value');
-
-      if (attribute && value) {
-        selectedAttributes[attribute] = value;
-      }
-
-
-      let allSelected = true;
-      $currentProduct.find('input:checked, button.selected').each(function () {
-        let attributeName  = $(this).data('variation-name');
-        let attributeValue = $(this).data('value');
-
-        if (attributeName && attributeValue) {
-          selectedAttributes[attributeName] = attributeValue;
-        } else {
-          allSelected = false;
-        }
-      });
-
-
-      if (allSelected) {
-        let variation_id = getMatchingVariationId(selectedAttributes, product_id, available_variation);
-
-        if (variation_id) {
-
-          // Add the spinner
-          $currentProduct.append('<div class="spinner-quick-cart-archive"><div class="spinner-archive"></div></div>');
-          $currentProduct.find('input[type="radio"], button').prop('disabled', true);
-
-          $.ajax({
-            type: 'POST',
-            url: quick_front_ajax_obj.ajax_url,
-            data: {
-              action: 'add_variation_to_cart',
-              variation_id: variation_id,
-              quantity: 1,
-            },
-            success: function (response) {
-              if (response.success) {
-                $(document.body).trigger('wc_fragment_refresh');
-                setTimeout(() => {
-                  $currentProduct.find('.spinner-quick-cart-archive').remove();
-                  $currentProduct.append(' <div class="archive-checkmark"><div class="checkmark">✔️</div></div> ');
-                }, 1000);
-              } else {
-                alert(response.data.message);
-                $currentProduct.find('.spinner-quick-cart-archive').remove();
-              }
-
-              selectedAttributes = {}; // Reset selection
-
-              setTimeout(() => {
-                $currentProduct.find('.checkmark').remove();
-                $currentProduct
-                    .find('input[type="radio"], button')
-                    .prop('disabled', false)
-                    .removeClass('selected')
-                    .removeClass('disabled-option')
-                    .css('opacity', '1');
-                $currentProduct.find('.archive-checkmark').remove();
-              }, 2000);
-
-            },
-            error: function () {
-              $currentProduct
-                  .find('input[type="radio"], button')
-                  .prop('disabled', false)
-                  .removeClass('selected')
-                  .removeClass('disabled-option')
-                  .css('opacity', '1');
-
-              // Remove the spinner
-              $currentProduct.find('.spinner-quick-cart-archive').remove();
-              alert('An error occurred. Please try again.');
-            },
-          });
-        }
+        // Simulate the end of loading (remove this part when adding actual AJAX functionality)
+        setTimeout(function() {
+          button.removeClass('loading');
+          button.find('.spinner').remove(); // Remove spinner after loading
+        }, 2000); // Adjust delay as needed
       }
     });
-
-    function getMatchingVariationId(selectedAttributes, product_id, available_variation) {
-      let variations = available_variation || [];
-      let attributesLength = null;
-
-      if (variations.length > 0) {
-        attributesLength = Object.keys(variations[0].attributes).length;
-      }
-
-      if (!variations || variations.length === 0 || Object.keys(selectedAttributes).length !== attributesLength) {
-        return false;
-      }
-
-      for (let variation of variations) {
-        let match = true;
-        for (let attribute in selectedAttributes) {
-          let selectedValue = selectedAttributes[attribute];
-          let variationValue = variation.attributes[attribute];
-
-          if (
-              String(variationValue) !== String(selectedValue) &&
-              variationValue !== '' &&
-              !variationValue.startsWith('any')
-          ) {
-            match = false;
-            break;
-          }
-        }
-        if (match) {
-          return variation.variation_id;
-        }
-      }
-      return false;
-    }
   });
 
-
-  // This  section just for Archive page. Start
-
   jQuery(document).ready(function ($) {
-    let selectedAttributes = {};
-    let firstAttributeSelected = null;
-    let attributeSelectionOrder = [];
-    let secondAttributeSelected = null;
-    let thirdAttributeSelected = null;
-    let firstAttributeSelectedd = null;
+    $('.image-shop-page').each(function () {
+      var div = $(this);
 
-    function resetProductSelections(productID) {
-      // Reset selected attributes, selection order, and states
-      selectedAttributes = {};
-      // attributeSelectionOrder = [];
-      firstAttributeSelected = null;
-      secondAttributeSelected = null;
-      thirdAttributeSelected = null;
+      // Get the attributes from the div
+      var src = div.attr('src');
+      var alt = div.attr('alt');
+      var style = div.attr('style');
+      var className = div.attr('class');
 
-      // Enable all buttons and reset styling for the current product
-      $(`[data-product_id="${productID}"]`)
-          .removeClass('');
-    }
-
-    $('.variations-display input[type="radio"], .variations-display button').on('click', function () {
-      const $currentProduct = $(this).closest('.variations-display');
-      const selectedVariations = $(this).attr('data-available-variations');
-      const selectedAttribute = $(this).attr('data-variation-name');
-      const selectedValue = $(this).attr('data-value');
-      let variations = $(this).data('available_variations');
-      const productID = $(this).attr('data-product_id');
-
-      // Check if this is a new product selection and reset
-      if (!$currentProduct.data('product-initialized')) {
-        resetProductSelections(productID);
-        // Set the flag to prevent resetting for the same product
-        $currentProduct.data('product-initialized', true);
-      } else {
-        $(`[data-product_id!="${productID}"]`).data('product-initialized', false);
-        // Now reset the current product selections
-        resetProductSelections(productID);
-        $currentProduct.data('product-initialized', true);
-      }
-
-      let selectedAttribute1 = $(this).data('variation-name') || $(this).attr('name');
-
-      // Filter variations based on the selected attribute
-      let filteredVariations = variations.filter(function (variation) {
-        let attributeValue = variation.attributes[selectedAttribute1];
-        // Match exact value OR if "Any" is set, allow all values
-        return attributeValue === selectedValue || attributeValue === '' || attributeValue.startsWith('any');
+      // Create an <img> element with the same attributes
+      var img = $('<img>', {
+        src: src,
+        alt: alt,
+        style: style,
+        class: className.replace('image-shop-page', '').trim() // Remove "image-shop-page" class if not needed
       });
 
-
-      // Check if the button is already selected
-      if ($(this).hasClass('selected')) {
-
-        delete selectedAttributes[selectedAttribute];
-
-        // Remove the attribute from the selection order
-        attributeSelectionOrder = attributeSelectionOrder.filter(attr => attr !== selectedAttribute);
-
-        // Reset the variables if necessary
-        if (firstAttributeSelected === selectedAttribute) {
-          firstAttributeSelected = null;
-        }
-        if (secondAttributeSelected === "second" && attributeSelectionOrder.length < 2) {
-          secondAttributeSelected = null;
-        }
-        if (thirdAttributeSelected === "third" && attributeSelectionOrder.length < 3) {
-          thirdAttributeSelected = null;
-        }
-
-        // Re-enable all buttons if nothing is selected
-        if (Object.keys(selectedAttributes).length === 0) {
-          $('.custom-color-button, .custom-image-button, .custom-button, input[type="radio"]').prop('disabled', false).css('opacity', '1').removeClass('disabled-option');
-        }
-
-        return;
-      }
-
-      // Update selected attributes
-      selectedAttributes[selectedAttribute] = selectedValue;
-
-      if (firstAttributeSelected === null ) {
-        // Allow free selection of color buttons until a non-color attribute is selected
-      } else {
-        // Lock in the first attribute group selected
-        if (firstAttributeSelected === null) {
-          firstAttributeSelected = selectedAttribute;
-        }
-      }
-
-
-      // Update attribute selection order if not already in the list
-      if (!attributeSelectionOrder.includes(selectedAttribute)) {
-        attributeSelectionOrder.push(selectedAttribute);
-      }
-
-      const clickedAttribute = $(this).attr('data-variation-name');
-
-      // Check if the attribute is already in the selection order
-      if (!attributeSelectionOrder.includes(clickedAttribute)) {
-        attributeSelectionOrder.push(clickedAttribute);
-      }
-
-      // Determine which attribute was selected and log appropriately
-      if (attributeSelectionOrder[0] === clickedAttribute) {
-        firstAttributeSelectedd = "first";
-      } else if (attributeSelectionOrder[1] === clickedAttribute) {
-        secondAttributeSelected = "second";
-        firstAttributeSelectedd = "first1";
-      } else if (attributeSelectionOrder[2] === clickedAttribute) {
-        thirdAttributeSelected = "third";
-        firstAttributeSelectedd = "first1";
-      }
-
-
-      if (selectedAttribute1) {
-        try {
-
-          let availableCombinations = [];
-
-          // Keep all buttons in the current (color) group enabled if it's the first selection
-          if (firstAttributeSelected === selectedAttribute ) {
-            $(`[data-variation-name="${selectedAttribute}"]`).each(function () {
-              $(this).prop('disabled', false).css('opacity', '1').removeClass('disabled-option');
-            });
-          } else {
-            // Disable other attribute buttons if they don't match the available variations
-            $('.custom-color-button, .custom-image-button, .custom-button, input[type="radio"]').each(function () {
-              const buttonAttribute = $(this).attr('data-variation-name');
-              const buttonValue = $(this).attr('data-value');
-              const termOrderData = $(this).attr('data-term-order');
-              const checkProductID = $(this).attr('data-product_id');
-
-              if (checkProductID !== productID){
-                return;
-              }
-              let termOrder;
-
-              if (termOrderData) {
-                try {
-                  termOrder = JSON.parse(termOrderData);
-                } catch (error) {
-                  console.error('Error parsing termOrder JSON:', error);
-                }
-              } else {
-                console.warn('No termOrder data found for this button.');
-              }
-
-              // Skip the current attribute group
-              if (buttonAttribute !== selectedAttribute) {
-
-                let isAvailable = false;
-
-
-                if (thirdAttributeSelected === "third") {
-
-                  // Filter variations based on selected attributes
-                  filteredVariations.forEach(function (variation) {
-                    let match = true;
-                    Object.keys(selectedAttributes).forEach(function (key) {
-                      if (variation.attributes[key] !== selectedAttributes[key] && variation.attributes[key] !== '') {
-                        match = false;
-                      }
-                    });
-                    if (match) {
-                      availableCombinations.push(variation);
-                    }
-                  });
-
-
-                  availableCombinations.forEach(function (variation) {
-                    if (
-                        variation.attributes[buttonAttribute] === buttonValue ||
-                        variation.attributes[buttonAttribute] === '' ||
-                        variation.attributes[buttonAttribute].startsWith('any')
-                    ) {
-                      isAvailable = true;
-                    }
-                  });
-
-
-                  if (!isAvailable) {
-                    $(this).prop('disabled', true).css('opacity', '0.5').addClass('disabled-option');
-                  } else {
-                    $(this).prop('disabled', false).css('opacity', '1').removeClass('disabled-option');
-                  }
-                }else if (firstAttributeSelectedd === "first") {
-
-                  let isAvailable = false;
-
-                  filteredVariations.forEach(function (variation) {
-                    if (
-                        variation.attributes[buttonAttribute] === buttonValue ||
-                        variation.attributes[buttonAttribute] === '' ||  // Allow empty attributes
-                        variation.attributes[buttonAttribute].startsWith('any')  // Allow 'any' attributes
-                    ) {
-                      isAvailable = true;
-                    }
-                  });
-
-                  if (!isAvailable) {
-                    $(this).prop('disabled', true).css('opacity', '0.5').addClass('disabled-option');
-                  } else {
-                    $(this).prop('disabled', false).css('opacity', '1').removeClass('disabled-option');
-                  }
-                }else if (secondAttributeSelected === "second") {
-
-                  if (attributeSelectionOrder.length > 0) {
-                    let firstSelectedAttr = attributeSelectionOrder[0];
-                    let attrKey           = firstSelectedAttr.replace('attribute_', '');
-
-                    // Narrow down termOrder to terms for the first selected attribute
-                    let firstAttrTermOrder = termOrder && termOrder[attrKey] ? termOrder[attrKey] : null;
-
-                    if (!firstAttrTermOrder) {
-                      return;
-                    }
-
-                    let selectedTermNumbers = {};
-
-                    filteredVariations = filteredVariations.filter(function (variation) {
-                      let attrValue = variation.attributes[firstSelectedAttr];
-                      let termNumber;
-
-                      if (!attrValue || attrValue.toLowerCase().includes('any')) {
-                        Object.keys(firstAttrTermOrder).forEach(key => {
-                          selectedTermNumbers[key] = firstAttrTermOrder[key];
-                        });
-                        return true;
-                      } else {
-                        termNumber = firstAttrTermOrder[attrValue];
-                      }
-
-                      if (termNumber !== undefined) {
-                        selectedTermNumbers[attrValue] = termNumber;
-                        return true;
-                      } else if (attrValue === '' || attrValue.startsWith('any')) {
-                        return true;
-                      } else {
-                        console.warn(`Invalid attrValue or key missing in termOrder: ${attrValue}`);
-                        return false;
-                      }
-                    });
-
-                    $('.custom-color-button, .custom-image-button, .custom-button, input[type="radio"]').each(function () {
-                      const buttonAttribute = $(this).attr('data-variation-name');
-                      const buttonValue = $(this).attr('data-value');
-                      const secondAttributeProductID = $(this).attr('data-product_id');
-
-                      if (secondAttributeProductID !== productID){
-                        return;
-                      }
-
-                      if (buttonAttribute !== firstSelectedAttr) {
-                        return;
-                      }
-
-                      const attrValue = buttonValue;
-                      const termNumber = selectedTermNumbers[attrValue];
-
-                      if (termNumber !== undefined) {
-                        $(this).prop('disabled', false).css('opacity', '1').removeClass('disabled-option');
-                      } else {
-                        $(this).prop('disabled', true).css('opacity', '0.5').addClass('disabled-option');
-                      }
-                    });
-                  }
-                }else{
-
-                  // Filter variations based on selected attributes
-                  filteredVariations.forEach(function (variation) {
-                    let match = true;
-                    Object.keys(selectedAttributes).forEach(function (key) {
-                      if (variation.attributes[key] !== selectedAttributes[key] && variation.attributes[key] !== '') {
-                        match = false;
-                      }
-                    });
-                    if (match) {
-                      availableCombinations.push(variation);
-                    }
-                  });
-
-
-                  availableCombinations.forEach(function (variation) {
-                    if (
-                        variation.attributes[buttonAttribute] === buttonValue ||
-                        variation.attributes[buttonAttribute] === '' ||
-                        variation.attributes[buttonAttribute].startsWith('any')
-                    ) {
-                      isAvailable = true;
-                    }
-                  });
-
-
-                  if (!isAvailable) {
-                    $(this).prop('disabled', true).css('opacity', '0.5').addClass('disabled-option');
-                  } else {
-                    $(this).prop('disabled', false).css('opacity', '1').removeClass('disabled-option');
-                  }
-                }
-              }
-            });
-          }
-        } catch (error) {
-          console.error('Error parsing JSON:', error, selectedVariations);
-        }
-      } else {
-        console.log('No variations available for this selection.');
-      }
+      // Replace the <div> with the <img>
+      div.replaceWith(img);
     });
   });
 

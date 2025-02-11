@@ -1045,3 +1045,7 @@ label:hover {
 }
 
 
+.quick-add-to-cart-shop-page.loading .fa-cart-plus,
+.quick-add-to-cart-shop-page.loading span {
+  display: none; /* Hide the default icon and text when loading */
+}
