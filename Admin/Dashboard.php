@@ -145,13 +145,7 @@ $license_active          = get_option('quick_license_key');
             <h2><?php echo esc_html('Carousel and Table General Setting','product-variation-table-with-quick-cart'); ?></h2>
 
             <div class="quick-selections" style="display: flex; gap: 21.2%; align-items: center;">
-                <h4><?php echo wp_kses('Show Sell Price If Available: ','product-variation-table-with-quick-cart');
-
-                    if(empty($license_active)){
-                        echo "(Pro)";
-                    }
-
-                    ?></h4>
+                <h4><?php echo wp_kses('Show Sell Price If Available: ','product-variation-table-with-quick-cart'); ?></h4>
                 <div class="quick-selectors-wrapper">
                     <div class="show-double-price">
                         <label class="switch">
@@ -163,53 +157,11 @@ $license_active          = get_option('quick_license_key');
             </div>
 
             <div class="quick-selections" style="display: flex; gap: 10.2%; align-items: center;">
-                <h4><?php echo wp_kses('Add to Cart Icon (Font Awesome 5): ','product-variation-table-with-quick-cart');
 
-                    if(empty($license_active)){
-                        echo "(Pro)";
-                    }
-
-                    ?></h4>
-                <div class="quick-selectors-wrapper">
-                    <div class="icon-design" style="display: flex; gap: 10px; align-items: center;">
-
-                        <?php
-                        $variation_quick_cart_icon = [
-                            'fa fa-shopping-cart',
-                            'fa fa-cart-arrow-down',
-                            'fa fa-cart-plus',
-                            'fa none'
-                        ];
-
-                        $variation_quick_cart_icon_final = apply_filters('variation_quick_cart_icon', $variation_quick_cart_icon);
-
-                        foreach ($variation_quick_cart_icon_final as $quick_cart_icon_final) {
-
-
-
-                            ?>
-                            <label style="display: flex; align-items: center; gap: 5px;">
-                                <input type="radio" class="quick-cart-icon" name="quick_cart_icon" value="<?php echo esc_attr($quick_cart_icon_final); ?>"
-                                    <?php echo ($quickCartIcon === $quick_cart_icon_final) ? 'checked' : ''; ?> />
-                                <?php if ($quick_cart_icon_final === 'fa none') { ?>
-                                    <span style="font-size: 16px; color: black">None</span>
-                                <?php } else { ?>
-                                    <i class="<?php echo esc_attr($quick_cart_icon_final); ?>" style="font-size: 20px;"></i>
-                                <?php } ?>
-                            </label>
-                            <?php
-                        }
-                        ?>
-
-                    </div>
+                <div id="add-to-cart-icon-image-dashboard"
+                     data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/add-to-cart-icon-image.png'); ?>">
                 </div>
-            </div>
-            <h4 style="margin-top: 20px">OR</h4>
-            <div class="quick-selections">
-                <div class="quick-selectors-wrapper m-top">
-                    <label for="quick-cart-icon-image-link"><strong><?php echo esc_html('Add to Cart Icon Image Link:','product-variation-table-with-quick-cart'); ?></strong></label>
-                    <input id="quick-cart-icon-image-link" type="text" class="quick-cart-icon-image-link" value="<?php echo  esc_attr($quickCartIconImageLink); ?>">
-                </div>
+
             </div>
 
             <div class="quick-selections">
@@ -362,13 +314,13 @@ $license_active          = get_option('quick_license_key');
                     </select>
 
                     <!-- Help Start -->
-                    <button class="help-button variation-cart-carousel-setting-help">?</button>
+                    <button class="help-button-carousel variation-cart-carousel-setting-help">?</button>
 
                     <!-- Popup Structure -->
-                    <div id="popup-container" style="display: none;">
+                    <div value="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/help-quick-cart.png'); ?>" id="popup-container" style="display: none;">
 
 
-                        <div class="popup-content">
+                        <div class="popup-content-carousel">
                             <span class="close">&times;</span>
                             <div class="help-image"></div>
                         </div>
@@ -667,11 +619,7 @@ $license_active          = get_option('quick_license_key');
             <div style="display: flex; gap: 30%">
                 <div>
                     <div class="quick-selections" style="display: flex; gap: 47% ; align-items: center">
-                        <h4><?php echo wp_kses('Variation Table On: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></h4>
+                        <h4><?php echo wp_kses('Variation Table On: ','product-variation-table-with-quick-cart'); ?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="quick-table-on-off">
                                 <label class="switch">
@@ -1539,18 +1487,35 @@ $license_active          = get_option('quick_license_key');
     </div>
 
     <div id="select-variation-ul-li" class="tabcontent">
-        <h2><?php echo esc_html('Select Variation List','product-variation-table-with-quick-cart'); ?></h2>
+        <h2><?php echo esc_html('Select Variation List (This Feature Available for Pro Version)','product-variation-table-with-quick-cart'); ?></h2>
+
+        <div id="variation-list-dashboard-first-image"
+             data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/list-template-first-section.png'); ?>">
+        </div>
+        <div id="variation-list-dashboard-second-image"
+             data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/list-template-second-section.png'); ?>">
+        </div>
     </div>
 
     <div id="variation-gallery" class="tabcontent" style="">
         <div id="quickAuthenticateWrapper">
-            <h2><?php echo esc_html('Variation Gallery Setting','product-variation-table-with-quick-cart'); ?></h2>
+            <h2><?php echo esc_html('Variation Gallery Setting (This Feature Available for Pro Version)','product-variation-table-with-quick-cart'); ?></h2>
+
+            <div id="variation-gallery-dashboard"
+                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/variation-gallery-dashboard.png'); ?>">
+            </div>
+
         </div>
     </div>
 
     <div id="attribute-gallery" class="tabcontent" style="">
         <div id="quickAuthenticateWrapper">
-            <h2><?php echo esc_html('Attribute Gallery Setting','product-variation-table-with-quick-cart'); ?></h2>
+            <h2><?php echo esc_html('Attribute Gallery Setting (This Feature Available for Pro Version)','product-variation-table-with-quick-cart'); ?></h2>
+
+            <div id="attribute-gallery-dashboard"
+                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/attribute-gallery-dashboard.png'); ?>">
+            </div>
+
         </div>
     </div>
 

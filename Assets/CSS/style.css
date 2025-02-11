@@ -84,7 +84,7 @@ div#quickAdminTopInnerWrap {
   z-index: 1000; /* Ensure it's on top of other content */
 }
 
-.popup-content {
+.popup-content-carousel {
   position: relative;
   width: auto; /* Adjust width as needed */
   padding: 20px;
@@ -100,6 +100,49 @@ div#quickAdminTopInnerWrap {
   cursor: pointer;
   font-size: 25px;
 }
+
+/*Carousel redirect tooltip style dashboard start*/
+
+/* Tooltip container styling */
+.redirect-single-page-help , .discount-badge {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  color: black !important;
+  background-color: lightgrey;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  line-height:12px;
+}
+
+/* Tooltip text */
+.redirect-single-page-help::after , .discount-badge::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%; /* Position the tooltip above the element */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 9999;
+}
+
+/* Show tooltip on hover */
+.redirect-single-page-help:hover::after , .discount-badge:hover::after{
+  opacity: 1;
+  visibility: visible;
+}
+
+/*Carousel redirect tooltip style dashboard end*/
 
 .popup-content img {
   max-width: 100%; /* Ensure image does not overflow */

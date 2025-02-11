@@ -73,6 +73,82 @@ jQuery(document).ready(function ($) {
         }
     });
 
+//     Admin dashboard start
+
+    jQuery(document).ready(function ($) {
+        let imageDivCart      = $("#add-to-cart-icon-image-dashboard");
+        let imageDivListFirst = $("#variation-list-dashboard-first-image");
+        let imageDivListSecond = $("#variation-list-dashboard-second-image");
+        let imageDivVariationGallery = $("#variation-gallery-dashboard");
+        let imageDivAttributeGallery = $("#attribute-gallery-dashboard");
+        let imageUrlCart = imageDivCart.data("image");
+        let imageUrlListFirst = imageDivListFirst.data("image");
+        let imageUrlListSecond = imageDivListSecond.data("image");
+        let imageUrlVariationGallery = imageDivVariationGallery.data("image");
+        let imageUrlAttributeGallery = imageDivAttributeGallery.data("image");
+
+        if (imageUrlCart) {
+            let imgTag = $("<img>", {
+                src: imageUrlCart,
+                alt: "Add to Cart Icon",
+                css: {
+                    height: "100%"  // Set height (optional)
+                }
+            });
+
+            imageDivCart.append(imgTag); // Append image inside the div
+        }
+
+        if (imageUrlListFirst){
+            let imgTag = $("<img>", {
+                src: imageUrlListFirst,
+                alt: "Add to Cart Icon",
+                css: {
+                    height: "100%"  // Set height (optional)
+                }
+            });
+
+            imageDivListFirst.append(imgTag); // Append image inside the div
+        }
+
+        if (imageUrlListSecond){
+            let imgTag = $("<img>", {
+                src: imageUrlListSecond,
+                alt: "Add to Cart Icon",
+                css: {
+                    height: "100%"  // Set height (optional)
+                }
+            });
+
+            imageDivListSecond.append(imgTag); // Append image inside the div
+        }
+
+        if (imageUrlVariationGallery){
+            let imgTag = $("<img>", {
+                src: imageUrlVariationGallery,
+                alt: "Add to Cart Icon",
+                css: {
+                    height: "100%"  // Set height (optional)
+                }
+            });
+
+            imageDivVariationGallery.append(imgTag); // Append image inside the div
+        }
+
+        if (imageUrlAttributeGallery){
+            let imgTag = $("<img>", {
+                src: imageUrlAttributeGallery,
+                alt: "Add to Cart Icon",
+                css: {
+                    height: "100%"  // Set height (optional)
+                }
+            });
+
+            imageDivAttributeGallery.append(imgTag); // Append image inside the div
+        }
+    });
+
+
 });
 
 
