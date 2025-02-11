@@ -1236,11 +1236,7 @@ $license_active          = get_option('quick_license_key');
             <h2><?php echo esc_html('Variation Swatches for Single Product and Archive Page','product-variation-table-with-quick-cart'); ?></h2>
 
                 <div class="quick-selections" style="display: flex; gap: 10%; align-items: center">
-                    <h4><?php echo wp_kses('Variation Swatches Enable: ','product-variation-table-with-quick-cart');
-                        if(empty($license_active)){
-                            echo "(Pro)";
-                        }
-                        ?></h4>
+                    <h4><?php echo wp_kses('Variation Swatches Enable: ','product-variation-table-with-quick-cart');?></h4>
                     <div class="quick-selectors-wrapper">
                         <div class="variation-select-on-off">
                             <label class="switch">
@@ -1259,11 +1255,7 @@ $license_active          = get_option('quick_license_key');
                 </div>
 
                 <div class="quick-selections" style="display: flex; gap: 19.4%; align-items: center">
-                    <h4><?php echo wp_kses('Tooltip On: ','product-variation-table-with-quick-cart');
-                        if(empty($license_active)){
-                            echo "(Pro)";
-                        }
-                        ?></h4>
+                    <h4><?php echo wp_kses('Tooltip On: ','product-variation-table-with-quick-cart');?></h4>
                     <div class="quick-selectors-wrapper">
                         <div class="globally-tooltip-on-off">
                             <label class="switch">
@@ -1276,132 +1268,84 @@ $license_active          = get_option('quick_license_key');
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper">
-                        <label for="select-variation-tooltip-bg-color"><strong> <?php echo wp_kses('Tooltip Background Color: ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="select-variation-tooltip-bg-color"><strong> <?php echo wp_kses('Tooltip Background Color: ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="select-variation-tooltip-bg-color" name="select-variation-tooltip-bg-color" value="<?php echo esc_attr( $selectVariationTooltipBgColor ); ?>"  data-jscolor="{}">
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper">
-                        <label for="select-variation-tooltip-text-color"><strong> <?php echo wp_kses('Tooltip Text Color: ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="select-variation-tooltip-text-color"><strong> <?php echo wp_kses('Tooltip Text Color: ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="select-variation-tooltip-text-color" name="select-variation-tooltip-text-color" value="<?php echo esc_attr( $selectVariationTooltipTextColor ); ?>"  data-jscolor="{}">
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper">
-                        <label for="select-variation-button-bg-color"><strong> <?php echo wp_kses('Button Background Color: ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="select-variation-button-bg-color"><strong> <?php echo wp_kses('Button Background Color: ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="select-variation-button-bg-color" name="select-variation-button-bg-color" value="<?php echo esc_attr( $selectVariationButtonBgColor ); ?>"  data-jscolor="{}">
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper">
-                        <label for="select-variation-button-text-color"><strong> <?php echo wp_kses('Button Text Color: ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="select-variation-button-text-color"><strong> <?php echo wp_kses('Button Text Color: ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="select-variation-button-text-color" name="select-variation-button-text-color" value="<?php echo esc_attr( $selectVariationButtonTextColor ); ?>"  data-jscolor="{}">
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper m-top">
-                        <label for="image-color-height"><strong> <?php echo wp_kses('Image & Color Height (px): ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="image-color-height"><strong> <?php echo wp_kses('Image & Color Height (px): ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="image-color-height" class="image-color-height" type="text" name="image-color-height" value="<?php echo esc_attr( $imageColorHeight ); ?>"  >
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper m-top">
-                        <label for="image-color-width"><strong> <?php echo wp_kses('Image & Color Width (px): ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="image-color-width"><strong> <?php echo wp_kses('Image & Color Width (px): ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="image-color-width" class="image-color-width" type="text" name="image-color-width" value="<?php echo esc_attr( $imageColorWidth ); ?>"  >
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper m-top">
-                        <label for="image-color-border-radius"><strong> <?php echo wp_kses('Image & Color Border Radius (px): ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="image-color-border-radius"><strong> <?php echo wp_kses('Image & Color Border Radius (px): ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="image-color-border-radius" class="image-color-border-radius" type="text" name="image-color-border-radius" value="<?php echo esc_attr( $imageColorBorderRadius ); ?>"  >
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper">
-                        <label for="swatches-button-border-color"><strong> <?php echo wp_kses('Button Border Color: ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="swatches-button-border-color"><strong> <?php echo wp_kses('Button Border Color: ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="swatches-button-border-color" name="swatches-button-border-color" value="<?php echo esc_attr( $swatchesButtonBorderColor ); ?>"  data-jscolor="{}">
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper">
-                        <label for="selected-variation-button-border-color"><strong> <?php echo wp_kses(' Selected Button Border Color: ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="selected-variation-button-border-color"><strong> <?php echo wp_kses(' Selected Button Border Color: ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="selected-variation-button-border-color" name="selected-variation-button-border-color" value="<?php echo esc_attr( $selectedVariationButtonBorderColor ); ?>"  data-jscolor="{}">
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper m-top">
-                        <label for="button-height"><strong> <?php echo wp_kses('Button Height (px): ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="button-height"><strong> <?php echo wp_kses('Button Height (px): ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="button-height" class="button-height" type="text" name="button-height" value="<?php echo esc_attr( $buttonHeight ); ?>"  >
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper m-top">
-                        <label for="button-width"><strong> <?php echo wp_kses('Button Width (px): ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="button-width"><strong> <?php echo wp_kses('Button Width (px): ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="button-width" class="button-width" type="text" name="button-width" value="<?php echo esc_attr( $buttonWidth ); ?>"  >
                     </div>
                 </div>
 
                 <div class="quick-selections">
                     <div class="quick-selectors-wrapper m-top">
-                        <label for="button-border-radius"><strong> <?php echo wp_kses('Button Border Radius (px): ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></strong></label>
+                        <label for="button-border-radius"><strong> <?php echo wp_kses('Button Border Radius (px): ','product-variation-table-with-quick-cart');?></strong></label>
                         <input id="button-border-radius" class="button-border-radius" type="text" name="button-border-radius" value="<?php echo esc_attr( $buttonBorderRadius ); ?>"  >
                     </div>
                 </div>

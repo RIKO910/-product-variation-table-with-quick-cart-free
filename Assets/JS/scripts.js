@@ -105,29 +105,11 @@ jQuery(document).ready(function () {
     jQuery("[name=bulk-add-cart-text-color]").prop("disabled", true);
     jQuery("#bulk-add-cart-text-color").removeAttr("id");
 
-    jQuery("[name=select-variation-tooltip-bg-color]").prop("disabled", true);
-    jQuery("#select-variation-tooltip-bg-color").removeAttr("id");
-
     jQuery("[name=list-badge-bg-color]").prop("disabled", true);
     jQuery("#list-badge-bg-color").removeAttr("id");
 
     jQuery("[name=list-badge-text-color]").prop("disabled", true);
     jQuery("#list-badge-text-color").removeAttr("id");
-
-    jQuery("[name=select-variation-tooltip-text-color]").prop("disabled", true);
-    jQuery("#select-variation-tooltip-text-color").removeAttr("id");
-
-    jQuery("[name=select-variation-button-bg-color]").prop("disabled", true);
-    jQuery("#select-variation-button-bg-color").removeAttr("id");
-
-    jQuery("[name=select-variation-button-text-color]").prop("disabled", true);
-    jQuery("#select-variation-button-text-color").removeAttr("id");
-
-    jQuery("[name=swatches-button-border-color]").prop("disabled", true);
-    jQuery("#swatches-button-border-color").removeAttr("id");
-
-    jQuery("[name=selected-variation-button-border-color]").prop("disabled", true);
-    jQuery("#selected-variation-button-border-color").removeAttr("id");
 
     jQuery("[name=quick-table-head-text-color]").prop("disabled", true);
     jQuery("#quick-table-head-text-color").removeAttr("id");
@@ -235,18 +217,6 @@ jQuery(document).ready(function () {
     jQuery("[name=search-option-text-change]").prop("disabled", true);
     jQuery("#search-option-text-change").removeAttr("id");
 
-    jQuery("[name=image-color-width]").prop("disabled", true);
-    jQuery("#image-color-width").removeAttr("id");
-
-    jQuery("[name=image-color-height]").prop("disabled", true);
-    jQuery("#image-color-height").removeAttr("id");
-
-    jQuery("[name=image-color-border-radius]").prop("disabled", true);
-    jQuery("#image-color-border-radius").removeAttr("id");
-
-    jQuery("[name=button-height]").prop("disabled", true);
-    jQuery("#button-height").removeAttr("id");
-
     jQuery("[name=list-badge-height]").prop("disabled", true);
     jQuery("#list-badge-height").removeAttr("id");
 
@@ -258,12 +228,6 @@ jQuery(document).ready(function () {
 
     jQuery("[name=list-for-flat]").prop("disabled", true);
     jQuery("#list-for-flat").removeAttr("id");
-
-    jQuery("[name=button-width]").prop("disabled", true);
-    jQuery("#button-width").removeAttr("id");
-
-    jQuery("[name=button-border-radius]").prop("disabled", true);
-    jQuery("#button-border-radius").removeAttr("id");
 
     jQuery(document).ready(function() {
       // Set the checkbox as checked
