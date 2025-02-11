@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 global $product;
 global $post;
 $variableSetting       = get_option('variable_all_checked', array());

@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 $variableSetting         = get_option('variable_all_checked', array());
 $variableHoverClick      = isset($variableSetting['hoverClickValue'][0]) ? $variableSetting['hoverClickValue'][0] : '';
 $showAttributeSwatchesArchive      = isset($variableSetting['showAttributeSwatchesArchive'][0]) ? $variableSetting['showAttributeSwatchesArchive'][0] : '';

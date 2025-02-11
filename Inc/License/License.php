@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 register_deactivation_hook(__FILE__, "quick_variable_action_after_deactivation_plugin");
 register_activation_hook(__FILE__, "quick_variable_action_after_activation_plugin");
 

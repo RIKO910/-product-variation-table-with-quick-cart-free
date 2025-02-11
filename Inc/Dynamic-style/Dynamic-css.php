@@ -1,6 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;if ( ! defined( 'ABSPATH' ) ) exit;
 class QuickDynamicStyle{
-
     public function __construct(){
         add_action('wp_enqueue_scripts', [$this,'quick_dynamic_styles']);
     }

@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 global $product;
 global $post;
 if (isset($product) && $product->is_type("variable")) {

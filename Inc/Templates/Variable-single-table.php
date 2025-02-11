@@ -1,6 +1,5 @@
-<!--Inc/Templates/Variable-single-table.php-->
-
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 global $product;
 global $post;
