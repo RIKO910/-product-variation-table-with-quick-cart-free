@@ -507,6 +507,7 @@ button.quick-add-to-cart-shop-page {
   display: block;
   max-width: max-content;
   margin: auto;
+  overflow: auto;
 }
 
 #quick-variable-table {

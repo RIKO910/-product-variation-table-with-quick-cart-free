@@ -134,10 +134,19 @@ $license_active          = get_option('quick_license_key');
         <button class="tablinks" onclick="openCity(event, 'carousel')"><?php echo wp_kses('Carousel Settings','product-variation-table-with-quick-cart'); ?></button>
         <button class="tablinks" onclick="openCity(event, 'table')"> <?php echo wp_kses('Table Setting ','product-variation-table-with-quick-cart'); ?></button>
         <button class="tablinks" onclick="openCity(event, 'select-variation')"><?php echo wp_kses('Variation Swatches','product-variation-table-with-quick-cart'); ?></button>
-        <button class="tablinks" onclick="openCity(event, 'select-variation-ul-li')"><?php echo wp_kses('Variation List ','product-variation-table-with-quick-cart'); ?></button>
-        <button class="tablinks" onclick="openCity(event, 'variation-gallery')"><?php echo wp_kses('Variation Gallery','product-variation-table-with-quick-cart'); ?></button>
-        <button class="tablinks" onclick="openCity(event, 'attribute-gallery')"><?php echo wp_kses('Attribute Gallery','product-variation-table-with-quick-cart'); ?></button>
-        <button class="tablinks" onclick="openCity(event, 'support')"><?php echo wp_kses('Support','product-variation-table-with-quick-cart'); ?></button>
+        <button class="tablinks" onclick="openCity(event, 'select-variation-ul-li')">
+            <?php echo wp_kses('Variation List ','product-variation-table-with-quick-cart'); ?>
+            <span style="color: red;">★</span>
+        </button>
+        <button class="tablinks" onclick="openCity(event, 'variation-gallery')">
+            <?php echo wp_kses('Variation Gallery','product-variation-table-with-quick-cart'); ?>
+            <span style="color: red;">★</span>
+        </button>
+        <button class="tablinks" onclick="openCity(event, 'attribute-gallery')">
+            <?php echo wp_kses('Attribute Gallery','product-variation-table-with-quick-cart'); ?>
+            <span style="color: red;">★</span>
+        </button>
+        <button class="tablinks"  onclick="redirectToSupport()" onclick="openCity(event, 'support')"><?php echo wp_kses('Support','product-variation-table-with-quick-cart'); ?></button>
     </div>
 
     <div id="general" class="tabcontent" style="display: block;">
@@ -181,33 +190,21 @@ $license_active          = get_option('quick_license_key');
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="add-to-cart-bg-hover"><strong><?php echo wp_kses('Add to Cart Button Background Hover Color: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="add-to-cart-bg-hover"><strong><?php echo wp_kses('Add to Cart Button Background Hover Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="add-to-cart-bg-hover" name="add-to-cart-bg-hover" value="<?php echo esc_attr($cartButtonBgHover); ?>" data-jscolor="{}">
                 </div>
             </div>
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="add-to-cart-text"><strong><?php echo wp_kses('Add to Cart Button Text Color: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="add-to-cart-text"><strong><?php echo wp_kses('Add to Cart Button Text Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="add-to-cart-text" name="add-to-cart-text" value="<?php echo esc_attr($cartButtonTextColor); ?>" data-jscolor="{}">
                 </div>
             </div>
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="add-to-cart-text-hover-color"><strong><?php echo wp_kses('Add to Cart Button Text Hover Color: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="add-to-cart-text-hover-color"><strong><?php echo wp_kses('Add to Cart Button Text Hover Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="add-to-cart-text-hover-color" name="add-to-cart-text-hover-color" value="<?php echo esc_attr($cartButtonTextHoverColor); ?>" data-jscolor="{}">
                 </div>
             </div>
@@ -221,33 +218,21 @@ $license_active          = get_option('quick_license_key');
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="quantity-bg-color-hover"><strong><?php echo wp_kses('Quantity Plus Minus Button Background Hover Color: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="quantity-bg-color-hover"><strong><?php echo wp_kses('Quantity Plus Minus Button Background Hover Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="quantity-bg-color-hover" name="quantity-bg-color-hover" value="<?php echo esc_attr($plusMinusBgColorHover); ?>" data-jscolor="{}">
                 </div>
             </div>
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="quantity-text-color"><strong> <?php echo wp_kses('Quantity Plus Minus Button Text Color: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="quantity-text-color"><strong> <?php echo wp_kses('Quantity Plus Minus Button Text Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="quantity-text-color" name="quantity-text-color" value="<?php echo esc_attr($quantityTextColor); ?>"  data-jscolor="{}">
                 </div>
             </div>
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="quantity-text-hover-color"><strong> <?php echo wp_kses('Quantity Plus Minus Button Text Hover Color: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="quantity-text-hover-color"><strong> <?php echo wp_kses('Quantity Plus Minus Button Text Hover Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="quantity-text-hover-color" name="quantity-text-hover-color" value="<?php echo esc_attr($quantityTextHoverColor); ?>"  data-jscolor="{}">
                 </div>
             </div>
@@ -281,11 +266,7 @@ $license_active          = get_option('quick_license_key');
 
             <!-- Variable Carousel Position Select -->
             <div class="quick-selections quick-selections-style" >
-                <h4 ><?php echo wp_kses('Variation Quick Cart Carousel Position: ','product-variation-table-with-quick-cart');
-                    if(empty($license_active)){
-                        echo "(Pro)";
-                    }
-                    ?></h4>
+                <h4 ><?php echo wp_kses('Variation Quick Cart Carousel Position: ','product-variation-table-with-quick-cart');?></h4>
                 <div style="display: flex; gap: 17%;">
                     <select class="quick-carousel-position">
 
@@ -332,11 +313,7 @@ $license_active          = get_option('quick_license_key');
 
             <!-- Carousel Image Size -->
             <div class="quick-selections quick-selections-style">
-                <h4><?php echo wp_kses('Carousel Image Size : ','product-variation-table-with-quick-cart');
-                    if(empty($license_active)){
-                        echo "(Pro)";
-                    }
-                    ?></h4>
+                <h4><?php echo wp_kses('Carousel Image Size : ','product-variation-table-with-quick-cart');?></h4>
 
                 <div style="display: flex; gap: 80px;">
                     <select id="carousel-image-size" class="carousel-image-size">
@@ -419,13 +396,7 @@ $license_active          = get_option('quick_license_key');
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="quick-carousel-button-icon-color"><strong> <?php echo wp_kses('Carousel Navigation Button Icon Color: ','product-variation-table-with-quick-cart');
-
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-
-                            ?></strong></label>
+                    <label for="quick-carousel-button-icon-color"><strong> <?php echo wp_kses('Carousel Navigation Button Icon Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="quick-carousel-button-icon-color" name="quick-carousel-button-icon-color" value="<?php echo esc_attr( $carouselButtonIconColor ); ?>"  data-jscolor="{}">
                 </div>
             </div>
@@ -566,44 +537,28 @@ $license_active          = get_option('quick_license_key');
             <!-- Quantity Button -->
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="tooltip-text"><strong><?php echo wp_kses('Popup Text Color: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="tooltip-text"><strong><?php echo wp_kses('Popup Text Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="tooltip-text" name="tooltip-text" value="<?php echo esc_attr($tooltipTextColor); ?>" data-jscolor="{}">
                 </div>
             </div>
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper">
-                    <label for="add-to-cart-success-message"><strong> <?php echo wp_kses('Add to Cart Success Message: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="add-to-cart-success-message"><strong> <?php echo wp_kses('Add to Cart Success Message: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="add-to-cart-success-message" class="add-to-cart-success-message" type="text" name="add-to-cart-success-message" value="<?php echo esc_attr( $addToCartSuccessMessage ); ?>"  >
                 </div>
             </div>
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="add-to-cart-success-color"><strong><?php echo wp_kses('Add to Cart Success Text Color: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="add-to-cart-success-color"><strong><?php echo wp_kses('Add to Cart Success Text Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="add-to-cart-success-color" name="add-to-cart-success-color" value="<?php echo esc_attr($addToCartSuccessColor); ?>" data-jscolor="{}">
                 </div>
             </div>
 
             <div class="quick-selections">
                 <div class="quick-selectors-wrapper m-top">
-                    <label for="add-to-cart-error-color"><strong><?php echo wp_kses('Add to Cart Failed Text Color: ','product-variation-table-with-quick-cart');
-                            if(empty($license_active)){
-                                echo "(Pro)";
-                            }
-                            ?></strong></label>
+                    <label for="add-to-cart-error-color"><strong><?php echo wp_kses('Add to Cart Failed Text Color: ','product-variation-table-with-quick-cart');?></strong></label>
                     <input id="add-to-cart-error-color" name="add-to-cart-error-color" value="<?php echo esc_attr($addToCartErrorColor); ?>" data-jscolor="{}">
                 </div>
             </div>
@@ -1297,41 +1252,9 @@ $license_active          = get_option('quick_license_key');
                 </div>
 
                 <div class="quick-selections quick-selections-style">
-                    <h4><?php echo esc_html('Archive Page:','product-variation-table-with-quick-cart'); ?></h4>
-                    <div class="quick-selectors-wrapper">
-                        <div class="show-attribute-swatches-archive">
-                            <label class="switch">
-                                <input type="checkbox" value="attribute-archive" <?php if($showAttributeSwatchesArchive == "attribute-archive"): echo esc_attr("checked"); endif; ?>>
-                                <span class="slider round"></span>
-                            </label>
-                            <span><?php echo esc_html('Show Attribute into Archive (Redirect)','product-variation-table-with-quick-cart');
+                    <div id="archive-page-option-section"
+                         data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/archive-page-option-section-dashboard.png'); ?>">
 
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-
-                            ?></span>
-                        </div>
-                        <div class="show-attribute-swatches-archive">
-                            <label class="switch">
-                                <input type="checkbox" value="attribute-swatches" <?php if($showAttributeSwatchesArchive== "attribute-swatches"): echo esc_attr("checked"); endif; ?>>
-                                <span class="slider round"></span>
-                            </label>
-                            <span><?php echo esc_html('Show Swatches Quick Cart into Archive','product-variation-table-with-quick-cart');
-
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-
-                                ?></span>
-                        </div>
-                        <div class="show-attribute-swatches-archive">
-                            <label class="switch">
-                                <input type="checkbox" value="none" <?php if($showAttributeSwatchesArchive== "none"): echo esc_attr("checked"); endif; ?>>
-                                <span class="slider round"></span>
-                            </label>
-                            <span><?php echo esc_html('None','product-variation-table-with-quick-cart');?></span>
-                        </div>
                     </div>
                 </div>
 

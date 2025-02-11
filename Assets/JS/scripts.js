@@ -68,35 +68,6 @@ jQuery(document).ready(function () {
 
   // Lock Pro Features
   if (quick_ajax_obj.pro_key != "1") {
-    jQuery("[name=add-to-cart-text]").prop("disabled", true);
-    jQuery("#add-to-cart-text").removeAttr("id");
-
-    jQuery("[name=add-to-cart-text-hover-color]").prop("disabled", true);
-    jQuery("#add-to-cart-text-hover-color").removeAttr("id");
-
-    jQuery("[name=tooltip-text]").prop("disabled", true);
-    jQuery("#tooltip-text").removeAttr("id");
-
-    jQuery("[name=add-to-cart-success-color]").prop("disabled", true);
-    jQuery("#add-to-cart-success-color").removeAttr("id");
-
-    jQuery("[name=add-to-cart-error-color]").prop("disabled", true);
-    jQuery("#add-to-cart-error-color").removeAttr("id");
-
-    jQuery("[name=quantity-text-color]").prop("disabled", true);
-    jQuery("#quantity-text-color").removeAttr("id");
-
-    jQuery("[name=quantity-text-hover-color]").prop("disabled", true);
-    jQuery("#quantity-text-hover-color").removeAttr("id");
-
-    jQuery("[name=add-to-cart-bg-hover]").prop("disabled", true);
-    jQuery("#add-to-cart-bg-hover").removeAttr("id");
-
-    jQuery("[name=quantity-bg-color-hover]").prop("disabled", true);
-    jQuery("#quantity-bg-color-hover").removeAttr("id");
-
-    jQuery("[name=quick-carousel-button-icon-color]").prop("disabled", true);
-    jQuery("#quick-carousel-button-icon-color").removeAttr("id");
 
     jQuery("[name=gallery-navigation-button-icon-color]").prop("disabled", true);
     jQuery("#gallery-navigation-button-icon-color").removeAttr("id");
@@ -294,11 +265,6 @@ jQuery(document).ready(function () {
     jQuery("[name=button-border-radius]").prop("disabled", true);
     jQuery("#button-border-radius").removeAttr("id");
 
-
-    jQuery("[name=add-to-cart-success-message]").prop("disabled", true);
-    jQuery("#add-to-cart-success-message").removeAttr("id");
-
-
     jQuery(document).ready(function() {
       // Set the checkbox as checked
       jQuery("[name=bulk-selection-hide-show]").prop("checked", true);
@@ -423,13 +389,6 @@ jQuery(document).ready(function () {
     jQuery("input[value|='variable-click']").prop("disabled", true);
     jQuery("input[value|='variable-click']").removeAttr("value");
 
-    quickSelections
-      .find("select.quick-carousel-position")
-      .prop("disabled", true);
-    quickSelections
-      .find("select.quick-carousel-position")
-      .removeClass("quick-carousel-position");
-
     quickSelections.find("select.quick-table-position").prop("disabled", true);
     quickSelections
       .find("select.quick-table-position")
@@ -454,11 +413,6 @@ jQuery(document).ready(function () {
     quickSelections
         .find("select.attribute-gallery-image-show")
         .removeClass("attribute-gallery-image-show");
-
-    quickSelections.find("select.carousel-image-size").prop("disabled", true);
-    quickSelections
-        .find("select.carousel-image-size")
-        .removeClass("carousel-image-size");
 
     quickSelections.find("select.bulk-add-to-cart-position").prop("disabled", true);
     quickSelections

@@ -81,22 +81,24 @@ jQuery(document).ready(function ($) {
         let imageDivListSecond = $("#variation-list-dashboard-second-image");
         let imageDivVariationGallery = $("#variation-gallery-dashboard");
         let imageDivAttributeGallery = $("#attribute-gallery-dashboard");
+        let imageDivArchivePageOption = $("#archive-page-option-section");
         let imageUrlCart = imageDivCart.data("image");
         let imageUrlListFirst = imageDivListFirst.data("image");
         let imageUrlListSecond = imageDivListSecond.data("image");
         let imageUrlVariationGallery = imageDivVariationGallery.data("image");
         let imageUrlAttributeGallery = imageDivAttributeGallery.data("image");
+        let imageUrlArchivePageOption = imageDivArchivePageOption.data("image");
 
         if (imageUrlCart) {
             let imgTag = $("<img>", {
                 src: imageUrlCart,
                 alt: "Add to Cart Icon",
                 css: {
-                    height: "100%"  // Set height (optional)
+                    height: "100%"
                 }
             });
 
-            imageDivCart.append(imgTag); // Append image inside the div
+            imageDivCart.append(imgTag);
         }
 
         if (imageUrlListFirst){
@@ -104,11 +106,11 @@ jQuery(document).ready(function ($) {
                 src: imageUrlListFirst,
                 alt: "Add to Cart Icon",
                 css: {
-                    height: "100%"  // Set height (optional)
+                    height: "100%"
                 }
             });
 
-            imageDivListFirst.append(imgTag); // Append image inside the div
+            imageDivListFirst.append(imgTag);
         }
 
         if (imageUrlListSecond){
@@ -116,11 +118,11 @@ jQuery(document).ready(function ($) {
                 src: imageUrlListSecond,
                 alt: "Add to Cart Icon",
                 css: {
-                    height: "100%"  // Set height (optional)
+                    height: "100%"
                 }
             });
 
-            imageDivListSecond.append(imgTag); // Append image inside the div
+            imageDivListSecond.append(imgTag);
         }
 
         if (imageUrlVariationGallery){
@@ -128,11 +130,11 @@ jQuery(document).ready(function ($) {
                 src: imageUrlVariationGallery,
                 alt: "Add to Cart Icon",
                 css: {
-                    height: "100%"  // Set height (optional)
+                    height: "100%"
                 }
             });
 
-            imageDivVariationGallery.append(imgTag); // Append image inside the div
+            imageDivVariationGallery.append(imgTag);
         }
 
         if (imageUrlAttributeGallery){
@@ -140,17 +142,31 @@ jQuery(document).ready(function ($) {
                 src: imageUrlAttributeGallery,
                 alt: "Add to Cart Icon",
                 css: {
-                    height: "100%"  // Set height (optional)
+                    height: "100%"
                 }
             });
 
-            imageDivAttributeGallery.append(imgTag); // Append image inside the div
+            imageDivAttributeGallery.append(imgTag);
+        }
+
+        if (imageUrlArchivePageOption){
+            let imgTag = $("<img>", {
+                src: imageUrlArchivePageOption,
+                alt: "Add to Cart Icon",
+                css: {
+                    height: "100%"
+                }
+            });
+
+            imageDivArchivePageOption.append(imgTag);
         }
     });
 
-
 });
 
+function redirectToSupport() {
+    window.open("https://www.wooxperto.com/", "_blank"); // Open in new tab
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     var helpButton         = document.querySelector('.help-button-carousel');
