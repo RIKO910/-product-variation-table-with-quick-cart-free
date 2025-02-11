@@ -185,11 +185,11 @@ class Quickvariables
                 $show_option_none_text = $args['show_option_none'] ?: __('Choose an option', 'product-variation-table-with-quick-cart');
 
                 // Get selected value.
-                if ($attribute && $product instanceof WC_Product && $args['selected'] === false) {
-                    $selected_key     = 'attribute_'.sanitize_title($attribute);
-                    $args['selected'] = isset($_REQUEST[$selected_key]) ? wc_clean(wp_unslash($_REQUEST[$selected_key]))
-                        : $product->get_variation_default_attribute($attribute);
-                }
+//                if ($attribute && $product instanceof WC_Product && $args['selected'] === false) {
+//                    $selected_key     = 'attribute_'.sanitize_title($attribute);
+//                    $args['selected'] = isset($_REQUEST[$selected_key]) ? wc_clean(wp_unslash($_REQUEST[$selected_key]))
+//                        : $product->get_variation_default_attribute($attribute);
+//                }
 
                 if (empty($options) && ! empty($product) && ! empty($attribute)) {
                     $attributes = $product->get_variation_attributes();

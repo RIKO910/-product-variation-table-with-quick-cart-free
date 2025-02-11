@@ -13,9 +13,9 @@ add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_
  */
 function woocommerce_ajax_add_to_cart_handler() {
 
-//    if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'woocommerce_ajax_add_to_cart')) {
-//        wp_send_json_error(['message' => 'Invalid nonce.']);
-//    }
+    if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'woocommerce_ajax_add_to_cart')) {
+        wp_send_json_error(['message' => 'Invalid nonce.']);
+    }
 
     if (!isset($_POST['product_id'])) {
         wp_send_json_error(['message' => 'Invalid request. Product ID is missing.']);
