@@ -292,11 +292,7 @@ if (isset($product) && $product->is_type("variable")) {
                                 <p><?php esc_html_e('Out Of Stock', 'product-variation-table-with-quick-cart'); ?></p>
                             <?php else : ?>
                                 <button style="width: 100%; text-align: center" class="quick-add-to-cart" data-productId="<?php echo esc_attr($product->get_id()); ?>" data-variationId="<?php echo esc_attr($variation_id); ?>">
-                                    <?php if (!empty($quickCartIconImageLink)): ?>
-                                        <img src="<?php echo esc_url($quickCartIconImageLink); ?>" alt="Cart Icon" style="height: 20px; width: 20px;">
-                                    <?php else: ?>
-                                        <i class="<?php echo esc_attr($quickCartIcon); ?>" aria-hidden="true"></i>
-                                    <?php endif; ?>
+                                    <i class="<?php echo esc_attr($quickCartIcon); ?>" aria-hidden="true"></i>
                                     <span style="margin-left: 3px"><?php echo esc_html($cartButtonText); ?></span>
                                 </button>
                             <?php endif; ?>
