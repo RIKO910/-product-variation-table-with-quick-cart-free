@@ -975,120 +975,389 @@ jQuery(document).ready(function () {
   });
 
 
-  // Bulk Add to Cart in Single Product Page
+//   Table 1
+
+
+  // Pagination for table 1
 
   jQuery(document).ready(function ($) {
-    $(".bulk-add-to-cart").on("click", function (e) {
-      e.preventDefault();
+    var rowsPerPage = 5; // Number of rows to show per page
+    var $table = $("#quick-variable-table");
+    var rows = $table.find("tr:gt(0)"); // Select all rows except the first (header row)
+    var totalRows = rows.length;
+    var totalPages = Math.ceil(totalRows / rowsPerPage);
+    var currentPage = 1;
 
-      let button = $(this);
-      let cartIcon = button.data("carticon");
+    // Function to show the correct page
+    function showPage(page) {
+      var start = (page - 1) * rowsPerPage;
+      var end = start + rowsPerPage;
 
-      // Avoid adding another spinner if one is already present
-      if (!button.hasClass('loading')) {
-        // Replace the cart-plus icon with a spinner
-        button.find("i.fa").remove();
-        button.prepend('<i class="fa fa-spinner fa-spin"></i>');
+      // Hide all rows first
+      rows.hide();
 
+      // Show only the required rows
+      rows.slice(start, end).show();
+
+      // Update pagination info
+      $("#pageInfo").text("Page " + page + " of " + totalPages);
+
+      // Enable/Disable buttons
+      $("#prevPage").prop("disabled", page === 1);
+      $("#nextPage").prop("disabled", page === totalPages);
+    }
+
+    // Pagination Button Clicks
+    $("#prevPage").click(function () {
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
       }
+    });
 
-      let selectedProductID = [];
-      let selectedVariationID = [];
-      let selectedQuantity = [];
-      let selectedAttributes = [];
+    $("#nextPage").click(function () {
+      if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+      }
+    });
 
+    // Initially hide all rows and show only the first page (first 5 rows)
+    rows.hide();
+    showPage(currentPage); // Show the first 5 rows by default
 
-      // Loop through checked checkboxes and gather their details
-      $("input[name='bulk_cart[]']:checked").each(function () {
-        let $row = $(this).closest("tr");
-        let variation_id = $(this).val();
-        let product_id = $(".bulk-add-to-cart").data("productid");
+  });
 
-        let quantity = $row.find(".quick-quantity-input").val();
-        let attributes = {};
+  // Issue for On Sale Checked and Unchecked
+  jQuery(document).ready(function($) {
+    var removedRows = [];
 
-        $row.find(".quick-attribute-select, .quick-attribute-text").each(function () {
-          let attr_name = $(this).attr("name");
-          let attr_value = $(this).is("select") ? $(this).val() : $(this).text().trim();
-          if (attr_name && attr_value) {
-            attributes[attr_name] = attr_value;
+    // $('.variation-row').show();
+
+    $('#stock_status').on('change', function () {
+      var isChecked = $(this).prop('checked');
+
+      $('.variation-row').each(function () {
+        var stockStatus = $(this).data('stock-status');
+
+        if (isChecked && stockStatus === 1) {
+          $(this).show();
+          // $(this).find('.quick-add-to-cart').css('min-width', '140px');
+        } else if (!isChecked) {
+          $(this).show();
+        } else {
+          if (stockStatus !== 'instock') {
+            removedRows.push($(this).detach());
           }
-        });
-
-        selectedProductID.push({
-          product_id: product_id,
-        });
-        selectedVariationID.push({
-          variation_id: variation_id,
-        });
-        selectedQuantity.push({
-          quantity: quantity,
-        });
-        selectedAttributes.push({
-          attributes: attributes,
-        });
-
+        }
       });
 
+      if (!isChecked) {
+        for (var i = 0; i < removedRows.length; i++) {
+          $('#quick-variable-table').append(removedRows[i].addClass('re-added'));
+          // $(this).find('.quick-add-to-cart').css('min-width', '140px');
+        }
 
+        removedRows = [];
 
-      // Disable button and show loading state
-      button.prop('disabled', true);
+        $('.re-added').each(function () {
+          bindAddToCart($(this));
+          $(this).removeClass('re-added');
+        });
 
-      if (selectedProductID.length > 0) {
-        $.ajax({
-          url: bulk_add_to_cart_params.ajax_url,
-          type: "POST",
-          data: {
-            action: "bulk_add_to_cart",
-            // variations: selectedVariations,
-            product_id: selectedProductID,
-            variation_id: selectedVariationID,
-            quantity: selectedQuantity,
-            arrayLength: selectedProductID.length,
-            attributes: selectedAttributes,
-            _wpnonce: quick_front_ajax_obj.nonce, // Add the nonce here
-          },
-          success: function (response) {
-            if (response.success) {
-              // Replace spinner with a check icon
-              button.find("i.fa-spinner").remove();
-              button.prepend('<i class="fa fa-check"></i>');
+        bindQuantityButtons();
+      }
+    });
 
-              // Restore the original cart-plus icon after a delay
-              setTimeout(function () {
-                button.find("i.fa-check").remove();
-                button.prepend('<i class="' + cartIcon + '"></i>');
-                button.prop('disabled', false);
-                button.removeClass('loading');
-              }, 3000);
+    // Add to cart for On Sale unchecked portion
+    function bindAddToCart(row) {
+      row.find('.quick-add-to-cart').off('click').on('click', function () {
 
-              // Update cart totals and item count
-              $(document.body).trigger('wc_fragment_refresh');
-            } else {
-              alert(response.message || "Failed to add products to cart.");
-              button.find("i.fa-spinner").remove();
-              button.prepend('<i class="' + cartIcon + '"></i>');
-              button.prop('disabled', false);
-              button.removeClass('loading');
-            }
-          },
-          error: function () {
-            alert("An error occurred. Please try again.");
-            button.find("i.fa-spinner").remove();
-            button.prepend('<i class="' + cartIcon + '"></i>');
-            button.prop('disabled', false);
-            button.removeClass('loading');
+        function isMobile() {
+          return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+        }
+
+        var $button = $(this);
+        var productId = $button.data('productid');
+        var variationId = $button.data('variationid');
+        var quantity = row.find(".quick-quantity-input").val();
+
+        if (!$button.hasClass('loading')) {
+
+          $button.addClass('loading');
+
+          $button.append('<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>');
+
+          setTimeout(function() {
+            $button.removeClass('loading');
+            $button.find('.spinner').remove();
+          }, 2000);
+        }
+
+        if (isMobile()) {
+          quantity = $button.closest('.mobile-variation-card').find('.quick-quantity-input').val();
+        } else {
+          quantity = $button.closest('tr').find(".quick-quantity-input").val();
+        }
+
+        var selectedAttributes = {};
+        var $container = isMobile()
+            ? $button.closest('.mobile-variation-card')
+            : $button.closest('tr');
+
+        $container.find('.quick-attribute-select, .quick-attribute-text').each(function () {
+          var attributeKey = $(this).attr('name');
+          var attributeValue;
+
+          if ($(this).is('select')) {
+            attributeValue = $(this).val();
+          } else {
+            attributeValue = $(this).text().trim();
+          }
+
+          if (attributeValue && attributeKey) {
+            selectedAttributes[attributeKey] = attributeValue;
           }
         });
+
+        const data = {
+          'action': 'woocommerce_ajax_add_to_cart',
+          'product_id': productId,
+          'quantity': quantity,
+          'variation_id': variationId,
+          'variation': selectedAttributes,
+          "_wpnonce": quick_front_ajax_obj.nonce, // Add the nonce here
+        };
+
+
+        $button.prop('disabled', true);
+        $button.find('i, span').hide();
+
+        $.post(quick_front_ajax_obj.ajax_url, data, function(response) {
+
+          if (response.success) {
+            $button.append('<span class="updated-check-add-to-cart"><i class="fa fa-check"></i></span>');
+
+            setTimeout(function() {
+              $button.find('.updated-check-add-to-cart').remove();
+              $button.prop('disabled', false);
+              $button.find('i, span').show();
+            }, 3000);
+
+            $( document.body).trigger('wc_fragment_refresh');
+
+          } else {
+            console.error('Failed to add product: ', response);
+            $button.prop('disabled', false);
+            $button.find('i, span').show();
+          }
+        });
+      });
+    }
+
+
+    // Add search functionality (filter by SKU or attribute)
+    $('#variation-search').on('input', function () {
+      var searchTerm = $(this).val().toLowerCase();
+
+      $('.variation-row').each(function () {
+        var rowContent = $(this).text().toLowerCase();
+        if (rowContent.includes(searchTerm)) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    });
+
+    // Function to bind quantity buttons
+    function bindQuantityButtons() {
+      $(".quick-quantity-decrease").off("click").on("click", function () {
+        let currentValue = parseInt(
+            $(this).siblings(".quick-quantity-input").val(),
+            10
+        );
+
+        if (currentValue > 1) {
+          // Prevent going below 1
+          $(this)
+              .siblings(".quick-quantity-input")
+              .val(currentValue - 1);
+          $(".quick-cart-notification").text("");
+        }
+      });
+
+      $(".quick-quantity-increase").off("click").on("click", function () {
+        console.log("increase");
+        maxQuantity = $(this)
+            .siblings(".quick-quantity-input")
+            .attr("data-max");
+        let currentValue = parseInt(
+            $(this).siblings(".quick-quantity-input").val(),
+            10
+        );
+
+        if (currentValue < maxQuantity) {
+          // Prevent exceeding max limit
+          $(this)
+              .siblings(".quick-quantity-input")
+              .val(currentValue + 1);
+          $(".quick-cart-notification").text("");
+        }
+      });
+    }
+  });
+
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Select the popup-content div
+  const popupContentDiv = document.querySelector('.popup-content');
+
+  // Check if the div exists
+  if (popupContentDiv) {
+    const imgElement = document.createElement('img');
+    imgElement.id = 'popupImage';
+    imgElement.alt = 'Popup Image';
+    imgElement.style.objectFit = 'contain';
+
+
+    // let popUPImageShow = 'default';
+    // let imagePopupHeight = 500;
+    // let imagePopupWidth = '100%';
+    //
+    // if (popUPImageShow === 'default') {
+    //     imgElement.style.maxHeight = `${imagePopupHeight}px`;
+    //     imgElement.style.maxWidth = imagePopupWidth;
+    // } else {
+    //     imgElement.style.height = `${imagePopupHeight}px`;
+    //     imgElement.style.width = `${imagePopupWidth}px`;
+    // }
+
+    // Append the img element to the popup-content div
+    popupContentDiv.appendChild(imgElement);
+  }
+});
+
+
+// Attribute, SKU and Price Sorting.
+document.addEventListener("DOMContentLoaded", function () {
+  const table = document.getElementById("quick-variable-table");
+  if (!table){
+    return
+  }
+  const rows = Array.from(table.querySelectorAll(".variation-row"));
+
+  // Initialize sorting state for each th
+  const headers = table.querySelectorAll("th");
+  headers.forEach(header => header.setAttribute("data-sort", "none"));
+
+  // Default sort by SKU ascending on load
+  const skuSortArrows = document.getElementById("sku-sort-arrows");
+  if (!skuSortArrows){
+    return;
+  }
+  const skuHeader = document.querySelector("#sku-sort-arrows").closest("th");
+  sortByColumn("sku", "asc");
+  setActiveHeader(skuHeader, "asc");
+
+  // Attach click event to each th
+  headers.forEach(header => {
+    header.addEventListener("click", function () {
+      const column = getColumn(header);
+      let currentSort = header.getAttribute("data-sort");
+
+      // Reset all headers
+      headers.forEach(h => resetHeader(h));
+
+      // Cycle through asc -> desc -> none
+      if (currentSort === "asc") {
+        sortByColumn(column, "desc");
+        setActiveHeader(header, "desc");
+      } else if (currentSort === "desc") {
+        resetSortOrder();
       } else {
-        alert("Please select at least one product.");
-        button.find("i.fa-spinner").remove();
-        button.prepend('<i class="' + cartIcon + '"></i>');
-        button.prop('disabled', false);
-        button.removeClass('loading');
+        sortByColumn(column, "asc");
+        setActiveHeader(header, "asc");
       }
     });
   });
 
+  // Sort by column function
+  function sortByColumn(column, order) {
+    rows.sort((a, b) => {
+      let cellA, cellB;
+
+      if (column === "sku") {
+        // SKU sorting (handle alphanumeric values)
+        cellA = a.querySelector(".variable-sku").textContent.trim();
+        cellB = b.querySelector(".variable-sku").textContent.trim();
+        return order === "asc" ? cellA.localeCompare(cellB, undefined, { numeric: true }) : cellB.localeCompare(cellA, undefined, { numeric: true });
+      } else if (column === "price") {
+        // Price sorting (handle numeric values)
+        cellA = parseFloat(a.querySelector(".variable-price").textContent.replace(/[^0-9.-]+/g, "")) || 0;
+        cellB = parseFloat(b.querySelector(".variable-price").textContent.replace(/[^0-9.-]+/g, "")) || 0;
+        return order === "asc" ? cellA - cellB : cellB - cellA;
+      } else {
+        // Attribute sorting
+        cellA = a.querySelector(`[data-attribute-name="${column}"]`)?.textContent.trim() || "";
+        cellB = b.querySelector(`[data-attribute-name="${column}"]`)?.textContent.trim() || "";
+        return order === "asc" ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+      }
+    });
+    rows.forEach(row => table.appendChild(row));
+  }
+
+  // Reset to initial sort order (by SKU)
+  function resetSortOrder() {
+    sortByColumn("sku", "asc");
+    setActiveHeader(skuHeader, "asc");
+  }
+
+  // Get the column name for the clicked header
+  function getColumn(header) {
+    const attributeSort = header.querySelector("[data-attribute]")?.getAttribute("data-attribute");
+    if (attributeSort) {
+      return attributeSort;
+    }
+    if (header.contains(document.querySelector("#sku-sort-arrows"))) {
+      return "sku";
+    }
+    if (header.contains(document.querySelector("#price-sort-arrows"))) {
+      return "price";
+    }
+  }
+
+  // Set the active header for sorting
+  function setActiveHeader(header, order) {
+    resetAllHeaders();
+    header.setAttribute("data-sort", order);
+    const arrows = header.querySelectorAll(".dashicons");
+    arrows.forEach(arrow => arrow.style.color = "#B2B2B2");
+
+    if (order === "asc") {
+      arrows[0].style.color = "#B2B2B2";  // Ascending arrow active
+      arrows[1].style.color = "#E5E5E5";  // Descending arrow inactive
+    } else {
+      arrows[1].style.color = "#B2B2B2";  // Descending arrow active
+      arrows[0].style.color = "#E5E5E5";  // Ascending arrow inactive
+    }
+  }
+
+  // Reset all header arrows to inactive (white)
+  function resetAllHeaders() {
+    headers.forEach(header => {
+      const arrows = header.querySelectorAll(".dashicons");
+      arrows.forEach(arrow => arrow.style.color = "#E5E5E5");
+      header.setAttribute("data-sort", "none");
+    });
+  }
+
+  // Reset individual header (to 'none' state)
+  function resetHeader(header) {
+    header.setAttribute("data-sort", "none");
+    const arrows = header.querySelectorAll(".dashicons");
+    arrows.forEach(arrow => arrow.style.color = "#E5E5E5");
+  }
 });
