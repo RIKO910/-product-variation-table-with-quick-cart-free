@@ -2,16 +2,15 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 global $product;
 global $post;
-$variableSetting       = get_option('variable_all_checked', array());
-$quickCarouselAutoplay = isset($variableSetting['quickCarouselAutoplay']) ? $variableSetting['quickCarouselAutoplay'] : 'true';
-$quickCarouselOnOff    = isset($variableSetting['quickCarouselOnOff']) ? $variableSetting['quickCarouselOnOff'] : '';
-$showDoublePrice       = isset($variableSetting['showDoublePrice']) ? $variableSetting['showDoublePrice'] : 'true';
-$carouselImageSize       = isset($variableSetting['carouselImageSize']) ? $variableSetting['carouselImageSize'] : '';
+$variableSetting          = get_option('variable_all_checked', array());
+$quickCarouselAutoplay    = isset($variableSetting['quickCarouselAutoplay']) ? $variableSetting['quickCarouselAutoplay'] : 'true';
+$quickCarouselOnOff       = isset($variableSetting['quickCarouselOnOff']) ? $variableSetting['quickCarouselOnOff'] : '';
+$showDoublePrice          = isset($variableSetting['showDoublePrice']) ? $variableSetting['showDoublePrice'] : 'true';
+$carouselImageSize        = isset($variableSetting['carouselImageSize']) ? $variableSetting['carouselImageSize'] : '';
 $metaVariableListTemplate = get_post_meta($post->ID, '_quick_cart_carousel_meta', true);
 
 if (isset($product) && $product->is_type("variable")) {
 
-    //Collect Variable Product details
     $this->quickVariablePopup();
     if(!empty($quickCarouselOnOff === 'true')) {
         if ($metaVariableListTemplate === 'true' || $metaVariableListTemplate === '') {
@@ -57,7 +56,6 @@ if (isset($product) && $product->is_type("variable")) {
                 ];
             }
 
-            // Get variation price.
             if ($showDoublePrice === 'true'){
                 $price_html = $variation->get_price_html();
             }else{
@@ -68,7 +66,7 @@ if (isset($product) && $product->is_type("variable")) {
                     $price_html = wc_price($variation->get_regular_price());
                 }
             }
-//            $price_html         = $variation->get_price_html();
+
             $thumbnail_id       = $variation->get_image_id();
             $thumbnail_html     = wp_get_attachment_image($thumbnail_id, esc_attr($carouselImageSize), false, [
                 'alt' => esc_attr($variation->get_name()),

@@ -14,7 +14,6 @@ function quickAdminAjaxHandler() {
         $identifier = sanitize_text_field(wp_unslash($_POST['identifier']));
     }
 
-
     if (isset($identifier) && ($identifier) == "adminSetting") {
         if (isset($_POST['variable_data']) && !empty($_POST['variable_data'])) {
             $jsonData = sanitize_text_field(wp_unslash($_POST['variable_data']));

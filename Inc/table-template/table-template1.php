@@ -170,12 +170,11 @@ if (isset($product) && $product->is_type("variable")) {
                 $variation_id             = $var['variation_id'];
                 $variation                = new WC_Product_Variation($variation_id);
                 $variation_stock_quantity = $variation->get_manage_stock() ? $variation->get_stock_quantity() : null;
-
-                $gallery_images = get_post_meta($variation_id, '_variation_gallery_images', true);
-                $image_ids      = $gallery_images ? explode(',', $gallery_images) : [];
-                $thumbnail_id   = $variation->get_image_id();
-                $thumbnail_url  = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, "thumbnail") : '';
-                $stock_status   = $variation->is_on_sale();
+                $gallery_images           = get_post_meta($variation_id, '_variation_gallery_images', true);
+                $image_ids                = $gallery_images ? explode(',', $gallery_images) : [];
+                $thumbnail_id             = $variation->get_image_id();
+                $thumbnail_url            = $thumbnail_id ? wp_get_attachment_image_url($thumbnail_id, "thumbnail") : '';
+                $stock_status             = $variation->is_on_sale();
                 ?>
                 <tr class="variation-row" data-variation-id="<?php echo esc_attr($variation_id); ?>" data-stock-status="<?php echo esc_attr($stock_status); ?>" data-gallery-images="<?php echo esc_attr(wp_json_encode($image_ids)); ?>">
 
@@ -214,9 +213,15 @@ if (isset($product) && $product->is_type("variable")) {
                     <?php if ($allAttributeHideShow === "true"){
                         foreach ($all_attributes as $attribute_name => $attribute) {
                             $attribute_value = $variation->get_attribute($attribute_name);
+                            $reflection      = new ReflectionClass($attribute);
+                            $dataProperty    = $reflection->getProperty("data");
+                            $dataProperty->setAccessible(true);
+                            $data = $dataProperty->getValue($attribute);
 
                             if (empty($attribute_value)) {
-                                echo "<td><select class='quick-attribute-select' name='attribute_" . esc_attr($attribute_name) . "' data-attribute-name='" . esc_attr($attribute_name) . "'>";
+                                if (taxonomy_exists($attribute_name) && isset($data["variation"]) && $data["variation"]){
+                                    echo "<td><select class='quick-attribute-select' name='attribute_" . esc_attr($attribute_name) . "' data-attribute-name='" . esc_attr($attribute_name) . "'>";
+                                }
 
                                 if ($attribute->is_taxonomy()) {
                                     $options = wc_get_product_terms($product->get_id(), $attribute_name, ['fields' => 'names']);
@@ -225,7 +230,9 @@ if (isset($product) && $product->is_type("variable")) {
                                 }
 
                                 foreach ($options as $option) {
-                                    echo "<option value='" . esc_attr($option) . "'>" . esc_html($option) . "</option>";
+                                    if (isset($data["variation"]) && $data["variation"]){
+                                        echo "<option value='" . esc_attr($option) . "'>" . esc_html($option) . "</option>";
+                                    }
                                 }
 
                                 echo "</select></td>";

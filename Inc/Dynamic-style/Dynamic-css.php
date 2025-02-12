@@ -1,71 +1,72 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;if ( ! defined( 'ABSPATH' ) ) exit;
 class QuickDynamicStyle{
+
+    /**
+     * Define Constant.
+     *
+     * @return void
+     * @since 1.0.0
+     *
+     */
     public function __construct(){
         add_action('wp_enqueue_scripts', [$this,'quick_dynamic_styles']);
     }
-
+    /**
+     * Dynamic style.
+     *
+     * @return void
+     * @since 1.0.0
+     *
+     */
     function quick_dynamic_styles() {
-        global $post;
-        // Register dynamic stylesheet stylesheet
-        $variableSetting = get_option('variable_all_checked', array());
-        $variableHoverClick = isset($variableSetting['hoverClickValue'][0]) ? $variableSetting['hoverClickValue'][0] : '';
-        $variableTooltipPosition = isset($variableSetting['boxPositionValue'][0]) ? $variableSetting['boxPositionValue'][0] : '';
-        $variableDetailsTitle = isset($variableSetting['variableDetailsTitle'][0]) ? $variableSetting['variableDetailsTitle'][0] : '';
-        $variableDetailsImage = isset($variableSetting['variableDetailsImage'][0]) ? $variableSetting['variableDetailsImage'][0] : '';
-        $variableDetailsExcerpt = isset($variableSetting['variableDetailsExcerpt'][0]) ? $variableSetting['variableDetailsExcerpt'][0] : '';
-        $variableAddToCartIcon = isset($variableSetting['variableAddToCartIcon']) ? $variableSetting['variableAddToCartIcon'] : 'inline-block';
-        $cartButtonBg = isset($variableSetting['cartButtonBg']) ? $variableSetting['cartButtonBg'] : '#007cba';
-        $cartButtonTextColor = isset($variableSetting['cartButtonTextColor']) ? $variableSetting['cartButtonTextColor'] : '#fff';
-        $tooltipBgColor = isset($variableSetting['tooltipBg']) ? $variableSetting['tooltipBg'] : '#000';
-        $tooltipTextColor = isset($variableSetting['tooltipTextColor']) ? $variableSetting['tooltipTextColor'] : '#fff';
-        $quantityBg = isset($variableSetting['quantityBg']) ? $variableSetting['quantityBg'] : '#007bff';
-        $quantityBorderColor = isset($variableSetting['quantityBorderColor']) ? $variableSetting['quantityBorderColor'] : '#ccc';
-        $quantityTextColor = isset($variableSetting['quantityTextColor']) ? $variableSetting['quantityTextColor'] : '#fff';
-        $quickCarouselAutoplay = isset($variableSetting['quickCarouselAutoplay']) ? $variableSetting['quickCarouselAutoplay'] : 'true';
-        $carouselButtonBgColor = isset($variableSetting['CarouselButtonBg']) ? $variableSetting['CarouselButtonBg'] : '#000';
-        $carouselButtonIconColor = isset($variableSetting['CarouselButtonIconColor']) ? $variableSetting['CarouselButtonIconColor'] : '#fff';
-        $tableHeadBgColor = isset($variableSetting['tableHeadBgColor']) ? $variableSetting['tableHeadBgColor'] : '#007cba';
-        $tableHeadTextColor = isset($variableSetting['tableHeadTextColor']) ? $variableSetting['tableHeadTextColor'] : '#fff';
-        $tableVariableTitleColor = isset($variableSetting['tableVariableTitleColor']) ? $variableSetting['tableVariableTitleColor'] : '#000';
-        $quickTableBorder = isset($variableSetting['quickTableBorder']) ? $variableSetting['quickTableBorder'] : '0';
-        $tableBorderColor = isset($variableSetting['tableBorderColor']) ? $variableSetting['tableBorderColor'] : '#e1e8ed';
-        $tableBgColorOdd = isset($variableSetting['tableBgColorOdd']) ? $variableSetting['tableBgColorOdd'] : 'transparent';
-        $tableBgColorEven = isset($variableSetting['tableBgColorEven']) ? $variableSetting['tableBgColorEven'] : '#f2f2f2';
-        $tableBgColorHover = isset($variableSetting['tableBgColorHover']) ? $variableSetting['tableBgColorHover'] : '#ddd';
-        $cartButtonBgHover = isset($variableSetting['cartButtonBgHover']) ? $variableSetting['cartButtonBgHover'] : '#045cb4';
-        $quantityBgColorHover = isset($variableSetting['quantityBgColorHover']) ? $variableSetting['quantityBgColorHover'] : '#0056b3';
-        $quickCarouselOnOff = isset($variableSetting['quickCarouselOnOff']) ? $variableSetting['quickCarouselOnOff'] : '';
-        $quickTableOnOff = isset($variableSetting['quickTableOnOff']) ? $variableSetting['quickTableOnOff'] : '';
-
-        $swatchesButtonBorderColor  = isset($variableSetting['swatchesButtonBorderColor']) ? $variableSetting['swatchesButtonBorderColor'] : '#000000';
-        $selectedVariationButtonBorderColor  = isset($variableSetting['selectedVariationButtonBorderColor']) ? $variableSetting['selectedVariationButtonBorderColor'] : '#0071a1';
-        $buttonWidth                 = isset($variableSetting['buttonWidth']) ? $variableSetting['buttonWidth'] : ' ';
-        $buttonHeight                = isset($variableSetting['buttonHeight']) ? $variableSetting['buttonHeight'] : ' ';
-        $buttonBorderRadius          = isset($variableSetting['buttonBorderRadius']) ? $variableSetting['buttonBorderRadius'] : '5';
-        $variationSelectOnOff        = isset($variableSetting['variationSelectOnOff']) ? $variableSetting['variationSelectOnOff'] : '';
-        $listBadgeBgColor           = isset($variableSetting['listBadgeBgColor']) ? $variableSetting['listBadgeBgColor'] : '#FF5733';
-        $listBadgeTextColor         = isset($variableSetting['listBadgeTextColor']) ? $variableSetting['listBadgeTextColor'] : '#ffffff';
-        $listBadgeHeight            = isset($variableSetting['listBadgeHeight']) ? $variableSetting['listBadgeHeight'] : ' ';
-        $listBadgeWidth             = isset($variableSetting['listBadgeWidth']) ? $variableSetting['listBadgeWidth'] : ' ';
-        $listBadgeShowRight         = isset($variableSetting['listBadgeShowRight']) ? $variableSetting['listBadgeShowRight'] : '';
-        $selectVariationTemplateOnOff   = isset($variableSetting['selectVariationTemplateOnOff']) ? $variableSetting['selectVariationTemplateOnOff'] : '';
-        $bulkAddCartBgColor      = isset($variableSetting['bulkAddCartBgColor']) ? $variableSetting['bulkAddCartBgColor'] : '#007cba';
-        $bulkAddCartTextColor    = isset($variableSetting['bulkAddCartTextColor']) ? $variableSetting['bulkAddCartTextColor'] : '#FFFFFF';
-        $bulkAddCartHoverBgColor    = isset($variableSetting['bulkAddCartHoverBgColor']) ? $variableSetting['bulkAddCartHoverBgColor'] : '#007cba';
-        $bulkAddCartHoverTextColor    = isset($variableSetting['bulkAddCartHoverTextColor']) ? $variableSetting['bulkAddCartHoverTextColor'] : '#000000';
-        $template2TableBgColor        = isset($variableSetting['template2TableBgColor']) ? $variableSetting['template2TableBgColor'] : '#000000';
+        $variableSetting                       = get_option('variable_all_checked', array());
+        $variableAddToCartIcon                 = isset($variableSetting['variableAddToCartIcon']) ? $variableSetting['variableAddToCartIcon'] : 'inline-block';
+        $cartButtonBg                          = isset($variableSetting['cartButtonBg']) ? $variableSetting['cartButtonBg'] : '#007cba';
+        $cartButtonTextColor                   = isset($variableSetting['cartButtonTextColor']) ? $variableSetting['cartButtonTextColor'] : '#fff';
+        $tooltipBgColor                        = isset($variableSetting['tooltipBg']) ? $variableSetting['tooltipBg'] : '#000';
+        $tooltipTextColor                      = isset($variableSetting['tooltipTextColor']) ? $variableSetting['tooltipTextColor'] : '#fff';
+        $quantityBg                            = isset($variableSetting['quantityBg']) ? $variableSetting['quantityBg'] : '#007bff';
+        $quantityBorderColor                   = isset($variableSetting['quantityBorderColor']) ? $variableSetting['quantityBorderColor'] : '#ccc';
+        $quantityTextColor                     = isset($variableSetting['quantityTextColor']) ? $variableSetting['quantityTextColor'] : '#fff';
+        $carouselButtonBgColor                 = isset($variableSetting['CarouselButtonBg']) ? $variableSetting['CarouselButtonBg'] : '#000';
+        $carouselButtonIconColor               = isset($variableSetting['CarouselButtonIconColor']) ? $variableSetting['CarouselButtonIconColor'] : '#fff';
+        $tableHeadBgColor                      = isset($variableSetting['tableHeadBgColor']) ? $variableSetting['tableHeadBgColor'] : '#007cba';
+        $tableHeadTextColor                    = isset($variableSetting['tableHeadTextColor']) ? $variableSetting['tableHeadTextColor'] : '#fff';
+        $tableVariableTitleColor               = isset($variableSetting['tableVariableTitleColor']) ? $variableSetting['tableVariableTitleColor'] : '#000';
+        $quickTableBorder                      = isset($variableSetting['quickTableBorder']) ? $variableSetting['quickTableBorder'] : '0';
+        $tableBorderColor                      = isset($variableSetting['tableBorderColor']) ? $variableSetting['tableBorderColor'] : '#e1e8ed';
+        $tableBgColorOdd                       = isset($variableSetting['tableBgColorOdd']) ? $variableSetting['tableBgColorOdd'] : 'transparent';
+        $tableBgColorEven                      = isset($variableSetting['tableBgColorEven']) ? $variableSetting['tableBgColorEven'] : '#f2f2f2';
+        $tableBgColorHover                     = isset($variableSetting['tableBgColorHover']) ? $variableSetting['tableBgColorHover'] : '#ddd';
+        $cartButtonBgHover                     = isset($variableSetting['cartButtonBgHover']) ? $variableSetting['cartButtonBgHover'] : '#045cb4';
+        $quantityBgColorHover                  = isset($variableSetting['quantityBgColorHover']) ? $variableSetting['quantityBgColorHover'] : '#0056b3';
+        $swatchesButtonBorderColor             = isset($variableSetting['swatchesButtonBorderColor']) ? $variableSetting['swatchesButtonBorderColor'] : '#000000';
+        $selectedVariationButtonBorderColor    = isset($variableSetting['selectedVariationButtonBorderColor']) ? $variableSetting['selectedVariationButtonBorderColor'] : '#0071a1';
+        $buttonWidth                           = isset($variableSetting['buttonWidth']) ? $variableSetting['buttonWidth'] : ' ';
+        $buttonHeight                          = isset($variableSetting['buttonHeight']) ? $variableSetting['buttonHeight'] : ' ';
+        $buttonBorderRadius                    = isset($variableSetting['buttonBorderRadius']) ? $variableSetting['buttonBorderRadius'] : '5';
+        $variationSelectOnOff                  = isset($variableSetting['variationSelectOnOff']) ? $variableSetting['variationSelectOnOff'] : '';
+        $listBadgeBgColor                      = isset($variableSetting['listBadgeBgColor']) ? $variableSetting['listBadgeBgColor'] : '#FF5733';
+        $listBadgeTextColor                    = isset($variableSetting['listBadgeTextColor']) ? $variableSetting['listBadgeTextColor'] : '#ffffff';
+        $listBadgeHeight                       = isset($variableSetting['listBadgeHeight']) ? $variableSetting['listBadgeHeight'] : ' ';
+        $listBadgeWidth                        = isset($variableSetting['listBadgeWidth']) ? $variableSetting['listBadgeWidth'] : ' ';
+        $listBadgeShowRight                    = isset($variableSetting['listBadgeShowRight']) ? $variableSetting['listBadgeShowRight'] : '';
+        $bulkAddCartBgColor                    = isset($variableSetting['bulkAddCartBgColor']) ? $variableSetting['bulkAddCartBgColor'] : '#007cba';
+        $bulkAddCartTextColor                  = isset($variableSetting['bulkAddCartTextColor']) ? $variableSetting['bulkAddCartTextColor'] : '#FFFFFF';
+        $bulkAddCartHoverBgColor               = isset($variableSetting['bulkAddCartHoverBgColor']) ? $variableSetting['bulkAddCartHoverBgColor'] : '#007cba';
+        $bulkAddCartHoverTextColor             = isset($variableSetting['bulkAddCartHoverTextColor']) ? $variableSetting['bulkAddCartHoverTextColor'] : '#000000';
+        $template2TableBgColor                 = isset($variableSetting['template2TableBgColor']) ? $variableSetting['template2TableBgColor'] : '#000000';
         $template2DetailsSectionBgColor        = isset($variableSetting['template2DetailsSectionBgColor']) ? $variableSetting['template2DetailsSectionBgColor'] : '#FFFFFF';
-        $template2CartSectionBgColor        = isset($variableSetting['template2CartSectionBgColor']) ? $variableSetting['template2CartSectionBgColor'] : '#FBFBFB';
-        $showAttributeSwatchesArchive  = isset($variableSetting['showAttributeSwatchesArchive'][0]) ? $variableSetting['showAttributeSwatchesArchive'][0] : '';
-        $quantityTextHoverColor       = isset($variableSetting['quantityTextHoverColor']) ? $variableSetting['quantityTextHoverColor'] : '#000000';
-        $cartButtonTextHoverColor     = isset($variableSetting['cartButtonTextHoverColor']) ? $variableSetting['cartButtonTextHoverColor'] : '#000000';
-        $galleryNavigationButtonIconColor = isset($variableSetting['galleryNavigationButtonIconColor']) ? $variableSetting['galleryNavigationButtonIconColor'] : '#fff';
+        $template2CartSectionBgColor           = isset($variableSetting['template2CartSectionBgColor']) ? $variableSetting['template2CartSectionBgColor'] : '#FBFBFB';
+        $showAttributeSwatchesArchive          = isset($variableSetting['showAttributeSwatchesArchive'][0]) ? $variableSetting['showAttributeSwatchesArchive'][0] : '';
+        $quantityTextHoverColor                = isset($variableSetting['quantityTextHoverColor']) ? $variableSetting['quantityTextHoverColor'] : '#000000';
+        $cartButtonTextHoverColor              = isset($variableSetting['cartButtonTextHoverColor']) ? $variableSetting['cartButtonTextHoverColor'] : '#000000';
+        $galleryNavigationButtonIconColor      = isset($variableSetting['galleryNavigationButtonIconColor']) ? $variableSetting['galleryNavigationButtonIconColor'] : '#fff';
         $galleryNavigationButtonIconHoverColor = isset($variableSetting['galleryNavigationButtonIconHoverColor']) ? $variableSetting['galleryNavigationButtonIconHoverColor'] : '#D0D0D0';
-        $galleryNavigationButtonBgColor = isset($variableSetting['galleryNavigationButtonBgColor']) ? $variableSetting['galleryNavigationButtonBgColor'] : '#808080';
-        $galleryNavigationButtonBgHoverColor = isset($variableSetting['galleryNavigationButtonBgHoverColor']) ? $variableSetting['galleryNavigationButtonBgHoverColor'] : '##2F3031';
-
-        $displayNoneImportant = '';
+        $galleryNavigationButtonBgColor        = isset($variableSetting['galleryNavigationButtonBgColor']) ? $variableSetting['galleryNavigationButtonBgColor'] : '#808080';
+        $galleryNavigationButtonBgHoverColor   = isset($variableSetting['galleryNavigationButtonBgHoverColor']) ? $variableSetting['galleryNavigationButtonBgHoverColor'] : '##2F3031';
+        $displayNoneImportant                  = '';
 
         if ($showAttributeSwatchesArchive === 'attribute-swatches' || $showAttributeSwatchesArchive === 'attribute-archive') {
             $variationDisplayNoneImportant = "none !important";
@@ -239,12 +240,6 @@ class QuickDynamicStyle{
         #quick-variable-table tr:hover td{
             background-color: <?php echo esc_attr($tableBgColorHover); ?>;
         }
-<!--        #quick-variable-table{-->
-<!--            display: --><?php //echo esc_attr(($quickTableOnOff == "false") ? 'none' : ''); ?>
-<!--        }-->
-<!--        .quick-variable-slide.slick-initialized.slick-slider{-->
-<!--            display: --><?php //echo esc_attr(($quickCarouselOnOff == "false") ? 'none' : ''); ?>
-<!--        }-->
 
         <?php
         $dynamic_css = ob_get_clean();

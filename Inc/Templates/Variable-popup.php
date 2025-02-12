@@ -2,7 +2,6 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 // Assuming you have the global product object available
 global $product;
-
 $variableSettings        = get_option("variable_all_checked", []);
 $variableHoverClick      = isset($variableSettings['hoverClickValue'][0]) ? $variableSettings['hoverClickValue'][0] : '';
 $tooltipPosition         = isset($variableSettings["boxPositionValue"][0]) ? $variableSettings["boxPositionValue"][0] : "";

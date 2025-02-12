@@ -700,6 +700,7 @@ class Quickvariables
  * @param WC_Product_Variable $product The product object.
  * @param string $attribute The attribute to filter variations by.
  * @return array
+ * @since 1.0.0
  */
 function get_available_variations_by_term($product, $attribute) {
     $available_variations = [];
