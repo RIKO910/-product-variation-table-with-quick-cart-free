@@ -41,14 +41,23 @@ if (isset($product) && $product->is_type("variable")) {
             $attributes                 = $variation->get_attributes();
             $index                      = 0;
             $variationsList             = [];
+            $options                    = "";
+            $label_name                 = "";
 
             foreach ($attributesName as $key => $attribute) {
-                if ($attribute->is_taxonomy()) {
+                $reflection      = new ReflectionClass($attribute);
+                $dataProperty    = $reflection->getProperty("data");
+                $dataProperty->setAccessible(true);
+                $data   = $dataProperty->getValue($attribute);
+
+                if ($attribute->is_taxonomy() && isset($data["variation"]) && $data["variation"]) {
                     $options    = wc_get_product_terms($product->get_id(), $key, ['fields' => 'names']);
                     $label_name = wc_attribute_label($key);
                 } else {
-                    $options = $attribute->get_options();
-                    $label_name = wc_attribute_label($key);
+                    if (isset($data["variation"]) && $data["variation"]){
+                        $options = $attribute->get_options();
+                        $label_name = wc_attribute_label($key);
+                    }
                 }
                 $variationsList[$key] = [
                         'options' => $options,
@@ -83,16 +92,16 @@ if (isset($product) && $product->is_type("variable")) {
                    "sku"                     => $sku,
                    "product_id"              => $product->get_id() ,
                    "excerpt"                 => $product->get_short_description(),
-                   "variableClickHover"      =>$variableHoverClick,
+                   "variableClickHover"      => $variableHoverClick,
                    "variationPrice"          => $price_html,
-                   "variationId"             =>$variation_id,
-                   'variationURL'            =>$variationURL,
+                   "variationId"             => $variation_id,
+                   'variationURL'            => $variationURL,
                    "variationQuantity"       => $variation_stock_quantity ,
                    "variationStockStatus"    => $variation_stock_status ,
                    "variationStockManage"    => $variation_stock_management ,
-                   "globalStockManagement"   =>$enable_global_stock_management,
-                   "globalStockQuantity"     =>$global_stock_quantity,
-                   "variation_set_attribute" =>$attributes
+                   "globalStockManagement"   => $enable_global_stock_management,
+                   "globalStockQuantity"     => $global_stock_quantity,
+                   "variation_set_attribute" => $attributes,
             ];
             ?>
 
