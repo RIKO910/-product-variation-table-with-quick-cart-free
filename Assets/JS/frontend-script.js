@@ -792,10 +792,6 @@ jQuery(document).ready(function () {
     $('.quick-add-to-cart').on('click', function() {
       // e.preventDefault();
 
-      function isMobile() {
-        return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
-      }
-
       var $button = $(this);
       var productId = $button.data('productid');
       var variationId = $button.data('variationid');
@@ -816,16 +812,12 @@ jQuery(document).ready(function () {
       }
 
 
-      if (isMobile()) {
-        quantity = $button.closest('.mobile-variation-card').find('.quick-quantity-input').val();
-      } else {
-        quantity = $button.closest('tr').find(".quick-quantity-input").val();
-      }
+
+      quantity = $button.closest('tr').find(".quick-quantity-input").val();
+
 
       var selectedAttributes = {};
-      var $container = isMobile()
-          ? $button.closest('.mobile-variation-card')
-          : $button.closest('tr');
+      var $container = $button.closest('tr');
 
       $container.find('.quick-attribute-select, .quick-attribute-text').each(function () {
         var attributeKey = $(this).attr('name');
