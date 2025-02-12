@@ -14,7 +14,9 @@ class Quickassets{
         $version = '1.0.1';
 
         wp_enqueue_style('main-css', plugin_dir_url(dirname(__FILE__)) . 'Assets/CSS/style.css', array(), $version);
-        wp_enqueue_style('main-font-awesome-css', plugin_dir_url(dirname(__FILE__)) . 'Assets/CSS/font-awesome.min.css', array(), $version);
+        wp_enqueue_style('all-min-font-awesome', plugin_dir_url(dirname(__FILE__)) . 'Assets/CSS/all.min.css', array(), '5.15.4');
+        wp_enqueue_style('main-font-awesome-css', plugin_dir_url(dirname(__FILE__)) . 'Assets/CSS/fontawesome.min.css', array(), '5.15.4');
+        wp_enqueue_style('main-font-awesome-css', plugin_dir_url(dirname(__FILE__)) . 'Assets/webfonts', array(), '5.15.4');
 
         wp_enqueue_script('jquery');
         wp_enqueue_script('main-js', plugin_dir_url(dirname(__FILE__)) . 'Assets/JS/scripts.js',array(), $version, true );
