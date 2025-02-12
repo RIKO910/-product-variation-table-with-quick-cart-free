@@ -80,9 +80,53 @@ class QuickDynamicStyle{
             $displayRightBadge = "left";
         }
 
+        // Start OceanWP theme compatible
+        $custom_margin_OceanWP = '';
+        $quick_product_details_OceanWP_width = '';
+        $quick_product_details_OceanWP_pl = '';
+        $quick_product_details_OceanWP_pr = '';
+        $quick_variable_tooltip_top_OceanWP = '';
+        $quick_variable_tooltip_closebtn_OceanWP = '';
+        if( wp_get_theme()->get('Name') === 'OceanWP' ) {
+            $custom_margin_OceanWP = '15';
+            $quick_product_details_OceanWP_width = 'fit-content';
+            $quick_product_details_OceanWP_pl = '10';
+            $quick_product_details_OceanWP_pr = '10';
+            $quick_variable_tooltip_top_OceanWP = '0';
+            $quick_variable_tooltip_closebtn_OceanWP = '25';
+        }
+
+        // End OceanWP theme compatible
+
         // Prepare dynamic CSS
         ob_start();
         ?>
+
+        .quick-variable-slide{
+        margin-left:<?php echo esc_attr($custom_margin_OceanWP)?>px;
+        margin-right:<?php echo esc_attr($custom_margin_OceanWP)?>px;
+        }
+
+        .quick-variable-tooltip .closebtn{
+            right: <?php echo esc_attr($quick_variable_tooltip_closebtn_OceanWP)?>px;
+        }
+
+        .quick-variable-tooltip .variableThumb{
+            padding-left:<?php echo esc_attr($custom_margin_OceanWP)?>px;
+            padding-right:<?php echo esc_attr($custom_margin_OceanWP)?>px;
+        }
+
+        .quick-variable-tooltip{
+            top: <?php echo esc_attr($quick_variable_tooltip_top_OceanWP)?>px;
+        }
+
+        .quick-variable-tooltip #quick-product-details{
+            padding-left: <?php echo esc_attr($quick_product_details_OceanWP_pl)?>px;
+            padding-right: <?php echo esc_attr($quick_product_details_OceanWP_pr)?>px;
+            width: <?php echo esc_attr($quick_product_details_OceanWP_width)?>;
+        }
+
+
 
         .variation-gallery-slider-single-product-page button i{
         color: <?php echo esc_attr($galleryNavigationButtonIconColor)?>
