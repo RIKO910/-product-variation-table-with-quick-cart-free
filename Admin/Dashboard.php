@@ -141,7 +141,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
             <?php echo wp_kses('Attribute Gallery','product-variation-table-with-quick-cart'); ?>
             <span style="color: red;">★</span>
         </button>
-        <button style="padding: 10px" class="tablinks"  onclick="redirectToSupport()" onclick="openCity(event, 'support')"><?php echo wp_kses('Support','product-variation-table-with-quick-cart'); ?></button>
+        <button style="padding: 10px" class="tablinks" onclick="openCity(event, 'support')"><?php echo wp_kses('Support','product-variation-table-with-quick-cart'); ?></button>
     </div>
 
     <div id="general" class="tabcontent" style="display: block;">
@@ -1312,6 +1312,56 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
 
     <div id="support" class="tabcontent">
         <div id="quickAuthenticateWrapper">
+
+            <div class="container-for-support">
+                <div class="grid-support">
+                    <div class="support-item">
+                        <strong><i class="fas fa-globe"></i> <?php echo esc_html('Website:','product-variation-table-with-quick-cart'); ?></strong>
+                        <a href="https://www.wooxperto.com/" target="_blank"><?php echo esc_html('wooxperto.com','product-variation-table-with-quick-cart'); ?></a>
+                        <p><?php echo esc_html('Visit our official website for live chat and more information, tutorials, and resources.','product-variation-table-with-quick-cart'); ?></p>
+                    </div>
+                    <div class="support-item">
+                        <strong><i class="fas fa-gem"></i> <?php echo esc_html('Premium Plugin:','product-variation-table-with-quick-cart'); ?></strong>
+                        <a href="https://demo-variation.wooxperto.com/" target="_blank"><?php echo esc_html('Upgrade to Pro','product-variation-table-with-quick-cart'); ?></a>
+                        <p><?php echo esc_html('Unlock more advanced features and capabilities with our premium plugin version.','product-variation-table-with-quick-cart'); ?></p>
+                    </div>
+                    <div class="support-item">
+                        <strong><i class="fab fa-facebook-f"></i> <?php echo esc_html('Facebook:','product-variation-table-with-quick-cart'); ?></strong>
+                        <a href="https://www.facebook.com/wooxpertollc" target="_blank"><?php echo esc_html('Follow us','product-variation-table-with-quick-cart'); ?></a>
+                        <p><?php echo esc_html('Join our community on Facebook for support, updates, and discussions.','product-variation-table-with-quick-cart'); ?></p>
+                    </div>
+                    <div class="support-item">
+                        <strong><i class="fab fa-whatsapp"></i> <?php echo esc_html('WhatsApp:','product-variation-table-with-quick-cart'); ?></strong>
+                        <a href="https://wa.me/01926167151" target="_blank"><?php echo esc_html('Chat Now ','product-variation-table-with-quick-cart'); ?></a>
+                        <p><?php echo esc_html('Get instant support by chatting with us on WhatsApp. We’re here to help!','product-variation-table-with-quick-cart'); ?></p>
+                    </div>
+                    <div class="support-item">
+                        <strong><i class="fas fa-envelope"></i> <?php echo esc_html('Email:','product-variation-table-with-quick-cart'); ?></strong>
+                        <a href="mailto:support@wooxperto.com"><?php echo esc_html('support@wooxperto.com','product-variation-table-with-quick-cart'); ?></a>
+                        <p><?php echo esc_html('Feel free to reach out to us via email for any inquiries or support requests.','product-variation-table-with-quick-cart'); ?></p>
+                    </div>
+                    <div class="support-item">
+                        <strong><i class="fab fa-linkedin-in"></i> <?php echo esc_html('LinkedIn:','product-variation-table-with-quick-cart'); ?></strong>
+                        <a href="https://www.linkedin.com/company/wooxpertollc/" target="_blank"><?php echo esc_html('Connect on LinkedIn','product-variation-table-with-quick-cart'); ?></a>
+                        <p><?php echo esc_html('Let’s connect on LinkedIn for networking, updates, and professional support.','product-variation-table-with-quick-cart'); ?></p>
+                    </div>
+                    <div class="support-item">
+                        <strong><i class="fab fa-twitter"></i> <?php echo esc_html('Twitter:','product-variation-table-with-quick-cart'); ?></strong>
+                        <a href="https://x.com/wooxpertollc" target="_blank"><?php echo esc_html('Follow us','product-variation-table-with-quick-cart'); ?></a>
+                        <p><?php echo esc_html('Stay updated with the latest news and announcements by following us on Twitter.','product-variation-table-with-quick-cart'); ?></p>
+                    </div>
+                    <div class="support-item">
+                        <strong><i class="fab fa-youtube"></i> <?php echo esc_html('YouTube:','product-variation-table-with-quick-cart'); ?></strong>
+                        <a href="https://www.youtube.com/@wooxpertollc" target="_blank"><?php echo esc_html('Subscribe','product-variation-table-with-quick-cart'); ?></a>
+                        <p><?php echo esc_html('Check out our YouTube channel for video tutorials and product showcases.','product-variation-table-with-quick-cart'); ?></p>
+                    </div>
+                    <div class="support-item">
+                        <strong><i class="fab fa-instagram"></i> <?php echo esc_html('Instagram:','product-variation-table-with-quick-cart'); ?></strong>
+                        <a href="https://www.instagram.com/wooxpertollc" target="_blank"><?php echo esc_html('Follow us','product-variation-table-with-quick-cart'); ?></a>
+                        <p><?php echo esc_html('See behind-the-scenes content and our latest updates on Instagram.','product-variation-table-with-quick-cart'); ?></p>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>

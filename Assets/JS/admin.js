@@ -164,9 +164,9 @@ jQuery(document).ready(function ($) {
 
 });
 
-function redirectToSupport() {
-    window.open("https://www.wooxperto.com/", "_blank"); // Open in new tab
-}
+// function redirectToSupport() {
+//     window.open("https://www.wooxperto.com/", "_blank"); // Open in new tab
+// }
 
 document.addEventListener('DOMContentLoaded', function() {
     var helpButton         = document.querySelector('.help-button-carousel');
