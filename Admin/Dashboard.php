@@ -1279,10 +1279,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
 
         <div class="variation-list-image-above-pro">
             <div id="variation-list-dashboard-first-image"
-                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/list-template-first-section.png'); ?>">
-            </div>
-            <div id="variation-list-dashboard-second-image"
-                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/list-template-second-section.png'); ?>">
+                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/list-template-dashboard.jpg'); ?>">
             </div>
         </div>
 
@@ -1304,7 +1301,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
             <h2><?php echo esc_html('Attribute Gallery Setting (This Feature Available for Pro Version)','product-variation-table-with-quick-cart'); ?></h2>
 
             <div id="attribute-gallery-dashboard"
-                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/attribute-gallery-dashboard.png'); ?>">
+                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/attribute-gallery-dashboard.jpg'); ?>">
             </div>
 
         </div>
