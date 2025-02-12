@@ -1367,8 +1367,33 @@ label:hover {
 
 /* Slick Slider End*/
 
-i.fas, i.far, i.fab {
-  font-family: "Font Awesome 5 Free" !important;
-  font-weight: 900 !important;
+.quick-selections input[type="radio"] {
+  appearance: none; /* Remove default browser styling */
+  -webkit-appearance: none; /* For Safari */
+  min-width: 10px; /* Smaller size */
+  min-height: 10px;
+  border: 2px solid #ccc; /* Border for unselected state */
+  border-radius: 50%; /* Keep it circular */
+  outline: none; /* Remove outline on focus */
+  margin: 0;
+  cursor: pointer;
+  transition: 0.3s; /* Smooth hover/focus effects */
+}
+
+.quick-selections input[type="radio"]:checked {
+  border-color: #007bff; /* Border color when selected */
+  background-color: #007bff; /* Background color for selected state */
+}
+
+.quick-selections input[type="radio"]:hover {
+  border-color: #007bff; /* Hover effect */
+}
+
+.quick-selections .icon-design label {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* Adjust spacing between icon and radio button */
+  font-size: 18px; /* Adjust font size */
+  cursor: pointer;
 }
 

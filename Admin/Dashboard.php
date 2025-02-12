@@ -161,11 +161,38 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
             </div>
 
             <div class="quick-selections" style="display: flex; gap: 10.2%; align-items: center;">
+                <h4><?php echo wp_kses('Add to Cart Icon (Font Awesome 5): ','product-variation-table-with-quick-cart-pro');?></h4>
+                <div class="quick-selectors-wrapper">
+                    <div class="icon-design" style="display: flex; gap: 10px; align-items: center;">
 
-                <div id="add-to-cart-icon-image-dashboard"
-                     data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/add-to-cart-icon-image.png'); ?>">
+                        <?php
+                        $variation_quick_cart_icon = [
+                            'fa fa-shopping-cart',
+                            'fa fa-cart-arrow-down',
+                            'fa fa-cart-plus',
+                            'fa none'
+                        ];
+
+                        $variation_quick_cart_icon_final = apply_filters('variation_quick_cart_icon', $variation_quick_cart_icon);
+
+                        foreach ($variation_quick_cart_icon_final as $quick_cart_icon_final) {
+
+                            ?>
+                            <label style="display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" class="quick-cart-icon" name="quick_cart_icon" value="<?php echo esc_attr($quick_cart_icon_final); ?>"
+                                    <?php echo ($quickCartIcon === $quick_cart_icon_final) ? 'checked' : ''; ?> />
+                                <?php if ($quick_cart_icon_final === 'fa none') { ?>
+                                    <span style="font-size: 16px; color: black">None</span>
+                                <?php } else { ?>
+                                    <i class="<?php echo esc_attr($quick_cart_icon_final); ?>" style="font-size: 20px;"></i>
+                                <?php } ?>
+                            </label>
+                            <?php
+                        }
+                        ?>
+
+                    </div>
                 </div>
-
             </div>
 
             <div class="quick-selections">
