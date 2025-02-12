@@ -125,23 +125,23 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
     </div>
 
     <div class="tab">
-        <button class="tablinks active" onclick="openCity(event, 'general')"> <?php echo wp_kses('General Setting ','product-variation-table-with-quick-cart'); ?></button>
-        <button class="tablinks" onclick="openCity(event, 'carousel')"><?php echo wp_kses('Carousel Settings','product-variation-table-with-quick-cart'); ?></button>
-        <button class="tablinks" onclick="openCity(event, 'table')"> <?php echo wp_kses('Table Setting ','product-variation-table-with-quick-cart'); ?></button>
-        <button class="tablinks" onclick="openCity(event, 'select-variation')"><?php echo wp_kses('Variation Swatches','product-variation-table-with-quick-cart'); ?></button>
-        <button class="tablinks" onclick="openCity(event, 'select-variation-ul-li')">
+        <button style="padding: 10px" class="tablinks active" onclick="openCity(event, 'general')"> <?php echo wp_kses('General Setting ','product-variation-table-with-quick-cart'); ?></button>
+        <button style="padding: 10px" class="tablinks" onclick="openCity(event, 'carousel')"><?php echo wp_kses('Carousel Settings','product-variation-table-with-quick-cart'); ?></button>
+        <button style="padding: 10px" class="tablinks" onclick="openCity(event, 'table')"> <?php echo wp_kses('Table Setting ','product-variation-table-with-quick-cart'); ?></button>
+        <button style="padding: 10px" class="tablinks" onclick="openCity(event, 'select-variation')"><?php echo wp_kses('Variation Swatches','product-variation-table-with-quick-cart'); ?></button>
+        <button style="padding: 10px" class="tablinks" onclick="openCity(event, 'select-variation-ul-li')">
             <?php echo wp_kses('Variation List ','product-variation-table-with-quick-cart'); ?>
             <span style="color: red;">★</span>
         </button>
-        <button class="tablinks" onclick="openCity(event, 'variation-gallery')">
+        <button style="padding: 10px" class="tablinks" onclick="openCity(event, 'variation-gallery')">
             <?php echo wp_kses('Variation Gallery','product-variation-table-with-quick-cart'); ?>
             <span style="color: red;">★</span>
         </button>
-        <button class="tablinks" onclick="openCity(event, 'attribute-gallery')">
+        <button style="padding: 10px" class="tablinks" onclick="openCity(event, 'attribute-gallery')">
             <?php echo wp_kses('Attribute Gallery','product-variation-table-with-quick-cart'); ?>
             <span style="color: red;">★</span>
         </button>
-        <button class="tablinks"  onclick="redirectToSupport()" onclick="openCity(event, 'support')"><?php echo wp_kses('Support','product-variation-table-with-quick-cart'); ?></button>
+        <button style="padding: 10px" class="tablinks"  onclick="redirectToSupport()" onclick="openCity(event, 'support')"><?php echo wp_kses('Support','product-variation-table-with-quick-cart'); ?></button>
     </div>
 
     <div id="general" class="tabcontent" style="display: block;">
@@ -344,7 +344,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
             </div>
 
 
-            <div class="quick-selections" style="display: flex; gap: 24%; align-items: center;">
+            <div class="quick-selections" style="display: flex; gap: 21.5%; align-items: center;">
                 <h4><?php echo wp_kses('Carousel Autoplay On: ','product-variation-table-with-quick-cart');
 
                     if(empty($license_active)){
@@ -362,7 +362,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                 </div>
             </div>
 
-            <div class="quick-selections" style="display: flex; gap: 17%; align-items: center;">
+            <div class="quick-selections" style="display: flex; gap: 14.9%; align-items: center;">
                 <h4><?php echo wp_kses('Redirect to Single Product Page: ','product-variation-table-with-quick-cart');
 
                     if(empty($license_active)){
@@ -936,7 +936,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 54.3%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 56%; align-items: center">
                         <h4><?php echo wp_kses('Show Image: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="image-hide-show">
@@ -948,7 +948,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 58.5%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 61%; align-items: center">
                         <h4><?php echo wp_kses('Show SKU: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="sku-hide-show">
@@ -960,7 +960,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 47.5%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 49.5%; align-items: center">
                         <h4><?php echo wp_kses('Show Title: ','product-variation-table-with-quick-cart');
                             if(empty($license_active)){
                                 echo "(Pro)";
@@ -976,7 +976,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 33.3%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 34%; align-items: center">
                         <h4><?php echo wp_kses('Show Description: ','product-variation-table-with-quick-cart');
                             if(empty($license_active)){
                                 echo "(Pro)";
@@ -993,7 +993,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 12.5%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 13.5%; align-items: center">
                         <h4><?php echo wp_kses('Show Weight & Dimensions: ','product-variation-table-with-quick-cart');
                             if(empty($license_active)){
                                 echo "(Pro)";
@@ -1010,7 +1010,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 47.5%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 51.5%; align-items: center">
                         <h4><?php echo wp_kses('Show Attribute: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="all-attribute-hide-show">
@@ -1022,7 +1022,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 55.5%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 60.3%; align-items: center">
                         <h4><?php echo wp_kses('Show Price: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="price-hide-show">
@@ -1035,7 +1035,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                     </div>
 
 
-                    <div class="quick-selections" style="display: flex; gap: 47.6%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 52.9%; align-items: center">
                         <h4><?php echo wp_kses('Show Quantity: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="quantity-hide-show">
@@ -1047,7 +1047,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 30.8%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 34.2%; align-items: center">
                         <h4><?php echo wp_kses('Show Stock Status: ','product-variation-table-with-quick-cart');
                             if(empty($license_active)){
                                 echo "(Pro)";
@@ -1063,7 +1063,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 51.8%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 58%; align-items: center">
                         <h4><?php echo wp_kses('Show Action: ','product-variation-table-with-quick-cart');?></h4>
                         <div class="quick-selectors-wrapper">
                             <div class="action-hide-show">
@@ -1075,7 +1075,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 26.6%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 31%; align-items: center">
                         <h4><?php echo wp_kses('Show Search Option: ','product-variation-table-with-quick-cart');
                             if(empty($license_active)){
                                 echo "(Pro)";
@@ -1091,7 +1091,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
 
-                    <div class="quick-selections" style="display: flex; gap: 24.6%; align-items: center">
+                    <div class="quick-selections" style="display: flex; gap: 29%; align-items: center">
                         <h4><?php echo wp_kses('Show On Sale Option: ','product-variation-table-with-quick-cart');
                             if(empty($license_active)){
                                 echo "(Pro)";
@@ -1146,21 +1146,12 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                     </div>
                 </div>
 
-                <div>
-
-                    <div style="display: flex; align-items: end">
-                        <div id="show-design-variation-table-template"></div>
-                    </div>
-
-                    <div id="variation-table-template2-cart-design" style="display: none;">
-                        <div style="display: flex; align-items: end; margin-top: 20px">
-                            <div id="show-design-add-cart-table-template2"></div>
-                        </div>
-                    </div>
-
-                    <div style="display: flex; align-items: end; position: absolute; bottom: 150px; left: 600px">
-                        <div id="show-template-image"></div>
-                    </div>
+                <div style="display: flex; align-items: end">
+                    <div data-image-template1="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/template_1.png'); ?>"
+                         data-image-template2="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/template_2.png'); ?>"
+                         data-image-template3="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/template_3.png'); ?>"
+                         data-image-template4="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/template_4.png'); ?>"
+                         id="show-template-image"></div>
                 </div>
             </div>
 
@@ -1172,7 +1163,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
         <div id="quickAuthenticateWrapper">
             <h2><?php echo esc_html('Variation Swatches for Single Product and Archive Page','product-variation-table-with-quick-cart'); ?></h2>
 
-                <div class="quick-selections" style="display: flex; gap: 10%; align-items: center">
+                <div class="quick-selections" style="display: flex; gap: 11%; align-items: center">
                     <h4><?php echo wp_kses('Variation Swatches Enable: ','product-variation-table-with-quick-cart');?></h4>
                     <div class="quick-selectors-wrapper">
                         <div class="variation-select-on-off">
@@ -1293,12 +1284,15 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
     <div id="select-variation-ul-li" class="tabcontent">
         <h2><?php echo esc_html('Select Variation List (This Feature Available for Pro Version)','product-variation-table-with-quick-cart'); ?></h2>
 
-        <div id="variation-list-dashboard-first-image"
-             data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/list-template-first-section.png'); ?>">
+        <div class="variation-list-image-above-pro">
+            <div id="variation-list-dashboard-first-image"
+                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/list-template-first-section.png'); ?>">
+            </div>
+            <div id="variation-list-dashboard-second-image"
+                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/list-template-second-section.png'); ?>">
+            </div>
         </div>
-        <div id="variation-list-dashboard-second-image"
-             data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/list-template-second-section.png'); ?>">
-        </div>
+
     </div>
 
     <div id="variation-gallery" class="tabcontent" style="">
