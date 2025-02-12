@@ -576,9 +576,9 @@ jQuery(document).ready(function () {
     autoplaySpeed: 2000,
     arrows: true,
     prevArrow:
-        '<button type="button" class="slick-custom-arrow slick-prev"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+        '<button type="button" class="slick-custom-arrow slick-prev"><span class="dashicons dashicons-arrow-left-alt2"></span></button>',
     nextArrow:
-        '<button type="button" class="slick-custom-arrow slick-next"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+        '<button type="button" class="slick-custom-arrow slick-next"><span class="dashicons dashicons-arrow-right-alt2"></span></button>',
   });
 
   // Variable Tooltip script
@@ -811,10 +811,7 @@ jQuery(document).ready(function () {
         }, 2000); // Adjust delay as needed
       }
 
-
-
       quantity = $button.closest('tr').find(".quick-quantity-input").val();
-
 
       var selectedAttributes = {};
       var $container = $button.closest('tr');
@@ -834,8 +831,6 @@ jQuery(document).ready(function () {
         }
       });
 
-
-
       const data = {
         'action': 'woocommerce_ajax_add_to_cart',
         'product_id': productId,
@@ -845,7 +840,6 @@ jQuery(document).ready(function () {
         "_wpnonce": quick_front_ajax_obj.nonce, // Add the nonce here
 
       };
-
 
       // Disable button and show loading state
       $button.prop('disabled', true);
