@@ -681,13 +681,8 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                         </div>
                     </div>
                     <!--Variation Table Template 1 All options-->
-                    <div id="variation-table-template1-options" style="display: none;">
                         <div class="quick-selections" style="display: flex; gap: 28%; align-items: center">
-                            <h4><?php echo wp_kses('Variation Table Border Show: ','product-variation-table-with-quick-cart');
-                                if(empty($license_active)){
-                                    echo "(Pro)";
-                                }
-                                ?></h4>
+                            <h4><?php echo wp_kses('Variation Table Border Show: ','product-variation-table-with-quick-cart');?></h4>
                             <div class="quick-selectors-wrapper">
                                 <div class="quick-table-border">
                                     <label class="switch">
@@ -700,81 +695,52 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
 
                         <div class="quick-selections">
                             <div class="quick-selectors-wrapper">
-                                <label for="quick-table-head-bg-color"><strong> <?php echo wp_kses('Table Head Bg Color: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
+                                <label for="quick-table-head-bg-color"><strong> <?php echo wp_kses('Table Head Bg Color: ','product-variation-table-with-quick-cart');?></strong></label>
                                 <input id="quick-table-head-bg-color" name="quick-table-head-bg-color" value="<?php echo esc_attr( $tableHeadBgColor ); ?>"  data-jscolor="{}">
                             </div>
                         </div>
 
                         <div class="quick-selections">
                             <div class="quick-selectors-wrapper m-top" >
-                                <label for="quick-table-head-text-color"><strong> <?php echo wp_kses('Table Head Text Color: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
+                                <label for="quick-table-head-text-color"><strong> <?php echo wp_kses('Table Head Text Color: ','product-variation-table-with-quick-cart');?></strong></label>
                                 <input id="quick-table-head-text-color" name="quick-table-head-text-color" value="<?php echo esc_attr( $tableHeadTextColor ); ?>"  data-jscolor="{}">
                             </div>
                         </div>
 
                         <div class="quick-selections">
                             <div class="quick-selectors-wrapper m-top">
-                                <label for="quick-table-border-color"><strong> <?php echo wp_kses('Table Border Color: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
+                                <label for="quick-table-border-color"><strong> <?php echo wp_kses('Table Border Color: ','product-variation-table-with-quick-cart');?></strong></label>
                                 <input id="quick-table-border-color" name="quick-table-border-color" value="<?php echo esc_attr( $tableBorderColor ); ?>"  data-jscolor="{}">
                             </div>
                         </div>
 
                         <div class="quick-selections">
                             <div class="quick-selectors-wrapper m-top">
-                                <label for="quick-table-variable-title-color"><strong> <?php echo wp_kses('Variation Table Title Color: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
+                                <label for="quick-table-variable-title-color"><strong> <?php echo wp_kses('Variation Table Title Color: ','product-variation-table-with-quick-cart');?></strong></label>
                                 <input id="quick-table-variable-title-color" name="quick-table-variable-title-color" value="<?php echo esc_attr( $tableVariableTitleColor ); ?>"  data-jscolor="{}">
                             </div>
                         </div>
 
                         <div class="quick-selections">
                             <div class="quick-selectors-wrapper m-top">
-                                <label for="quick-table-variable-bg-color-odd"><strong> <?php echo wp_kses('Variation Table Background Color(Odd): ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
+                                <label for="quick-table-variable-bg-color-odd"><strong> <?php echo wp_kses('Variation Table Background Color(Odd): ','product-variation-table-with-quick-cart'); ?></strong></label>
                                 <input id="quick-table-variable-bg-color-odd" name="quick-table-variable-bg-color-odd" value="<?php echo esc_attr( $tableBgColorOdd ); ?>"  data-jscolor="{}">
                             </div>
                         </div>
 
                         <div class="quick-selections">
                             <div class="quick-selectors-wrapper m-top">
-                                <label for="quick-table-variable-bg-color-even"><strong> <?php echo wp_kses('Variation Table Background Color(Even): ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
+                                <label for="quick-table-variable-bg-color-even"><strong> <?php echo wp_kses('Variation Table Background Color(Even): ','product-variation-table-with-quick-cart');?></strong></label>
                                 <input id="quick-table-variable-bg-color-even" name="quick-table-variable-bg-color-even" value="<?php echo esc_attr( $tableBgColorEven ); ?>"  data-jscolor="{}">
                             </div>
                         </div>
 
                         <div class="quick-selections">
                             <div class="quick-selectors-wrapper m-top">
-                                <label for="quick-table-variable-hover-color"><strong> <?php echo wp_kses('Variation Table Background Color Hover: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
+                                <label for="quick-table-variable-hover-color"><strong> <?php echo wp_kses('Variation Table Background Color Hover: ','product-variation-table-with-quick-cart');?></strong></label>
                                 <input style="outline: none !important;" id="quick-table-variable-hover-color" name="quick-table-variable-hover-color" value="<?php echo esc_attr( $tableBgColorHover ); ?>"  data-jscolor="{}">
                             </div>
                         </div>
-                    </div>
 
                     <!-- Variation Table Position Select -->
                     <div class="quick-selections quick-selections-style">
@@ -1300,7 +1266,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
             <h2><?php echo esc_html('Variation Gallery Setting (This Feature Available for Pro Version)','product-variation-table-with-quick-cart'); ?></h2>
 
             <div id="variation-gallery-dashboard"
-                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/variation-gallery-dashboard.png'); ?>">
+                 data-image="<?php echo esc_url(plugin_dir_url(__DIR__) . 'Assets/images/variation-gallery-dashboard.jpg'); ?>">
             </div>
 
         </div>

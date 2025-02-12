@@ -81,9 +81,6 @@ jQuery(document).ready(function () {
     jQuery("[name=gallery-navigation-button-background-hover-color]").prop("disabled", true);
     jQuery("#gallery-navigation-button-background-hover-color").removeAttr("id");
 
-    jQuery("[name=quick-table-head-bg-color]").prop("disabled", true);
-    jQuery("#quick-table-head-bg-color").removeAttr("id");
-
     jQuery("[name=template2-table-bg-color]").prop("disabled", true);
     jQuery("#template2-table-bg-color").removeAttr("id");
 
@@ -110,12 +107,6 @@ jQuery(document).ready(function () {
 
     jQuery("[name=list-badge-text-color]").prop("disabled", true);
     jQuery("#list-badge-text-color").removeAttr("id");
-
-    jQuery("[name=quick-table-head-text-color]").prop("disabled", true);
-    jQuery("#quick-table-head-text-color").removeAttr("id");
-
-    jQuery("[name=quick-table-variable-title-color]").prop("disabled", true);
-    jQuery("#quick-table-variable-title-color").removeAttr("id");
 
     jQuery("[name=quick-carousel-autoplay]").prop("disabled", true);
     jQuery("[name=quick-carousel-autoplay]").prop("checked", false);
@@ -178,10 +169,6 @@ jQuery(document).ready(function () {
     jQuery("[name=list-badge-discount-flat-price]").prop("checked", false);
     jQuery(".list-badge-discount-flat-price").removeClass("list-badge-discount-flat-price");
 
-    jQuery("[name=quick-table-border]").prop("disabled", true);
-    jQuery("[name=quick-table-border]").prop("checked", false);
-    jQuery(".quick-table-border").removeClass("quick-table-border");
-
     jQuery("[name=show-popup-image]").prop("disabled", true);
     jQuery("[name=show-popup-image]").prop("checked", false);
     jQuery(".show-popup-image").removeClass("quick-table-border");
@@ -189,18 +176,6 @@ jQuery(document).ready(function () {
     jQuery("[name=show-gallery-image-into-popup]").prop("disabled", true);
     jQuery("[name=show-gallery-image-into-popup]").prop("checked", false);
     jQuery(".show-gallery-image-into-popup").removeClass("quick-table-border");
-
-    jQuery("[name=quick-table-border-color]").prop("disabled", true);
-    jQuery("#quick-table-border-color").removeAttr("id");
-
-    jQuery("[name=quick-table-variable-bg-color-odd]").prop("disabled", true);
-    jQuery("#quick-table-variable-bg-color-odd").removeAttr("id");
-
-    jQuery("[name=quick-table-variable-bg-color-even]").prop("disabled", true);
-    jQuery("#quick-table-variable-bg-color-even").removeAttr("id");
-
-    jQuery("[name=quick-table-variable-hover-color]").prop("disabled", true);
-    jQuery("#quick-table-variable-hover-color").removeAttr("id");
 
     jQuery("[name=on-sale-name-change]").prop("disabled", true);
     jQuery("#on-sale-name-change").removeAttr("id");
