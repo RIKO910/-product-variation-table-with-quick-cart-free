@@ -1319,7 +1319,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                     </div>
                     <div class="support-item">
                         <strong><i class="fas fa-gem"></i> <?php echo esc_html('Premium Plugin:','product-variation-table-with-quick-cart'); ?></strong>
-                        <a href="https://demo-variation.wooxperto.com/" target="_blank"><?php echo esc_html('Upgrade to Pro','product-variation-table-with-quick-cart'); ?></a>
+                        <a href="https://www.wooxperto.com/woocommerce-product-variations-table-with-quick-cart-plguin" target="_blank"><?php echo esc_html('Upgrade to Pro','product-variation-table-with-quick-cart'); ?></a>
                         <p><?php echo esc_html('Unlock more advanced features and capabilities with our premium plugin version.','product-variation-table-with-quick-cart'); ?></p>
                     </div>
                     <div class="support-item">
