@@ -50,14 +50,12 @@ if (isset($product) && $product->is_type("variable")) {
                 $dataProperty->setAccessible(true);
                 $data   = $dataProperty->getValue($attribute);
 
-                if ($attribute->is_taxonomy() && isset($data["variation"]) && $data["variation"]) {
+                if ($attribute->is_taxonomy()) {
                     $options    = wc_get_product_terms($product->get_id(), $key, ['fields' => 'names']);
                     $label_name = wc_attribute_label($key);
                 } else {
-                    if (isset($data["variation"]) && $data["variation"]){
-                        $options = $attribute->get_options();
-                        $label_name = wc_attribute_label($key);
-                    }
+                    $options = $attribute->get_options();
+                    $label_name = wc_attribute_label($key);
                 }
                 $variationsList[$key] = [
                         'options' => $options,
