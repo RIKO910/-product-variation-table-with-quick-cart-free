@@ -36,12 +36,13 @@ if (isset($product) && $product->is_type("variable")) {
     $quickCartIconImageLink         = isset($variableSetting['quickCartIconImageLink']) ? $variableSetting['quickCartIconImageLink'] : '';
     $popUPImageShow                 = isset($variableSetting['popUPImageShow']) ? $variableSetting['popUPImageShow'] : 'thumbnail';
     $showGalleyImageIntoPopup       = isset($variableSetting['showGalleyImageIntoPopup']) ? $variableSetting['showGalleyImageIntoPopup'] : 'true';
+    $tableRowPagination             = isset($variableSetting['tableRowPagination']) ? $variableSetting['tableRowPagination'] : '5';
     $metaTableTemplate2Enable       = get_post_meta($post->ID, '_table_template2_is_enabled', true);
     $metaTableTemplate2CartStyle    = get_post_meta($post->ID, '_table_template2_cart_section_style_template', true);
 
     ?>
     <div class="table-template-max-width">
-        <table id="quick-variable-table">
+        <table id="quick-variable-table" data-pagination-table="<?php echo esc_attr($tableRowPagination); ?>">
             <tr>
 
                 <?php if ($imageHideShow === "true"){

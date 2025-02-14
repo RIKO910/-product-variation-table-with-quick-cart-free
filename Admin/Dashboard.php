@@ -636,78 +636,14 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                     </div>
 
                     <!--Variation Table Template 2 All Option-->
-                    <div id="variation-table-template2-options" style="display: none;">
-                        <div class="quick-selections">
-                            <div class="quick-selectors-wrapper">
-                                <label for="template2-table-bg-color"><strong> <?php echo wp_kses('Template 2 Table Bg Color: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
-                                <input id="template2-table-bg-color" name="template2-table-bg-color" value="<?php echo esc_attr( $template2TableBgColor ); ?>"  data-jscolor="{}">
-                            </div>
-                        </div>
 
-                        <div class="quick-selections">
-                            <div class="quick-selectors-wrapper">
-                                <label for="template2-details-section-bg-color"><strong> <?php echo wp_kses('Template 2 Details Section Bg Color: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
-                                <input id="template2-details-section-bg-color" name="template2-details-section-bg-color" value="<?php echo esc_attr( $template2DetailsSectionBgColor ); ?>"  data-jscolor="{}">
-                            </div>
-                        </div>
-
-                        <div class="quick-selections">
-                            <div class="quick-selectors-wrapper">
-                                <label for="template2-cart-section-bg-color"><strong> <?php echo wp_kses('Template 2 Cart Section Bg Color: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
-                                <input id="template2-cart-section-bg-color" name="template2-cart-section-bg-color" value="<?php echo esc_attr( $template2CartSectionBgColor ); ?>"  data-jscolor="{}">
-                            </div>
-                        </div>
-
-                        <div class="quick-selections quick-selections-style" style="display: flex; gap: 50%">
-                            <div>
-                                <h4><?php echo wp_kses('Style Add to Cart for Template 2: ','product-variation-table-with-quick-cart');
-                                    if(empty($license_active)){
-                                        echo "(Pro)";
-                                    }
-                                    ?></h4>
-
-                                <div>
-                                    <select id="select-design-add-cart-table-template2" class="design-add-cart-table-template2" style="outline: none">
-                                        <option value="template_1" <?php selected($designAddCartTableTemplate2, 'template_1'); ?>><?php echo wp_kses('Template 1','product-variation-table-with-quick-cart');?></option>
-                                        <option value="template_2" <?php selected($designAddCartTableTemplate2, 'template_2'); ?>><?php echo wp_kses('Template 2','product-variation-table-with-quick-cart');?></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                    <!--Variation Table Template 1 All options-->
                         <div class="quick-selections">
                             <div class="quick-selectors-wrapper m-top">
-                                <label for="select-all-name-change"><strong> <?php echo wp_kses('Select All Name Change: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
-                                <input id="select-all-name-change" class="select-all-name-change" type="text" name="select-all-name-change" value="<?php echo esc_attr( $selectAllNameChange ); ?>"  >
-                            </div>
-                        </div>
-                        <div class="quick-selections">
-                            <div class="quick-selectors-wrapper m-top">
-                                <label for="table-row-pagination"><strong> <?php echo wp_kses('Table Row Pagination: ','product-variation-table-with-quick-cart');
-                                        if(empty($license_active)){
-                                            echo "(Pro)";
-                                        }
-                                        ?></strong></label>
+                                <label for="table-row-pagination"><strong> <?php echo wp_kses('Table Row Pagination: ','product-variation-table-with-quick-cart');?></strong></label>
                                 <input id="table-row-pagination" class="table-row-pagination" type="number" min="1" name="table-row-pagination" value="<?php echo esc_attr( $tableRowPagination ); ?>"  >
                             </div>
                         </div>
-                    </div>
-                    <!--Variation Table Template 1 All options-->
                         <div class="quick-selections" style="display: flex; gap: 28%; align-items: center">
                             <h4><?php echo wp_kses('Variation Table Border Show: ','product-variation-table-with-quick-cart');?></h4>
                             <div class="quick-selectors-wrapper">

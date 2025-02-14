@@ -947,8 +947,8 @@ jQuery(document).ready(function () {
   // Pagination for table 1
 
   jQuery(document).ready(function ($) {
-    var rowsPerPage = 5; // Number of rows to show per page
     var $table = $("#quick-variable-table");
+    const rowsPerPage = $table.data('pagination-table');
     var rows = $table.find("tr:gt(0)"); // Select all rows except the first (header row)
     var totalRows = rows.length;
     var totalPages = Math.ceil(totalRows / rowsPerPage);

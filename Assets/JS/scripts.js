@@ -183,9 +183,6 @@ jQuery(document).ready(function () {
     jQuery("[name=select-all-name-change]").prop("disabled", true);
     jQuery("#select-all-name-change").removeAttr("id");
 
-    jQuery("[name=table-row-pagination]").prop("disabled", true);
-    jQuery("#table-row-pagination").removeAttr("id");
-
     jQuery("[name=list-pagination]").prop("disabled", true);
     jQuery("#list-pagination").removeAttr("id");
 
