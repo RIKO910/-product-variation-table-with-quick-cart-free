@@ -89,7 +89,7 @@ $quickCartIconImageLink  = isset($variableSettings['quickCartIconImageLink']) ? 
                     data-variationId=""
                     data-action="variable-product-btn"
                     style="outline: none">
-                <i class="<?php echo esc_attr($quickCartIcon); ?>" aria-hidden="true"></i>
+                <i class="<?php echo esc_attr($quickCartIcon); ?> cart-icon-remove" aria-hidden="true"></i>
                 <span><?php echo esc_html($cartButtonText); ?></span>
 
             </button>

@@ -1,29 +1,6 @@
 jQuery(document).ready(function () {
 
   jQuery(document).ready(function ($) {
-    $('.quick-add-to-cart-shop-page').on('click', function (e) {
-      e.preventDefault();
-
-      var button = $(this);
-
-      // Avoid adding another spinner if one is already present
-      if (!button.hasClass('loading')) {
-        // Add loading state
-        button.addClass('loading');
-
-        // Add spinner dynamically
-        button.append('<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>');
-
-        // Simulate the end of loading (remove this part when adding actual AJAX functionality)
-        setTimeout(function() {
-          button.removeClass('loading');
-          button.find('.spinner').remove(); // Remove spinner after loading
-        }, 2000); // Adjust delay as needed
-      }
-    });
-  });
-
-  jQuery(document).ready(function ($) {
     $('.image-shop-page').each(function () {
       var div = $(this);
 
@@ -798,17 +775,12 @@ jQuery(document).ready(function () {
       var quantity;
 
       if (!$button.hasClass('loading')) {
-        // Add loading state
-        $button.addClass('loading');
 
-        // Add spinner dynamically
-        $button.append('<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>');
+        $button.append('<i class="fa fa-spinner fa-spin spin-icon-remove"></i>');
 
-        // Simulate the end of loading (remove this part when adding actual AJAX functionality)
         setTimeout(function() {
-          $button.removeClass('loading');
-          $button.find('.spinner').remove(); // Remove spinner after loading
-        }, 2000); // Adjust delay as needed
+          $button.find('.spin-icon-remove').remove();
+        }, 2000);
       }
 
       quantity = $button.closest('tr').find(".quick-quantity-input").val();
@@ -843,7 +815,7 @@ jQuery(document).ready(function () {
 
       // Disable button and show loading state
       $button.prop('disabled', true);
-      $button.find('i, span').hide();
+      $button.find('.cart-icon-remove, span').hide();
 
       // Perform the AJAX request
       $.post(quick_front_ajax_obj.ajax_url, data, function(response) {
@@ -888,6 +860,14 @@ jQuery(document).ready(function () {
         return;
       }
 
+      if (!$button.hasClass('loading')) {
+        $button.append('<i class="fa fa-spinner fa-spin spin-icon-remove"></i>');
+
+        setTimeout(function() {
+          $button.find('.spin-icon-remove').remove();
+        }, 2000);
+      }
+
       // Collect selected attributes, including dropdowns and static text spans
       $button.closest('.quick-variable-tooltip').find('.quick-attribute-select, .quick-attribute-text').each(function() {
         var attributeKey = $(this).attr('name'); // Get attribute name
@@ -923,7 +903,7 @@ jQuery(document).ready(function () {
 
       // Disable button and show loading state
       $button.prop('disabled', true);
-      $button.find('i, span').hide();
+      $button.find('.cart-icon-remove, span').hide();
       // Perform AJAX request
       $.post(quick_front_ajax_obj.ajax_url, data, function(response) {
         if (response.success) {
@@ -1012,186 +992,6 @@ jQuery(document).ready(function () {
     rows.hide();
     showPage(currentPage); // Show the first 5 rows by default
 
-  });
-
-  // Issue for On Sale Checked and Unchecked
-  jQuery(document).ready(function($) {
-    var removedRows = [];
-
-    // $('.variation-row').show();
-
-    $('#stock_status').on('change', function () {
-      var isChecked = $(this).prop('checked');
-
-      $('.variation-row').each(function () {
-        var stockStatus = $(this).data('stock-status');
-
-        if (isChecked && stockStatus === 1) {
-          $(this).show();
-          // $(this).find('.quick-add-to-cart').css('min-width', '140px');
-        } else if (!isChecked) {
-          $(this).show();
-        } else {
-          if (stockStatus !== 'instock') {
-            removedRows.push($(this).detach());
-          }
-        }
-      });
-
-      if (!isChecked) {
-        for (var i = 0; i < removedRows.length; i++) {
-          $('#quick-variable-table').append(removedRows[i].addClass('re-added'));
-          // $(this).find('.quick-add-to-cart').css('min-width', '140px');
-        }
-
-        removedRows = [];
-
-        $('.re-added').each(function () {
-          bindAddToCart($(this));
-          $(this).removeClass('re-added');
-        });
-
-        bindQuantityButtons();
-      }
-    });
-
-    // Add to cart for On Sale unchecked portion
-    function bindAddToCart(row) {
-      row.find('.quick-add-to-cart').off('click').on('click', function () {
-
-        function isMobile() {
-          return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
-        }
-
-        var $button = $(this);
-        var productId = $button.data('productid');
-        var variationId = $button.data('variationid');
-        var quantity = row.find(".quick-quantity-input").val();
-
-        if (!$button.hasClass('loading')) {
-
-          $button.addClass('loading');
-
-          $button.append('<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>');
-
-          setTimeout(function() {
-            $button.removeClass('loading');
-            $button.find('.spinner').remove();
-          }, 2000);
-        }
-
-        if (isMobile()) {
-          quantity = $button.closest('.mobile-variation-card').find('.quick-quantity-input').val();
-        } else {
-          quantity = $button.closest('tr').find(".quick-quantity-input").val();
-        }
-
-        var selectedAttributes = {};
-        var $container = isMobile()
-            ? $button.closest('.mobile-variation-card')
-            : $button.closest('tr');
-
-        $container.find('.quick-attribute-select, .quick-attribute-text').each(function () {
-          var attributeKey = $(this).attr('name');
-          var attributeValue;
-
-          if ($(this).is('select')) {
-            attributeValue = $(this).val();
-          } else {
-            attributeValue = $(this).text().trim();
-          }
-
-          if (attributeValue && attributeKey) {
-            selectedAttributes[attributeKey] = attributeValue;
-          }
-        });
-
-        const data = {
-          'action': 'woocommerce_ajax_add_to_cart',
-          'product_id': productId,
-          'quantity': quantity,
-          'variation_id': variationId,
-          'variation': selectedAttributes,
-          "_wpnonce": quick_front_ajax_obj.nonce, // Add the nonce here
-        };
-
-
-        $button.prop('disabled', true);
-        $button.find('i, span').hide();
-
-        $.post(quick_front_ajax_obj.ajax_url, data, function(response) {
-
-          if (response.success) {
-            $button.append('<span class="updated-check-add-to-cart"><i class="fa fa-check"></i></span>');
-
-            setTimeout(function() {
-              $button.find('.updated-check-add-to-cart').remove();
-              $button.prop('disabled', false);
-              $button.find('i, span').show();
-            }, 3000);
-
-            $( document.body).trigger('wc_fragment_refresh');
-
-          } else {
-            console.error('Failed to add product: ', response);
-            $button.prop('disabled', false);
-            $button.find('i, span').show();
-          }
-        });
-      });
-    }
-
-
-    // Add search functionality (filter by SKU or attribute)
-    $('#variation-search').on('input', function () {
-      var searchTerm = $(this).val().toLowerCase();
-
-      $('.variation-row').each(function () {
-        var rowContent = $(this).text().toLowerCase();
-        if (rowContent.includes(searchTerm)) {
-          $(this).show();
-        } else {
-          $(this).hide();
-        }
-      });
-    });
-
-    // Function to bind quantity buttons
-    function bindQuantityButtons() {
-      $(".quick-quantity-decrease").off("click").on("click", function () {
-        let currentValue = parseInt(
-            $(this).siblings(".quick-quantity-input").val(),
-            10
-        );
-
-        if (currentValue > 1) {
-          // Prevent going below 1
-          $(this)
-              .siblings(".quick-quantity-input")
-              .val(currentValue - 1);
-          $(".quick-cart-notification").text("");
-        }
-      });
-
-      $(".quick-quantity-increase").off("click").on("click", function () {
-        console.log("increase");
-        maxQuantity = $(this)
-            .siblings(".quick-quantity-input")
-            .attr("data-max");
-        let currentValue = parseInt(
-            $(this).siblings(".quick-quantity-input").val(),
-            10
-        );
-
-        if (currentValue < maxQuantity) {
-          // Prevent exceeding max limit
-          $(this)
-              .siblings(".quick-quantity-input")
-              .val(currentValue + 1);
-          $(".quick-cart-notification").text("");
-        }
-      });
-    }
   });
 
 });

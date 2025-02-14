@@ -297,11 +297,11 @@ button.quick-add-to-cart-shop-page {
   font-size: 13px;
   min-height: 40px;
 }
-.quick-add-to-cart-shop-page i.fa,
-.quick-variable-dashboard .buttonload i.fa {
-  margin-left: -12px;
-  margin-right: 8px;
-}
+/*.quick-add-to-cart-shop-page i.fa,*/
+/*.quick-variable-dashboard .buttonload i.fa {*/
+/*  margin-left: -12px;*/
+/*  margin-right: 8px;*/
+/*}*/
 
 
 /*Quick attribute select start*/
