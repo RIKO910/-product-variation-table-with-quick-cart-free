@@ -162,6 +162,79 @@ jQuery(document).ready(function ($) {
         }
     });
 
+
+//     Ajax notice start
+
+    // Review Notics
+    jQuery(document).ready(function($) {
+        $('#sppcfw-dismiss-btn').on('click', function() {
+            const data = {
+                action: 'sppcfw_dismiss_review_notice',
+                _nonce: sppcfw_obj.nonce
+            };
+            console.log(data)
+
+            const ajaxURL = sppcfw_obj.ajax_url;
+            console.log(ajaxURL);
+
+            $.post(ajaxURL, data, function(response) {
+                console.log("response",response)
+                if (response.success) {
+                    console.log("work");
+                    $('#sppcfw-review-notice').hide(); // Hide the review notice
+                } else {
+                    console.log(response.data);
+                }
+            });
+        });
+
+        // Prepare the admin email notification
+        $('#sppcfw-not-good-enough-btn').on('click', function () {
+            const data = {
+                action: 'sppcfw_send_admin_notification',
+                _nonce: sppcfw_obj.nonce,
+                message: 'User reported that the plugin was not good enough.'
+            };
+
+            const ajaxURL = sppcfw_obj.ajax_url;
+
+            // Disable the button to prevent duplicate clicks
+            $(this).prop('disabled', true).text('Processing...');
+
+            // Perform the AJAX request
+            $.post(ajaxURL, data, function (response) {
+                if (response.success) {
+                    alert('Your feedback has been sent to the admin. Thank you for your input.');
+                } else {
+                    alert('An error occurred while sending feedback. Please try again.');
+                }
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                console.error('Status: ' + textStatus);
+                console.error('Error: ' + errorThrown);
+                console.error('Response Text: ' + jqXHR.responseText);
+            }).always(function () {
+                $('#sppcfw-not-good-enough-btn').prop('disabled', false).text('No, not good enough');
+            });
+        });
+
+            var imgURL = sppcfw_obj.logo_url;
+        console.log("imgURL", imgURL);
+            // Check if the target .logo span exists before appending
+            if ($("#sppcfw-review-notice .logo").length > 0) {
+                // Create an <img> element
+                var imgElement = $("<img>", {
+                    src: imgURL,
+                    alt: "Plugin Logo",
+                    class: "custom-logo", // Add your custom class if needed
+                });
+
+                // Append the image to the .logo span inside the admin notice
+                $("#sppcfw-review-notice .logo").append(imgElement);
+            }
+    });
+
+//     Ajax notice end
+
 });
 
 // function redirectToSupport() {

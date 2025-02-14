@@ -11,6 +11,18 @@ class QUICK_admin{
     public function __construct() {
         add_action('admin_menu', [$this, 'addAdminMenu']);
         add_action('plugins_loaded', [$this, 'attribute_section_setup_gallery_field']);
+        add_action('wp_ajax_sppcfw_dismiss_review_notice', array($this, 'sppcfw_dismiss_review_notice_callback'));
+    }
+
+    // Handle AJAX request dismiss review notice
+
+    function sppcfw_dismiss_review_notice_callback() {
+
+        check_ajax_referer('sppcfw_nonce', '_nonce');
+
+        update_option('sppcfw_review_dismissed', true);
+
+        wp_send_json_success(['message' => 'Notice dismissed successfully.']);
     }
 
     /**
@@ -459,6 +471,13 @@ class QUICK_admin{
 
         wp_enqueue_style('main-font-awesome-css-admin', plugin_dir_url(dirname(__FILE__)) . 'Assets/CSS/font-awesome.min.css', array(), '4.7.0');
 
+        $logo_url = esc_url(plugin_dir_url(dirname(__FILE__)) . 'Assets/images/logo.webp');
+        // Localize script with _nonce and AJAX URL
+        wp_localize_script( 'variation-gallery-admin', 'sppcfw_obj', array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'nonce' => wp_create_nonce( 'sppcfw_nonce' ),
+            'logo_url' => $logo_url
+        ));
     }
 
 }
