@@ -55,11 +55,27 @@ final class QuickVariablePro
         $this->init();
 
         add_action("wp_head",[$this,"custom_css_for_oceanwp"]);
+        add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array($this, 'variation_table_quick_cart_settings_link') );
+    }
+
+    /**
+     * Settings button into plugin directory.
+     *
+     * @return array
+     * @since 1.0.0
+     */
+    public function variation_table_quick_cart_settings_link( $links ) {
+        $action_links = array(
+            'settings' => '<a href="' . admin_url( 'admin.php?page=quick-variable-setting' ) . '" aria-label="' . esc_attr__( 'View Variation Table with Quick Cart Settings', 'product-variation-table-with-quick-cart' ) . '">' . esc_html__( 'Settings', 'product-variation-table-with-quick-cart' ) . '</a>',
+        );
+
+        return array_merge( $action_links, $links );
     }
 
     /**
      * Initializes the plugin's functionalities.
      *
+     * @return void
      * @since 1.0.0
      */
     private function init()
