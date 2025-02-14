@@ -213,15 +213,10 @@ if (isset($product) && $product->is_type("variable")) {
                     <?php if ($allAttributeHideShow === "true"){
                         foreach ($all_attributes as $attribute_name => $attribute) {
                             $attribute_value = $variation->get_attribute($attribute_name);
-                            $reflection      = new ReflectionClass($attribute);
-                            $dataProperty    = $reflection->getProperty("data");
-                            $dataProperty->setAccessible(true);
-                            $data = $dataProperty->getValue($attribute);
 
                             if (empty($attribute_value)) {
-                                if (taxonomy_exists($attribute_name) && isset($data["variation"]) && $data["variation"]){
-                                    echo "<td><select class='quick-attribute-select' name='attribute_" . esc_attr($attribute_name) . "' data-attribute-name='" . esc_attr($attribute_name) . "'>";
-                                }
+
+                                echo "<td><select class='quick-attribute-select' name='attribute_" . esc_attr($attribute_name) . "' data-attribute-name='" . esc_attr($attribute_name) . "'>";
 
                                 if ($attribute->is_taxonomy()) {
                                     $options = wc_get_product_terms($product->get_id(), $attribute_name, ['fields' => 'names']);
@@ -230,9 +225,7 @@ if (isset($product) && $product->is_type("variable")) {
                                 }
 
                                 foreach ($options as $option) {
-                                    if (isset($data["variation"]) && $data["variation"]){
                                         echo "<option value='" . esc_attr($option) . "'>" . esc_html($option) . "</option>";
-                                    }
                                 }
 
                                 echo "</select></td>";
