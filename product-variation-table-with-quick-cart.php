@@ -14,14 +14,12 @@
  * Requires Plugins:  woocommerce
  */
 
-
 /**
  * Check if the free version of the plugin is active and deactivate it if necessary.
  *
  * @since 1.0.0
  * @return bool Returns true if the free version was active and has been deactivated, false otherwise.
  */
-
 
 // Exit if accessed directly.
 if (!defined("ABSPATH")) {
@@ -43,8 +41,7 @@ require_once $plugin_path . "/Inc/Dynamic-style/Dynamic-css.php";
  *
  * @since 1.0.0
  */
-final class QuickVariablePro
-{
+final class QuickVariablePro{
     /**
      * Construct the plugin instance and initialize it.
      *
@@ -53,9 +50,25 @@ final class QuickVariablePro
     public function __construct()
     {
         $this->init();
-
+        add_action('admin_init', array($this,'quick_variable_plugin_redirect'));
         add_action("wp_head",[$this,"custom_css_for_oceanwp"]);
         add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array($this, 'variation_table_quick_cart_settings_link') );
+
+    }
+
+    /**
+     * Redirect to settings page on activation.
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function quick_variable_plugin_redirect()
+    {
+        if (get_transient('quick_variable_plugin_activation_redirect')) {
+            delete_transient('quick_variable_plugin_activation_redirect');
+            wp_safe_redirect(admin_url('admin.php?page=quick-variable-setting'));
+            exit;
+        }
     }
 
     /**
@@ -107,5 +120,24 @@ final class QuickVariablePro
 
     /*Compatible With themes end*/
 }
+
+/**
+ * Function to execute on activation.
+ *
+ * @return void
+ * @since 1.0.0
+ */
+function quick_variable_plugin_activate()
+{
+    set_transient('quick_variable_plugin_activation_redirect', true, 30);
+}
+
+/**
+ * Register activation hook outside of the class.
+ *
+ * @return void
+ * @since 1.0.0
+ */
+register_activation_hook(__FILE__, 'quick_variable_plugin_activate');
 
 $instance = new QuickVariablePro();
