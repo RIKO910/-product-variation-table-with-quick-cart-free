@@ -780,7 +780,7 @@ jQuery(document).ready(function () {
 
         setTimeout(function() {
           $button.find('.spin-icon-remove').remove();
-        }, 2000);
+        }, 1000);
       }
 
       quantity = $button.closest('tr').find(".quick-quantity-input").val();

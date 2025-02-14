@@ -82,14 +82,12 @@ class QuickDynamicStyle{
 
         // Start OceanWP theme compatible
         $custom_margin_OceanWP = '';
-        $quick_product_details_OceanWP_width = '';
         $quick_product_details_OceanWP_pl = '';
         $quick_product_details_OceanWP_pr = '';
         $quick_variable_tooltip_top_OceanWP = '';
         $quick_variable_tooltip_closebtn_OceanWP = '';
         if( wp_get_theme()->get('Name') === 'OceanWP' ) {
             $custom_margin_OceanWP = '15';
-            $quick_product_details_OceanWP_width = 'fit-content';
             $quick_product_details_OceanWP_pl = '10';
             $quick_product_details_OceanWP_pr = '10';
             $quick_variable_tooltip_top_OceanWP = '0';
@@ -123,7 +121,6 @@ class QuickDynamicStyle{
         .quick-variable-tooltip #quick-product-details{
             padding-left: <?php echo esc_attr($quick_product_details_OceanWP_pl)?>px;
             padding-right: <?php echo esc_attr($quick_product_details_OceanWP_pr)?>px;
-            width: <?php echo esc_attr($quick_product_details_OceanWP_width)?>;
         }
 
 
