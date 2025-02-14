@@ -86,12 +86,14 @@ class QuickDynamicStyle{
         $quick_product_details_OceanWP_pr = '';
         $quick_variable_tooltip_top_OceanWP = '';
         $quick_variable_tooltip_closebtn_OceanWP = '';
+        $theme_select_display_OceanWP = '';
         if( wp_get_theme()->get('Name') === 'OceanWP' ) {
             $custom_margin_OceanWP = '15';
             $quick_product_details_OceanWP_pl = '10';
             $quick_product_details_OceanWP_pr = '10';
             $quick_variable_tooltip_top_OceanWP = '0';
             $quick_variable_tooltip_closebtn_OceanWP = '25';
+            $theme_select_display_OceanWP = 'none !important';
         }
 
         // End OceanWP theme compatible
@@ -99,6 +101,10 @@ class QuickDynamicStyle{
         // Prepare dynamic CSS
         ob_start();
         ?>
+
+        .theme-select{
+        display: <?php echo esc_attr($theme_select_display_OceanWP)?>;
+        }
 
         .quick-variable-slide{
         margin-left:<?php echo esc_attr($custom_margin_OceanWP)?>px;
