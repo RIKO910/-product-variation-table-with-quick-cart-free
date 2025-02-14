@@ -954,6 +954,10 @@ jQuery(document).ready(function () {
     var totalPages = Math.ceil(totalRows / rowsPerPage);
     var currentPage = 1;
 
+    // Hide pagination controls if rows are fewer than or equal to rowsPerPage
+    if (totalRows <= rowsPerPage) {
+      $("#pagination").hide();
+    }
     // Function to show the correct page
     function showPage(page) {
       var start = (page - 1) * rowsPerPage;
