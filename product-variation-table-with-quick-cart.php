@@ -42,6 +42,7 @@ require_once $plugin_path . "/Inc/Dynamic-style/Dynamic-css.php";
  * @since 1.0.0
  */
 final class QuickVariablePro{
+
     /**
      * Construct the plugin instance and initialize it.
      *
@@ -53,7 +54,24 @@ final class QuickVariablePro{
         add_action('admin_init', array($this,'quick_variable_plugin_redirect'));
         add_action("wp_head",[$this,"custom_css_for_oceanwp"]);
         add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array($this, 'variation_table_quick_cart_settings_link') );
+        add_filter('plugin_row_meta', array($this, 'quick_variable_plugin_support_link'), 10, 2);
 
+    }
+
+    /**
+     * Add a support link to the plugin details.
+     *
+     * @param $links, $file
+     * @since 1.0.0
+     */
+    function quick_variable_plugin_support_link($links, $file) {
+        if ($file === plugin_basename(__FILE__)) {
+            $support_link = '<a href="https://wa.me/01926167151" target="_blank" style="color: #0073aa;">' . __('Support', 'product-variation-table-with-quick-cart') . '</a>';
+            $dock_link    = '<a href="https://www.wooxperto.com/woocommerce-product-variations-table-with-quick-cart-plguin/" target="_blank" style="color: #0073aa;">' . __('Docs', 'product-variation-table-with-quick-cart') . '</a>';
+            $links[] = $support_link;
+            $links[] = $dock_link;
+        }
+        return $links;
     }
 
     /**

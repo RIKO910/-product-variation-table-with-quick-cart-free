@@ -11,7 +11,6 @@ class QUICK_admin{
     public function __construct() {
         add_action('admin_menu', [$this, 'addAdminMenu']);
         add_action('plugins_loaded', [$this, 'attribute_section_setup_gallery_field']);
-
     }
 
     /**
