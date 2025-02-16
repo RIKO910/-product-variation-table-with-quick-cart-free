@@ -52,103 +52,10 @@ final class QuickVariablePro{
         $this->init();
         add_action('admin_init', array($this,'quick_variable_plugin_redirect'));
         add_action('admin_init', array($this,'quick_variable_plugin_review'));
-        add_action("wp_head",[$this,"custom_css_for_oceanwp"]);
         add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), array($this, 'variation_table_quick_cart_settings_link') );
+        add_action("wp_head",[$this,"custom_css_for_oceanwp"]);
         add_filter('plugin_row_meta', array($this, 'quick_variable_plugin_support_link'), 10, 2);
 
-    }
-
-    public function quick_variable_plugin_review()
-    {
-        $sppcfw_review_dismissed  = "";
-
-        if ( isset( $_GET['dismiss-review'] ) ) {
-            $sppcfw_review_dismissed = sanitize_text_field( wp_unslash($_GET['dismiss-review']) );
-        }
-
-        if ( isset($_GET['_nonce'])) {
-            $_nonce = sanitize_text_field( wp_unslash( $_GET['_nonce'] ) );
-            if (wp_verify_nonce( $_nonce, 'sppcfw_nonce' ) && intval( $sppcfw_review_dismissed ) === 1 ) {
-                add_option( 'sppcfw_review_dismissed', true );
-            }
-
-        }
-    }
-    /**
-     * Add a support link to the plugin details.
-     *
-     * @param $links, $file
-     * @since 1.0.0
-     */
-    function quick_variable_plugin_support_link($links, $file) {
-        if ($file === plugin_basename(__FILE__)) {
-            $support_link = '<a href="https://wa.me/01926167151" target="_blank" style="color: #0073aa;">' . __('Support', 'product-variation-table-with-quick-cart') . '</a>';
-            $dock_link    = '<a href="https://www.wooxperto.com/woocommerce-product-variations-table-with-quick-cart-plguin/" target="_blank" style="color: #0073aa;">' . __('Docs', 'product-variation-table-with-quick-cart') . '</a>';
-            $links[] = $support_link;
-            $links[] = $dock_link;
-        }
-        return $links;
-    }
-
-    /**
-     * Redirect to settings page on activation.
-     *
-     * @return void
-     * @since 1.0.0
-     */
-    public function quick_variable_plugin_redirect(){
-        if (get_transient('quick_variable_plugin_activation_redirect')) {
-            delete_transient('quick_variable_plugin_activation_redirect');
-            wp_safe_redirect(admin_url('admin.php?page=quick-variable-setting'));
-            exit;
-        }
-
-        $install_date = get_option( 'sppcfw_myplugin_activation_date' );
-        $review_dismissed  = get_option( 'sppcfw_review_dismissed' );
-        $past_date = strtotime( '-7 days' );
-
-        if ( $past_date == $install_date && !$review_dismissed ) {
-
-            add_action( 'admin_notices', 'sppcfw_display_admin_notice' );
-
-        }
-        add_action( 'admin_notices', array($this, 'sppcfw_display_admin_notice') );
-
-    }
-
-    public function sppcfw_display_admin_notice(){
-        // Review URL - Change to the URL of your plugin on WordPress.org
-        $review_url = esc_url('https://www.wooxperto.com/woocommerce-product-variations-table-with-quick-cart-plguin/');
-        $dismiss_url = esc_url(get_admin_url() . '?dismiss-review=1');
-
-        // Escaping message for proper display with a line break
-        $message = esc_html__('Hello! Seems like you have used Product Variation Table with Quick Cart for this website — Thanks a lot!', 'single-product-customizer');
-        echo '<div id="sppcfw-review-notice" class="updated sppcfw_sreview_notices">';
-
-        printf(
-            '<span class="logo"></span> <ul class="right_contes"><li>%s</li> <li class="button_wrap">
-        <button type="button" id="sppcfw-dismiss-btn"><i class="fas fa-check-circle"></i> %s</button>
-        <button type="button" id="sppcfw-dismiss-btn" target="_blank">%s</button>  ',
-            esc_attr($message),
-            esc_html__('Ok, you deserved it', 'single-product-customizer'),
-            esc_html__('No thanks', 'single-product-customizer'),
-        );
-
-        echo '</div>';
-    }
-
-    /**
-     * Settings button into plugin directory.
-     *
-     * @return array
-     * @since 1.0.0
-     */
-    public function variation_table_quick_cart_settings_link( $links ) {
-        $action_links = array(
-            'settings' => '<a href="' . admin_url( 'admin.php?page=quick-variable-setting' ) . '" aria-label="' . esc_attr__( 'View Variation Table with Quick Cart Settings', 'product-variation-table-with-quick-cart' ) . '">' . esc_html__( 'Settings', 'product-variation-table-with-quick-cart' ) . '</a>',
-        );
-
-        return array_merge( $action_links, $links );
     }
 
     /**
@@ -169,6 +76,104 @@ final class QuickVariablePro{
             new Quickvariables();
             new QuickDynamicStyle();
         }
+    }
+
+    /**
+     * Redirect to settings page on activation.
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function quick_variable_plugin_redirect(){
+        if (get_transient('quick_variable_plugin_activation_redirect')) {
+            delete_transient('quick_variable_plugin_activation_redirect');
+            wp_safe_redirect(admin_url('admin.php?page=quick-variable-setting'));
+            exit;
+        }
+        $install_date            = get_option( 'quick_variable_activation_date' );
+        $install_date_plus_7days = strtotime("+12 days", $install_date);
+        $review_dismissed        = get_option( 'quick_variable_review_dismissed' );
+        $now                     = strtotime( "now" );
+        if ( $install_date_plus_7days <= $now && !$review_dismissed ) {
+            add_action( 'admin_notices', array($this, 'quick_variable_display_admin_notice') );
+        }
+    }
+
+    /**
+     * Add option for notice review dismissed.
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function quick_variable_plugin_review(){
+
+        $qvt_review_dismissed  = "";
+
+        if ( isset( $_GET['dismiss-review'] ) ) {
+            $qvt_review_dismissed = sanitize_text_field( wp_unslash($_GET['dismiss-review']) );
+        }
+
+        if ( isset($_GET['_nonce'])) {
+            $_nonce = sanitize_text_field( wp_unslash( $_GET['_nonce'] ) );
+            if (wp_verify_nonce( $_nonce, 'qvt_nonce' ) && intval( $qvt_review_dismissed ) === 1 ) {
+                add_option( 'quick_variable_review_dismissed', true );
+            }
+        }
+    }
+
+    /**
+     * Settings button into plugin directory.
+     *
+     * @return array
+     * @since 1.0.0
+     */
+    public function variation_table_quick_cart_settings_link( $links ) {
+        $action_links = array(
+            'settings' => '<a href="' . admin_url( 'admin.php?page=quick-variable-setting' ) . '" aria-label="' . esc_attr__( 'View Variation Table with Quick Cart Settings', 'product-variation-table-with-quick-cart' ) . '">' . esc_html__( 'Settings', 'product-variation-table-with-quick-cart' ) . '</a>',
+        );
+
+        return array_merge( $action_links, $links );
+    }
+
+    /**
+     * Add a support link to the plugin details.
+     *
+     * @param $links, $file
+     * @since 1.0.0
+     */
+    function quick_variable_plugin_support_link($links, $file) {
+        if ($file === plugin_basename(__FILE__)) {
+            $support_link = '<a href="https://wa.me/01926167151" target="_blank" style="color: #0073aa;">' . __('Support', 'product-variation-table-with-quick-cart') . '</a>';
+            $dock_link    = '<a href="https://www.wooxperto.com/woocommerce-product-variations-table-with-quick-cart-plguin/" target="_blank" style="color: #0073aa;">' . __('Docs', 'product-variation-table-with-quick-cart') . '</a>';
+            $links[] = $support_link;
+            $links[] = $dock_link;
+        }
+        return $links;
+    }
+
+    /**
+     * Notice show.
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function quick_variable_display_admin_notice() {
+        ?>
+        <div id="qvt-review-notice" class="updated qvt_review_notices">
+            <span class="logo"></span>
+            <ul class="right_contes">
+                <li><?php echo esc_html__('Hello! Seems like you have used Product Variation Table with Quick Cart for this website — Thanks a lot!', 'single-product-customizer'); ?></li>
+                <li class="button_wrap">
+                    <a href="<?php echo esc_url('https://www.wooxperto.com/woocommerce-product-variations-table-with-quick-cart-plguin/'); ?>" type="button" class="qvt-dismiss-btn" target="_blank">
+                        <i class="fas fa-check-circle"></i> <?php esc_html_e('Ok, you deserved it', 'single-product-customizer'); ?>
+                    </a>
+                    <button type="button" class="qvt-dismiss-btn">
+                        <i class="fas fa-thumbs-down"></i> <?php esc_html_e('No thanks', 'single-product-customizer'); ?>
+                    </button>
+                </li>
+            </ul>
+        </div>
+        <?php
     }
 
     /*Compatible With themes*/
@@ -197,11 +202,11 @@ function quick_variable_plugin_activate(){
 
     set_transient('quick_variable_plugin_activation_redirect', true, 30);
     $now = strtotime( "now" );
-    add_option( 'sppcfw_myplugin_activation_date', $now );
+    add_option( 'quick_variable_activation_date', $now );
 }
 
 /**
- * Register activation hook outside of the class.
+ * Register activation hook.
  *
  * @return void
  * @since 1.0.0

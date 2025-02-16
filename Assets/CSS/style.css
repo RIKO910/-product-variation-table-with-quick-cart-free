@@ -1467,32 +1467,32 @@ label:hover {
 
 /* Review Notices Styles  */
 
-.wrap .sppcfw_sreview_notices {
+.qvt_review_notices {
   padding: 7px 20px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.sppcfw_sreview_notices span.logo {
-  display: inline-block;
-  width: 150px;
-}
+/*.qvt_review_notices span.logo {*/
+/*  display: inline-block;*/
+/*  width: 150px;*/
+/*}*/
 
-.sppcfw_sreview_notices span.logo > img {
-  width: 100%;
+.qvt_review_notices span.logo > img {
+  width: 70px;
 }
 .right_contes li:first-child{
   font-size: 15px;
   line-height: 1.5;
 }
-.sppcfw_sreview_notices li.button_wrap{
+.qvt_review_notices li.button_wrap{
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.sppcfw_sreview_notices li.button_wrap > a,
-.sppcfw_sreview_notices li.button_wrap > button {
+.qvt_review_notices li.button_wrap > a,
+.qvt_review_notices li.button_wrap > button {
   padding: 7px 10px;
   display: inline-flex;
   gap: 5px;
@@ -1507,11 +1507,11 @@ label:hover {
   background: #fff;
   cursor: pointer;
 }
-.sppcfw_sreview_notices li.button_wrap > a:first-child {
+.qvt_review_notices li.button_wrap > a:first-child {
   background: #043959;
   color: #fff;
 }
-.sppcfw_sreview_notices li.button_wrap > a:focus {
+.qvt_review_notices li.button_wrap > a:focus {
   outline: none;
   box-shadow: none;
 }
