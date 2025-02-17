@@ -91,7 +91,7 @@ final class QuickVariablePro{
             exit;
         }
         $install_date            = get_option( 'quick_variable_activation_date' );
-        $install_date_plus_7days = strtotime("+12 days", $install_date);
+        $install_date_plus_7days = strtotime("+7 days", $install_date);
         $review_dismissed        = get_option( 'quick_variable_review_dismissed' );
         $now                     = strtotime( "now" );
         if ( $install_date_plus_7days <= $now && !$review_dismissed ) {
