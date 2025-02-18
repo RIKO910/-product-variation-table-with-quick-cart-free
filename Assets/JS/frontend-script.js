@@ -963,6 +963,7 @@ jQuery(document).ready(function () {
           action: 'load_more_variations',
           product_id: productId,
           page: page,
+          pagination_nonce: quick_front_ajax_obj.nonce, // Add the nonce here
         },
         success: function (response) {
           if (response.success) {

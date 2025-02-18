@@ -7,6 +7,10 @@ add_action('wp_ajax_load_more_variations', 'load_more_variations');
 add_action('wp_ajax_nopriv_load_more_variations', 'load_more_variations');
 
 function load_more_variations() {
+
+    if (!isset($_POST['pagination_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['pagination_nonce'])), 'woocommerce_ajax_add_to_cart')) {
+        wp_send_json_error(['message' => 'Invalid nonce.']);
+    }
     global $post;
     $product_id = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
     $page       = isset($_POST['page']) ? intval($_POST['page']) : 1;

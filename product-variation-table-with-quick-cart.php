@@ -162,13 +162,13 @@ final class QuickVariablePro{
         <div id="qvt-review-notice" class="updated qvt_review_notices">
             <span class="logo"></span>
             <ul class="right_contes">
-                <li><?php echo esc_html__('Hello! Seems like you have used Product Variation Table with Quick Cart for this website — Thanks a lot!', 'single-product-customizer'); ?></li>
+                <li><?php echo esc_html__('Hello! Seems like you have used Product Variation Table with Quick Cart for this website — Thanks a lot!', 'product-variation-table-with-quick-cart'); ?></li>
                 <li class="button_wrap">
                     <a href="<?php echo esc_url('https://www.wooxperto.com/woocommerce-product-variations-table-with-quick-cart-plguin/'); ?>" type="button" class="qvt-dismiss-btn" target="_blank">
-                        <i class="fas fa-check-circle"></i> <?php esc_html_e('Ok, you deserved it', 'single-product-customizer'); ?>
+                        <i class="fas fa-check-circle"></i> <?php esc_html_e('Ok, you deserved it', 'product-variation-table-with-quick-cart'); ?>
                     </a>
                     <button type="button" class="qvt-dismiss-btn">
-                        <i class="fas fa-thumbs-down"></i> <?php esc_html_e('No thanks', 'single-product-customizer'); ?>
+                        <i class="fas fa-thumbs-down"></i> <?php esc_html_e('No thanks', 'product-variation-table-with-quick-cart'); ?>
                     </button>
                 </li>
             </ul>
