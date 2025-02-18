@@ -703,7 +703,7 @@ jQuery(document).ready(function () {
 
   //  Quantity decrease.
 
-  jQuery(".quick-quantity-decrease").on("click", function () {
+  jQuery("body").on("click",".quick-quantity-decrease", function () {
     let currentValue = parseInt(
         jQuery(this).siblings(".quick-quantity-input").val(),
         10
@@ -721,7 +721,7 @@ jQuery(document).ready(function () {
 
   // Quantity increase.
 
-  jQuery(".quick-quantity-increase").on("click", function () {
+  jQuery("body").on("click", ".quick-quantity-increase", function () {
 
     maxQuantity = jQuery(this)
         .siblings(".quick-quantity-input")
@@ -941,10 +941,7 @@ jQuery(document).ready(function () {
   });
 
 
-//   Table 1
-
-
-  // Pagination for table 1
+  // Pagination, sorting for table 1
 
   jQuery(document).ready(function ($) {
     var $table = $("#quick-variable-table");
@@ -952,11 +949,12 @@ jQuery(document).ready(function () {
     const totalRows = $table.data('variation-count');
     var currentPage = 1;
     var totalPages = 1;
-    var productId = $table.data('product-id'); // Ensure you add data-product-id to your table
+    var productId = $table.data('product-id');
 
     if (totalRows <= rowsPerPage) {
-        $("#pagination").hide();
+      $("#pagination").hide();
     }
+
     function loadPage(page) {
       $.ajax({
         url: quick_front_ajax_obj.ajax_url,
@@ -973,6 +971,7 @@ jQuery(document).ready(function () {
             totalPages = response.data.total_pages;
             currentPage = response.data.current_page;
             updatePaginationControls();
+            reapplySorting(); // Reapply Sorting After New Data Loads
           } else {
             alert('Failed to load variations.');
           }
@@ -986,7 +985,7 @@ jQuery(document).ready(function () {
     function updatePaginationControls() {
       $("#prevPage").prop("disabled", currentPage === 1);
       $("#nextPage").prop("disabled", currentPage === totalPages);
-      $("#pageInfo").text("Page " + currentPage + " of " + totalPages);
+      $("#pageInfo").text(`Page ${currentPage} of ${totalPages}`);
     }
 
     $("#prevPage").click(function () {
@@ -1003,165 +1002,109 @@ jQuery(document).ready(function () {
       }
     });
 
-    // Initial load
-    if ($table.length > 0){
+    function reapplySorting() {
+      const headers = $table.find("th");
+      headers.each(function () {
+        const header = $(this);
+        header.off("click");
+        header.on("click", function () {
+          const column = getColumn(header);
+          let currentSort = header.attr("data-sort");
+
+          headers.each(function () {
+            resetHeader($(this)); // Ensure this function exists
+          });
+
+          if (currentSort === "asc") {
+            sortByColumn(column, "desc");
+            setActiveHeader(header, "desc");
+          } else if (currentSort === "desc") {
+            resetSortOrder();
+          } else {
+            sortByColumn(column, "asc");
+            setActiveHeader(header, "asc");
+          }
+        });
+      });
+
+      resetSortOrder();
+    }
+
+    function sortByColumn(column, order) {
+      const rows = $table.find(".variation-row").toArray();
+      rows.sort((a, b) => {
+        let cellA, cellB;
+        if (column === "sku") {
+          cellA = $(a).find(".variable-sku").text().trim();
+          cellB = $(b).find(".variable-sku").text().trim();
+          return order === "asc" ? cellA.localeCompare(cellB, undefined, { numeric: true }) : cellB.localeCompare(cellA, undefined, { numeric: true });
+        } else if (column === "price") {
+          cellA = parseFloat($(a).find(".variable-price").text().replace(/[^0-9.-]+/g, "")) || 0;
+          cellB = parseFloat($(b).find(".variable-price").text().replace(/[^0-9.-]+/g, "")) || 0;
+          return order === "asc" ? cellA - cellB : cellB - cellA;
+        } else {
+          cellA = $(a).find(`[data-attribute-name="${column}"]`).text().trim() || "";
+          cellB = $(b).find(`[data-attribute-name="${column}"]`).text().trim() || "";
+          return order === "asc" ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+        }
+      });
+
+      rows.forEach(row => $table.append(row));
+    }
+
+    function getColumn(header) {
+      const attributeSort = header.find("[data-attribute]").attr("data-attribute");
+      if (attributeSort) {
+        return attributeSort;
+      }
+      if (header.find("#sku-sort-arrows").length) {
+        return "sku";
+      }
+      if (header.find("#price-sort-arrows").length) {
+        return "price";
+      }
+      return null;
+    }
+
+    function setActiveHeader(header, order) {
+      resetAllHeaders();
+      header.attr("data-sort", order);
+      const arrows = header.find(".dashicons");
+
+      if (arrows.length > 1) {
+        $(arrows[0]).css("color", order === "asc" ? "#B2B2B2" : "#E5E5E5");
+        $(arrows[1]).css("color", order === "desc" ? "#B2B2B2" : "#E5E5E5");
+      }
+    }
+
+    function resetAllHeaders() {
+      $table.find("th").each(function () {
+        $(this).attr("data-sort", "none");
+        $(this).find(".dashicons").css("color", "#E5E5E5");
+      });
+    }
+
+    function resetSortOrder() {
+      sortByColumn("sku", "asc");
+      const skuHeader = $table.find("#sku-sort-arrows").closest("th");
+      if (skuHeader.length) {
+        setActiveHeader(skuHeader, "asc");
+      }
+    }
+
+    function resetHeader(header) {
+      header.attr("data-sort", "none");
+      header.find(".dashicons").css("color", "#E5E5E5");
+    }
+
+    if ($table.length > 0) {
       loadPage(currentPage);
     }
   });
 
+
 });
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Select the popup-content div
-  const popupContentDiv = document.querySelector('.popup-content');
-
-  // Check if the div exists
-  if (popupContentDiv) {
-    const imgElement = document.createElement('img');
-    imgElement.id = 'popupImage';
-    imgElement.alt = 'Popup Image';
-    imgElement.style.objectFit = 'contain';
-
-
-    // let popUPImageShow = 'default';
-    // let imagePopupHeight = 500;
-    // let imagePopupWidth = '100%';
-    //
-    // if (popUPImageShow === 'default') {
-    //     imgElement.style.maxHeight = `${imagePopupHeight}px`;
-    //     imgElement.style.maxWidth = imagePopupWidth;
-    // } else {
-    //     imgElement.style.height = `${imagePopupHeight}px`;
-    //     imgElement.style.width = `${imagePopupWidth}px`;
-    // }
-
-    // Append the img element to the popup-content div
-    popupContentDiv.appendChild(imgElement);
-  }
-});
-
-
-// Attribute, SKU and Price Sorting.
-document.addEventListener("DOMContentLoaded", function () {
-  const table = document.getElementById("quick-variable-table");
-  if (!table){
-    return
-  }
-  const rows = Array.from(table.querySelectorAll(".variation-row"));
-
-  // Initialize sorting state for each th
-  const headers = table.querySelectorAll("th");
-  headers.forEach(header => header.setAttribute("data-sort", "none"));
-
-  // Default sort by SKU ascending on load
-  const skuSortArrows = document.getElementById("sku-sort-arrows");
-  if (!skuSortArrows){
-    return;
-  }
-  const skuHeader = document.querySelector("#sku-sort-arrows").closest("th");
-  sortByColumn("sku", "asc");
-  setActiveHeader(skuHeader, "asc");
-
-  // Attach click event to each th
-  headers.forEach(header => {
-    header.addEventListener("click", function () {
-      const column = getColumn(header);
-      let currentSort = header.getAttribute("data-sort");
-
-      // Reset all headers
-      headers.forEach(h => resetHeader(h));
-
-      // Cycle through asc -> desc -> none
-      if (currentSort === "asc") {
-        sortByColumn(column, "desc");
-        setActiveHeader(header, "desc");
-      } else if (currentSort === "desc") {
-        resetSortOrder();
-      } else {
-        sortByColumn(column, "asc");
-        setActiveHeader(header, "asc");
-      }
-    });
-  });
-
-  // Sort by column function
-  function sortByColumn(column, order) {
-    rows.sort((a, b) => {
-      let cellA, cellB;
-
-      if (column === "sku") {
-        // SKU sorting (handle alphanumeric values)
-        cellA = a.querySelector(".variable-sku").textContent.trim();
-        cellB = b.querySelector(".variable-sku").textContent.trim();
-        return order === "asc" ? cellA.localeCompare(cellB, undefined, { numeric: true }) : cellB.localeCompare(cellA, undefined, { numeric: true });
-      } else if (column === "price") {
-        // Price sorting (handle numeric values)
-        cellA = parseFloat(a.querySelector(".variable-price").textContent.replace(/[^0-9.-]+/g, "")) || 0;
-        cellB = parseFloat(b.querySelector(".variable-price").textContent.replace(/[^0-9.-]+/g, "")) || 0;
-        return order === "asc" ? cellA - cellB : cellB - cellA;
-      } else {
-        // Attribute sorting
-        cellA = a.querySelector(`[data-attribute-name="${column}"]`)?.textContent.trim() || "";
-        cellB = b.querySelector(`[data-attribute-name="${column}"]`)?.textContent.trim() || "";
-        return order === "asc" ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
-      }
-    });
-    rows.forEach(row => table.appendChild(row));
-  }
-
-  // Reset to initial sort order (by SKU)
-  function resetSortOrder() {
-    sortByColumn("sku", "asc");
-    setActiveHeader(skuHeader, "asc");
-  }
-
-  // Get the column name for the clicked header
-  function getColumn(header) {
-    const attributeSort = header.querySelector("[data-attribute]")?.getAttribute("data-attribute");
-    if (attributeSort) {
-      return attributeSort;
-    }
-    if (header.contains(document.querySelector("#sku-sort-arrows"))) {
-      return "sku";
-    }
-    if (header.contains(document.querySelector("#price-sort-arrows"))) {
-      return "price";
-    }
-  }
-
-  // Set the active header for sorting
-  function setActiveHeader(header, order) {
-    resetAllHeaders();
-    header.setAttribute("data-sort", order);
-    const arrows = header.querySelectorAll(".dashicons");
-    arrows.forEach(arrow => arrow.style.color = "#B2B2B2");
-
-    if (order === "asc") {
-      arrows[0].style.color = "#B2B2B2";  // Ascending arrow active
-      arrows[1].style.color = "#E5E5E5";  // Descending arrow inactive
-    } else {
-      arrows[1].style.color = "#B2B2B2";  // Descending arrow active
-      arrows[0].style.color = "#E5E5E5";  // Ascending arrow inactive
-    }
-  }
-
-  // Reset all header arrows to inactive (white)
-  function resetAllHeaders() {
-    headers.forEach(header => {
-      const arrows = header.querySelectorAll(".dashicons");
-      arrows.forEach(arrow => arrow.style.color = "#E5E5E5");
-      header.setAttribute("data-sort", "none");
-    });
-  }
-
-  // Reset individual header (to 'none' state)
-  function resetHeader(header) {
-    header.setAttribute("data-sort", "none");
-    const arrows = header.querySelectorAll(".dashicons");
-    arrows.forEach(arrow => arrow.style.color = "#E5E5E5");
-  }
-});
 
 
 // Slick Slider Start
