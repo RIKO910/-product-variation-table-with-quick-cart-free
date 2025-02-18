@@ -766,8 +766,7 @@ jQuery(document).ready(function () {
   // Add to cart option. All add to cart here for table data.
 
   jQuery(document).ready(function($) {
-    $('.quick-add-to-cart').on('click', function() {
-      // e.preventDefault();
+    $('body').on('click','.quick-add-to-cart', function() {
 
       var $button = $(this);
       var productId = $button.data('productid');
@@ -821,6 +820,7 @@ jQuery(document).ready(function () {
       $.post(quick_front_ajax_obj.ajax_url, data, function(response) {
 
         if (response.success) {
+          $button.find('.spin-icon-remove').remove();
           $button.append('<span class="updated-check-add-to-cart"><i class="fa fa-check"></i></span>');
 
           // Show success message and reset button after 3 seconds
@@ -948,54 +948,65 @@ jQuery(document).ready(function () {
 
   jQuery(document).ready(function ($) {
     var $table = $("#quick-variable-table");
-    const rowsPerPage = $table.data('pagination-table');
-    var rows = $table.find("tr:gt(0)"); // Select all rows except the first (header row)
-    var totalRows = rows.length;
-    var totalPages = Math.ceil(totalRows / rowsPerPage);
+    const rowsPerPage = $table.data('pagination-table') || 5;
+    const totalRows = $table.data('variation-count');
     var currentPage = 1;
+    var totalPages = 1;
+    var productId = $table.data('product-id'); // Ensure you add data-product-id to your table
 
-    // Hide pagination controls if rows are fewer than or equal to rowsPerPage
     if (totalRows <= rowsPerPage) {
-      $("#pagination").hide();
+        $("#pagination").hide();
     }
-    // Function to show the correct page
-    function showPage(page) {
-      var start = (page - 1) * rowsPerPage;
-      var end = start + rowsPerPage;
-
-      // Hide all rows first
-      rows.hide();
-
-      // Show only the required rows
-      rows.slice(start, end).show();
-
-      // Update pagination info
-      $("#pageInfo").text("Page " + page + " of " + totalPages);
-
-      // Enable/Disable buttons
-      $("#prevPage").prop("disabled", page === 1);
-      $("#nextPage").prop("disabled", page === totalPages);
+    function loadPage(page) {
+      $.ajax({
+        url: quick_front_ajax_obj.ajax_url,
+        type: 'POST',
+        data: {
+          action: 'load_more_variations',
+          product_id: productId,
+          page: page,
+        },
+        success: function (response) {
+          if (response.success) {
+            $table.find('tr.variation-row').remove(); // Remove existing rows
+            $table.append(response.data.html); // Append new rows
+            totalPages = response.data.total_pages;
+            currentPage = response.data.current_page;
+            updatePaginationControls();
+          } else {
+            alert('Failed to load variations.');
+          }
+        },
+        error: function () {
+          alert('Failed to load variations.');
+        }
+      });
     }
 
-    // Pagination Button Clicks
+    function updatePaginationControls() {
+      $("#prevPage").prop("disabled", currentPage === 1);
+      $("#nextPage").prop("disabled", currentPage === totalPages);
+      $("#pageInfo").text("Page " + currentPage + " of " + totalPages);
+    }
+
     $("#prevPage").click(function () {
       if (currentPage > 1) {
         currentPage--;
-        showPage(currentPage);
+        loadPage(currentPage);
       }
     });
 
     $("#nextPage").click(function () {
       if (currentPage < totalPages) {
         currentPage++;
-        showPage(currentPage);
+        loadPage(currentPage);
       }
     });
 
-    // Initially hide all rows and show only the first page (first 5 rows)
-    rows.hide();
-    showPage(currentPage); // Show the first 5 rows by default
-
+    // Initial load
+    if ($table.length > 0){
+      loadPage(currentPage);
+    }
   });
 
 });

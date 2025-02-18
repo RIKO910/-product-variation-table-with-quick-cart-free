@@ -39,10 +39,11 @@ if (isset($product) && $product->is_type("variable")) {
     $tableRowPagination             = isset($variableSetting['tableRowPagination']) ? $variableSetting['tableRowPagination'] : '5';
     $metaTableTemplate2Enable       = get_post_meta($post->ID, '_table_template2_is_enabled', true);
     $metaTableTemplate2CartStyle    = get_post_meta($post->ID, '_table_template2_cart_section_style_template', true);
-
+    $variations                     = $product->get_available_variations();
+    $variation_count                = count($variations);
     ?>
     <div class="table-template-max-width">
-        <table id="quick-variable-table" data-pagination-table="<?php echo esc_attr($tableRowPagination); ?>">
+        <table id="quick-variable-table" data-pagination-table="<?php echo esc_attr($tableRowPagination); ?>" data-Variation-count="<?php echo esc_attr($variation_count); ?>" data-product-id="<?php echo esc_attr($product->get_id()); ?>">
             <tr>
 
                 <?php if ($imageHideShow === "true"){
@@ -166,8 +167,9 @@ if (isset($product) && $product->is_type("variable")) {
                     return strcmp($attrA, $attrB);
                 });
             }
+            $current_variations = array_slice($variations, 0, $tableRowPagination);
 
-            foreach ($variations as $var) {
+            foreach ($current_variations as $var) {
                 $variation_id             = $var['variation_id'];
                 $variation                = new WC_Product_Variation($variation_id);
                 $variation_stock_quantity = $variation->get_manage_stock() ? $variation->get_stock_quantity() : null;
