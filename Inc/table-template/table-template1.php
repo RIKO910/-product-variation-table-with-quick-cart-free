@@ -244,13 +244,13 @@ if (isset($product) && $product->is_type("variable")) {
                         ?>
                         <td class='variable-price quick-variable-title'><?php
                             if ($showDoublePrice === 'true'){
-                                echo wp_kses_post($variation->get_price_html());
+                                ?> <p><?php echo wp_kses_post($variation->get_price_html()); ?> </p> <?php
                             }else{
                                 $sale_price = $variation->get_sale_price();
                                 if($sale_price) {
-                                    echo esc_html(wc_price($sale_price));
+                                    ?> <p><?php echo wp_kses_post(wc_price($sale_price)); ?> </p> <?php
                                 } else {
-                                    echo esc_html(wc_price($variation->get_regular_price()));
+                                    ?> <p><?php echo wp_kses_post(wc_price($variation->get_regular_price()));?> </p> <?php
                                 }
                             } ?></td>
                         <?php
