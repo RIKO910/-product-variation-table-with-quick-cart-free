@@ -66,6 +66,10 @@ class QuickDynamicStyle{
         $galleryNavigationButtonIconHoverColor = isset($variableSetting['galleryNavigationButtonIconHoverColor']) ? $variableSetting['galleryNavigationButtonIconHoverColor'] : '#D0D0D0';
         $galleryNavigationButtonBgColor        = isset($variableSetting['galleryNavigationButtonBgColor']) ? $variableSetting['galleryNavigationButtonBgColor'] : '#808080';
         $galleryNavigationButtonBgHoverColor   = isset($variableSetting['galleryNavigationButtonBgHoverColor']) ? $variableSetting['galleryNavigationButtonBgHoverColor'] : '##2F3031';
+        $paginationButtonBgColor               = isset($variableSetting['paginationButtonBgColor']) ? $variableSetting['paginationButtonBgColor'] : '#007cba';
+        $paginationButtonHoverBgColor          = isset($variableSetting['paginationButtonHoverBgColor']) ? $variableSetting['paginationButtonHoverBgColor'] : '#045CB4';
+        $paginationButtonTextColor             = isset($variableSetting['paginationButtonTextColor']) ? $variableSetting['paginationButtonTextColor'] : '#ffffff';
+        $paginationButtonTextHoverColor        = isset($variableSetting['paginationButtonTextHoverColor']) ? $variableSetting['paginationButtonTextHoverColor'] : '#000000';
         $displayNoneImportant                  = '';
 
         if ($showAttributeSwatchesArchive === 'attribute-swatches' || $showAttributeSwatchesArchive === 'attribute-archive') {
@@ -101,6 +105,17 @@ class QuickDynamicStyle{
         // Prepare dynamic CSS
         ob_start();
         ?>
+
+        #prevPage , #nextPage{
+        background-color: <?php echo esc_attr($paginationButtonBgColor)?>;
+        color: <?php echo esc_attr($paginationButtonTextColor)?>;
+        }
+
+        #prevPage:hover,
+        #nextPage:hover {
+        background-color: <?php echo esc_attr($paginationButtonHoverBgColor); ?>;
+        color: <?php echo esc_attr($paginationButtonTextHoverColor); ?>;
+        }
 
         .theme-select{
         display: <?php echo esc_attr($theme_select_display_OceanWP)?>;

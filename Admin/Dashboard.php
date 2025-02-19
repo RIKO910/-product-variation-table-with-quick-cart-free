@@ -33,6 +33,10 @@ $galleryNavigationButtonIconColor      = isset($variableSetting['galleryNavigati
 $galleryNavigationButtonIconHoverColor = isset($variableSetting['galleryNavigationButtonIconHoverColor']) ? $variableSetting['galleryNavigationButtonIconHoverColor'] : '#D0D0D0';
 $galleryNavigationButtonBgColor        = isset($variableSetting['galleryNavigationButtonBgColor']) ? $variableSetting['galleryNavigationButtonBgColor'] : '#808080';
 $galleryNavigationButtonBgHoverColor   = isset($variableSetting['galleryNavigationButtonBgHoverColor']) ? $variableSetting['galleryNavigationButtonBgHoverColor'] : '##2F3031';
+$paginationButtonBgColor               = isset($variableSetting['paginationButtonBgColor']) ? $variableSetting['paginationButtonBgColor'] : '#007cba';
+$paginationButtonHoverBgColor          = isset($variableSetting['paginationButtonHoverBgColor']) ? $variableSetting['paginationButtonHoverBgColor'] : '#045CB4';
+$paginationButtonTextColor             = isset($variableSetting['paginationButtonTextColor']) ? $variableSetting['paginationButtonTextColor'] : '#ffffff';
+$paginationButtonTextHoverColor        = isset($variableSetting['paginationButtonTextHoverColor']) ? $variableSetting['paginationButtonTextHoverColor'] : '#000000';
 $tableHeadBgColor                      = isset($variableSetting['tableHeadBgColor']) ? $variableSetting['tableHeadBgColor'] : '#007cba';
 $template2TableBgColor                 = isset($variableSetting['template2TableBgColor']) ? $variableSetting['template2TableBgColor'] : '#000000';
 $template2DetailsSectionBgColor        = isset($variableSetting['template2DetailsSectionBgColor']) ? $variableSetting['template2DetailsSectionBgColor'] : '#FFFFFF';
@@ -644,6 +648,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                                 <input id="table-row-pagination" class="table-row-pagination" type="number" min="1" name="table-row-pagination" value="<?php echo esc_attr( $tableRowPagination ); ?>"  >
                             </div>
                         </div>
+
                         <div class="quick-selections" style="display: flex; gap: 28%; align-items: center">
                             <h4><?php echo wp_kses('Variation Table Border Show: ','product-variation-table-with-quick-cart');?></h4>
                             <div class="quick-selectors-wrapper">
@@ -656,9 +661,37 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
                             </div>
                         </div>
 
+                    <div class="quick-selections">
+                        <div class="quick-selectors-wrapper">
+                            <label for="pagination-button-bg-color"><strong> <?php echo wp_kses('Pagination Button Background Color: ','product-variation-table-with-quick-cart');?></strong></label>
+                            <input id="pagination-button-bg-color" name="pagination-button-bg-color" value="<?php echo esc_attr( $paginationButtonBgColor ); ?>"  data-jscolor="{}">
+                        </div>
+                    </div>
+
+                    <div class="quick-selections">
+                        <div class="quick-selectors-wrapper">
+                            <label for="pagination-button-hover-bg-color"><strong> <?php echo wp_kses('Pagination Button Hover Background Color: ','product-variation-table-with-quick-cart');?></strong></label>
+                            <input id="pagination-button-hover-bg-color" name="pagination-button-hover-bg-color" value="<?php echo esc_attr( $paginationButtonHoverBgColor ); ?>"  data-jscolor="{}">
+                        </div>
+                    </div>
+
+                    <div class="quick-selections">
+                        <div class="quick-selectors-wrapper">
+                            <label for="pagination-button-text-color"><strong> <?php echo wp_kses('Pagination Button Text Color: ','product-variation-table-with-quick-cart');?></strong></label>
+                            <input id="pagination-button-text-color" name="pagination-button-text-color" value="<?php echo esc_attr( $paginationButtonTextColor ); ?>"  data-jscolor="{}">
+                        </div>
+                    </div>
+
+                    <div class="quick-selections">
+                        <div class="quick-selectors-wrapper">
+                            <label for="pagination-button-text-hover-color"><strong> <?php echo wp_kses('Pagination Button Text Hover Color: ','product-variation-table-with-quick-cart');?></strong></label>
+                            <input id="pagination-button-text-hover-color" name="pagination-button-text-hover-color" value="<?php echo esc_attr( $paginationButtonTextHoverColor ); ?>"  data-jscolor="{}">
+                        </div>
+                    </div>
+
                         <div class="quick-selections">
                             <div class="quick-selectors-wrapper">
-                                <label for="quick-table-head-bg-color"><strong> <?php echo wp_kses('Table Head Bg Color: ','product-variation-table-with-quick-cart');?></strong></label>
+                                <label for="quick-table-head-bg-color"><strong> <?php echo wp_kses('Table Head Background Color: ','product-variation-table-with-quick-cart');?></strong></label>
                                 <input id="quick-table-head-bg-color" name="quick-table-head-bg-color" value="<?php echo esc_attr( $tableHeadBgColor ); ?>"  data-jscolor="{}">
                             </div>
                         </div>
@@ -751,7 +784,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
 
                     <div class="quick-selections">
                         <div class="quick-selectors-wrapper">
-                            <label for="bulk-add-cart-bg-color"><strong> <?php echo wp_kses('Bulk Add to Cart Bg Color: ','product-variation-table-with-quick-cart');
+                            <label for="bulk-add-cart-bg-color"><strong> <?php echo wp_kses('Bulk Add to Cart Background Color: ','product-variation-table-with-quick-cart');
                                     if(empty($license_active)){
                                         echo "(Pro)";
                                     }
@@ -773,7 +806,7 @@ $variationListTemplate                 = isset($variableSetting['variationListTe
 
                     <div class="quick-selections">
                         <div class="quick-selectors-wrapper">
-                            <label for="bulk-add-cart-hover-bg-color"><strong> <?php echo wp_kses('Bulk Add to Cart Hover Bg Color: ','product-variation-table-with-quick-cart');
+                            <label for="bulk-add-cart-hover-bg-color"><strong> <?php echo wp_kses('Bulk Add to Cart Hover Background Color: ','product-variation-table-with-quick-cart');
                                     if(empty($license_active)){
                                         echo "(Pro)";
                                     }

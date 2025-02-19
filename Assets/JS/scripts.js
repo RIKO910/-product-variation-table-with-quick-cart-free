@@ -787,9 +787,26 @@ jQuery(document).ready(function () {
       .find("input#gallery-navigation-button-background-hover-color")
       .val();
 
+    variableAllChecked.paginationButtonBgColor = quickSelections
+      .find("input#pagination-button-bg-color")
+      .val();
+
+    variableAllChecked.paginationButtonHoverBgColor = quickSelections
+      .find("input#pagination-button-hover-bg-color")
+      .val();
+
+    variableAllChecked.paginationButtonTextColor = quickSelections
+      .find("input#pagination-button-text-color")
+      .val();
+
+    variableAllChecked.paginationButtonTextHoverColor = quickSelections
+      .find("input#pagination-button-text-hover-color")
+      .val();
+
     variableAllChecked.tableHeadBgColor = quickSelections
       .find("input#quick-table-head-bg-color")
       .val();
+
    variableAllChecked.template2TableBgColor = quickSelections
         .find("input#template2-table-bg-color")
         .val();
