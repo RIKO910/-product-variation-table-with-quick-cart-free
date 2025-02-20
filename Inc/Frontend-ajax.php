@@ -6,6 +6,12 @@ add_action('wp_ajax_nopriv_woocommerce_ajax_add_to_cart', 'woocommerce_ajax_add_
 add_action('wp_ajax_load_more_variations', 'load_more_variations');
 add_action('wp_ajax_nopriv_load_more_variations', 'load_more_variations');
 
+/**
+ * Next Previous click ajax request for variation table
+ *
+ * @since 1.0.0
+ * @return void
+ */
 function load_more_variations() {
 
     if (!isset($_POST['pagination_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['pagination_nonce'])), 'woocommerce_ajax_add_to_cart')) {
