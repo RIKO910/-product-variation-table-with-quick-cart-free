@@ -925,6 +925,21 @@ label:hover {
   pointer-events: none;
 }
 
+#loading-spinner-pagination-table {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+.table-template-max-width {
+  position: relative;
+}
+
+
+
+
 /*.custom-button.disabled-option::after,*/
 /*.custom-color-button.disabled-option::after,*/
 /*.custom-image-button.disabled-option::after {*/

@@ -963,16 +963,17 @@ jQuery(document).ready(function () {
           action: 'load_more_variations',
           product_id: productId,
           page: page,
-          pagination_nonce: quick_front_ajax_obj.nonce, // Add the nonce here
+          pagination_nonce: quick_front_ajax_obj.nonce,
         },
         success: function (response) {
           if (response.success) {
-            $table.find('tr.variation-row').remove(); // Remove existing rows
-            $table.append(response.data.html); // Append new rows
+              $("#loading-spinner-pagination-table").hide();
+            $table.find('tr.variation-row').remove();
+            $table.append(response.data.html);
             totalPages = response.data.total_pages;
             currentPage = response.data.current_page;
             updatePaginationControls();
-            reapplySorting(); // Reapply Sorting After New Data Loads
+            reapplySorting();
           } else {
             alert('Failed to load variations.');
           }
@@ -990,6 +991,15 @@ jQuery(document).ready(function () {
     }
 
     $("#prevPage").click(function () {
+
+      $("#loading-spinner-pagination-table").show();
+      $(".table-template-max-width").css("opacity", "0.5");
+
+      setTimeout(function() {
+        $("#loading-spinner-pagination-table").hide();
+        $(".table-template-max-width").css("opacity", "1");
+      }, 1000);
+
       if (currentPage > 1) {
         currentPage--;
         loadPage(currentPage);
@@ -997,6 +1007,15 @@ jQuery(document).ready(function () {
     });
 
     $("#nextPage").click(function () {
+
+      $("#loading-spinner-pagination-table").show();
+      $("#quick-variable-table").css("opacity", "0.5");
+
+      setTimeout(function() {
+        $("#loading-spinner-pagination-table").hide();
+        $("#quick-variable-table").css("opacity", "1");
+      }, 1000);
+
       if (currentPage < totalPages) {
         currentPage++;
         loadPage(currentPage);

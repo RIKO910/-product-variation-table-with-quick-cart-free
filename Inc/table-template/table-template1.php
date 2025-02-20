@@ -43,6 +43,10 @@ if (isset($product) && $product->is_type("variable")) {
     $variation_count                = count($variations);
     ?>
     <div class="table-template-max-width">
+        <div id="loading-spinner-pagination-table" style="display: none; text-align: center;">
+            <i class="fa fa-spinner fa-spin "></i>
+        </div>
+
         <table id="quick-variable-table" data-pagination-table="<?php echo esc_attr($tableRowPagination); ?>" data-Variation-count="<?php echo esc_attr($variation_count); ?>" data-product-id="<?php echo esc_attr($product->get_id()); ?>">
             <tr>
 
@@ -293,7 +297,7 @@ if (isset($product) && $product->is_type("variable")) {
 
         <!-- Pagination Controls -->
         <div id="pagination">
-            <button id="prevPage"><?php esc_html_e('Previous', 'product-variation-table-with-quick-cart'); ?></button>
+            <button style="margin-right: 5px" id="prevPage"><?php esc_html_e('Previous', 'product-variation-table-with-quick-cart'); ?></button>
             <button id="nextPage"><?php esc_html_e('Next', 'product-variation-table-with-quick-cart'); ?></button>
         </div>
     </div>
