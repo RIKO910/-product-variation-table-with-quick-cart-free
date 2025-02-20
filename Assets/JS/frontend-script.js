@@ -553,9 +553,9 @@ jQuery(document).ready(function () {
     autoplaySpeed: 2000,
     arrows: true,
     prevArrow:
-        '<button type="button" class="slick-custom-arrow slick-prev"><span class="dashicons dashicons-arrow-left-alt2"></span></button>',
+        '<button type="button" class="slick-custom-arrow slick-prev"><i class="fa fa-angle-left"></i></button>',
     nextArrow:
-        '<button type="button" class="slick-custom-arrow slick-next"><span class="dashicons dashicons-arrow-right-alt2"></span></button>',
+        '<button type="button" class="slick-custom-arrow slick-next"><i class="fa fa-angle-right"></i></button>',
   });
 
   // Variable Tooltip script
@@ -907,6 +907,8 @@ jQuery(document).ready(function () {
       // Perform AJAX request
       $.post(quick_front_ajax_obj.ajax_url, data, function(response) {
         if (response.success) {
+          $button.find('.spin-icon-remove').remove();
+          $button.append('<span class="updated-check-add-to-cart"><i class="fa fa-check"></i></span>');
           $('.shop-page-show-success-message').html(`
                     <div class="success-message" style="color: ${response.color}">
                         <p>${response.message}</p>
@@ -915,6 +917,7 @@ jQuery(document).ready(function () {
 
           // Hide the message after 3 seconds
           setTimeout(function () {
+            $button.find('.updated-check-add-to-cart').remove();
             $('.shop-page-show-success-message').fadeOut();
             $button.prop('disabled', false);
             $button.find('i, span').show(); // Show icon and text

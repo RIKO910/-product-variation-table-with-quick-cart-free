@@ -935,6 +935,7 @@ label:hover {
 
 .table-template-max-width {
   position: relative;
+  margin-bottom: 10px;
 }
 
 #prevPage:disabled , #nextPage:disabled {
