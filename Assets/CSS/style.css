@@ -937,6 +937,10 @@ label:hover {
   position: relative;
 }
 
+#prevPage:disabled , #nextPage:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 
 

@@ -148,13 +148,13 @@ function load_more_variations() {
                 ?>
                 <td class='variable-price quick-variable-title'><?php
                     if ($showDoublePrice === 'true'){
-                        ?> <p><?php echo wp_kses_post($variation->get_price_html()); ?> </p> <?php
+                        ?> <span><?php echo wp_kses_post($variation->get_price_html()); ?> </span> <?php
                     }else{
                         $sale_price = $variation->get_sale_price();
                         if($sale_price) {
-                            ?> <p><?php echo wp_kses_post(wc_price($sale_price)); ?> </p> <?php
+                            ?> <span><?php echo wp_kses_post(wc_price($sale_price)); ?> </span> <?php
                         } else {
-                            ?> <p><?php echo wp_kses_post(wc_price($variation->get_regular_price()));?> </p> <?php
+                            ?> <span><?php echo wp_kses_post(wc_price($variation->get_regular_price()));?> </span> <?php
                         }
                     } ?></td>
                 <?php
