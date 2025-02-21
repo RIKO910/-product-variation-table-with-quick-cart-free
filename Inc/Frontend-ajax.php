@@ -218,7 +218,7 @@ function load_more_variations() {
 function woocommerce_ajax_add_to_cart_handler() {
 
     if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'woocommerce_ajax_add_to_cart')) {
-        wp_send_json_error(['message' => 'Invalid nonce.']);
+        wp_send_json_error(['message' => 'Nonce expired, please reload the page.']);
     }
 
     if (!isset($_POST['product_id'])) {

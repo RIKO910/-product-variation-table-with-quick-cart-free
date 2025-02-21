@@ -774,12 +774,7 @@ jQuery(document).ready(function () {
       var quantity;
 
       if (!$button.hasClass('loading')) {
-
         $button.append('<i class="fa fa-spinner fa-spin spin-icon-remove"></i>');
-
-        setTimeout(function() {
-          $button.find('.spin-icon-remove').remove();
-        }, 1000);
       }
 
       quantity = $button.closest('tr').find(".quick-quantity-input").val();
@@ -862,10 +857,6 @@ jQuery(document).ready(function () {
 
       if (!$button.hasClass('loading')) {
         $button.append('<i class="fa fa-spinner fa-spin spin-icon-remove"></i>');
-
-        setTimeout(function() {
-          $button.find('.spin-icon-remove').remove();
-        }, 1000);
       }
 
       // Collect selected attributes, including dropdowns and static text spans
@@ -970,7 +961,8 @@ jQuery(document).ready(function () {
         },
         success: function (response) {
           if (response.success) {
-              $("#loading-spinner-pagination-table").hide();
+            $("#loading-spinner-pagination-table").hide();
+            $(".table-template-max-width").css("opacity", "1");
             $table.find('tr.variation-row').remove();
             $table.append(response.data.html);
             totalPages = response.data.total_pages;
